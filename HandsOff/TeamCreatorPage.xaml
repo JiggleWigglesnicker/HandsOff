@@ -8,54 +8,28 @@
     mc:Ignorable="d"
     Background="SaddleBrown">
 
-    <StackPanel
+    <Grid
         Background="LightSlateGray"
         Margin="30"
-        >
+        x:Name="TeamGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="350"/>
+            <ColumnDefinition Width="350"/>
+            <ColumnDefinition Width="350"/>
+            <ColumnDefinition Width="350"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-        <TextBlock
-            Foreground="White"
-            FontSize="100"
-            Text="Team creator"
-            TextAlignment="Center"
-            Margin="0,100,0,30"
-            />
         
-        <TextBlock
-            Foreground="White"
-            FontSize="50"
-            Text="Team name"
-            TextAlignment="Center"
-            Margin="0,30,0,10"
-            />
-        
-        <TextBox
-            Background="Wheat"
-            Foreground="Black"
-            FontSize="25"
-            Height="50"
-            Width="250"
-            />
-        
-        <TextBlock
-            Foreground="White"
-            FontSize="50"
-            Text="Generate team"
-            TextAlignment="Center"
-            Margin="0,30,0,10"
-            />
+
         <Button
-            Background="Wheat"
-            Foreground="Black"
-            Content="Generate"
-            FontSize="30"
-            VerticalContentAlignment="Center"
-            Height="50"
-            Width="250"
-            HorizontalAlignment="Center"
-            />
-        <Button
-            HorizontalAlignment="Left"
+            Grid.Column="0"
+            Grid.Row="2"
+            VerticalAlignment="Top"
             Height="135"
             Width="150"
             Margin="100,0,0,0"
@@ -73,6 +47,23 @@
             </StackPanel>
         </Button>
 
+        <Button
+            Grid.Column="0"
+            Grid.Row="2"
+            Background="White"
+            Foreground="Black"
+            FontSize="25"
+            VerticalAlignment="Bottom"
+            Content="Create Team"
+            Height="50"
+            Width="150"
+            Margin="100,0,0,50"
+            Click="Back_Click"
+            />
 
-    </StackPanel>
+
+
+
+    </Grid>
+
 </Page>
