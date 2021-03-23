@@ -12,7 +12,6 @@ namespace HandsOff.Models
         public string Possition { get; set; }
         public bool HasBall { get; set; }
 
-
         /// Player Skills are based on a scale of 1 - 99
         public int Pace { get; set; } =55;
         public int Shooting { get; set; } = 55;
@@ -20,6 +19,7 @@ namespace HandsOff.Models
         public int Dribble { get; set; } = 55;
         public int Defence { get; set; } = 55;
         public int Intelligence { get; set; } = 55; // Intelligence improves decision making. Where to pass the ball to, when to shoot.
+        public int positition { get; set; } = 0; // this refers to the role of the player; players 1-4 defenders, 4, 5, 6, are midfielders, and 7, 8, 10 are attackers
 
         public Player(int Number, string Possition, int Pace, int Shooting, int Passing, int Dribble, int Defence, int Intelligence)
         {
@@ -43,11 +43,8 @@ namespace HandsOff.Models
             Random random = new Random();
             int randomNumber = random.Next(1, 100);
 
-
             // Calculate bad or good decision
             goodDecision = true; 
-            
-
 
             if (goodDecision == true) // Good Decision
             {
@@ -106,6 +103,7 @@ namespace HandsOff.Models
                 currentShootingSkill += 10; 
             }
         }
+
         /// <summary>
         /// Succes rate is based on player passing skill, dribble skill, and 
         /// </summary>
