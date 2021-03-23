@@ -17,7 +17,6 @@ namespace HandsOff.Models
         public int Action { get; set; } // A game is based on actions instead of minutes, a game has x action.
 
 
-
         public void StartMatch()
         {
             GiveBallToTeam(HomeTeam);
@@ -34,6 +33,10 @@ namespace HandsOff.Models
         /// <param name="team"></param>
         public void GiveBallToTeam(Team team)
         {
+            Team t = team;
+            Random random = new Random();
+            int playerNumber = random.Next(0, t.Players.Length);
+
 
         }
 
@@ -54,6 +57,5 @@ namespace HandsOff.Models
             this.HalfTimeHomeGoals = this.HomeGoals;
             this.HalfTimeAwayGoals = this.AwayGoals;
         }
-
     }
 }

@@ -106,6 +106,7 @@ namespace HandsOff.Models
                 currentShootingSkill += 10; 
             }
         }
+
         /// <summary>
         /// Succes rate is based on player passing skill, dribble skill, and 
         /// </summary>
