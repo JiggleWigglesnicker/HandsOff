@@ -1,0 +1,101 @@
+﻿<Page
+    x:Class="HandsOff.MatchMaker"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:HandsOff"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="SaddleBrown">
+
+    <StackPanel
+        Background="LightSlateGray"
+        Margin="30"
+        >
+
+        <TextBlock
+            Foreground="White"
+            FontSize="100"
+            Text="Match maker"
+            TextAlignment="Center"
+            Margin="0,100,0,30"
+            />
+        <TextBlock
+            Foreground="White"
+            FontSize="50"
+            Text="Team 1"
+            TextAlignment="Center"
+            Margin="0,30,0,10"
+            />
+        <ComboBox 
+            x:Name="TeamCB1"
+            Foreground="White"
+            Background="Wheat"
+            HorizontalAlignment="Center"
+            Height="50"
+            Width="250"
+            PlaceholderText="Select team"
+            FontSize="25">
+            <x:String>Ajax</x:String>
+            <x:String>PVP</x:String>
+            <x:String>FennyBoys</x:String>
+            <x:String>RuigeBallers</x:String>
+        </ComboBox>
+
+        <TextBlock
+            x:Name="TeamTitle2"
+            Foreground="White"
+            FontSize="50"
+            Text="Team 2"
+            TextAlignment="Center"
+            Margin="0,30,0,10"
+            />
+
+        <ComboBox 
+            x:Name="TeamCB2"
+            Foreground="White"
+            Background="Wheat"
+            HorizontalAlignment="Center"
+            Height="50"
+            Width="250"
+            Margin="0,0,0,40"
+            PlaceholderText="Select team"
+            FontSize="25">
+            <x:String>Ajax</x:String>
+            <x:String>PVP</x:String>
+            <x:String>FennyBoys</x:String>
+            <x:String>RuigeBallers</x:String>
+        </ComboBox>
+
+        <Button
+            Background="White"
+            Foreground="Black"
+            Content="Make match"
+            FontSize="30"
+            VerticalContentAlignment="Center"
+            Height="50"
+            Width="250"
+            HorizontalAlignment="Center"
+            />
+
+        <Button
+            HorizontalAlignment="Left"
+            Height="135"
+            Width="150"
+            Margin="100,0,0,0"
+            Click="Back_Click"
+            IsEnabled="{x:Bind Frame.CanGoBack, Mode=OneWay}"
+            >
+            <StackPanel>
+                <Image 
+                    Source="Assets\ArrowBlack.png"
+                    Height="70"/>
+                <TextBlock 
+                    Text="Back"
+                    FontSize="35"
+                    Height="40"/>
+            </StackPanel>
+        </Button>
+
+    </StackPanel>
+</Page>

@@ -32,5 +32,29 @@
             Margin="0,0,0,40"
             />
 
+        <Button 
+            Background="White"
+            HorizontalAlignment="Center" 
+            Width="600"
+            Height="100"
+            Foreground="Black"
+            Content="Team creator"
+            FontSize="50"
+            Margin="0,0,0,40"
+            Click="TeamCreator_Click"
+            />
+
+        <Button 
+            Background="White"
+            HorizontalAlignment="Center" 
+            Width="600"
+            Height="100"
+            Foreground="Black"
+            Content="Match maker"
+            FontSize="50"
+            Margin="0,0,0,40"
+            Click="MatchMaker_Click"
+            />
+
     </StackPanel>
 </Page>

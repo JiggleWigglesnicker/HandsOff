@@ -1,0 +1,78 @@
+﻿<Page
+    x:Class="HandsOff.TeamCreator"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:HandsOff"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="SaddleBrown">
+
+    <StackPanel
+        Background="LightSlateGray"
+        Margin="30"
+        >
+
+        <TextBlock
+            Foreground="White"
+            FontSize="100"
+            Text="Team creator"
+            TextAlignment="Center"
+            Margin="0,100,0,30"
+            />
+        
+        <TextBlock
+            Foreground="White"
+            FontSize="50"
+            Text="Team name"
+            TextAlignment="Center"
+            Margin="0,30,0,10"
+            />
+        
+        <TextBox
+            Background="Wheat"
+            Foreground="Black"
+            FontSize="25"
+            Height="50"
+            Width="250"
+            />
+        
+        <TextBlock
+            Foreground="White"
+            FontSize="50"
+            Text="Generate team"
+            TextAlignment="Center"
+            Margin="0,30,0,10"
+            />
+        <Button
+            Background="Wheat"
+            Foreground="Black"
+            Content="Generate"
+            FontSize="30"
+            VerticalContentAlignment="Center"
+            Height="50"
+            Width="250"
+            HorizontalAlignment="Center"
+            />
+        <Button
+            HorizontalAlignment="Left"
+            Height="135"
+            Width="150"
+            Margin="100,0,0,0"
+            Click="Back_Click"
+            IsEnabled="{x:Bind Frame.CanGoBack, Mode=OneWay}"
+            >
+            <StackPanel>
+                <Image 
+                    Source="Assets\ArrowBlack.png"
+                    Height="70"/>
+                <TextBlock 
+                    Text="Back"
+                    FontSize="35"
+                    Height="40"/>
+            </StackPanel>
+        </Button>
+
+
+    </StackPanel>
+</Page>
