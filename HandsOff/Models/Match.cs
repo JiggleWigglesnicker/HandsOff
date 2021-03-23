@@ -14,7 +14,9 @@ namespace HandsOff.Models
         public int AwayGoals { get; set; }
         public int HalfTimeHomeGoals { get; set; }
         public int HalfTimeAwayGoals { get; set; }
-        public int Action { get; set; } // A game is based on actions instead of minutes, a game has x action.
+        public int turns { get; set; } // A game is based on turns instead of minutes, a game has x turns. This is a set value.
+        public int turnCounter { get; set; } // Keeps track of the amount of turns that has passed.
+
 
 
         public void StartMatch()
