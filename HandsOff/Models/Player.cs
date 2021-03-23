@@ -18,6 +18,21 @@ namespace HandsOff.Models
         public int Defence { get; set; }
         public int Intelligence { get; set; } // Intelligence improves decision making. Where to pass the ball to, when to shoot.
 
+        public Player(int Number, string Possition, int Pace, int Shooting, int Passing, int Dribble, int Defence, int Intelligence)
+        {
+            this.Number = Number;
+            this.Possition = Possition;
+            this.Pace = Pace;
+            this.Shooting = Shooting;
+            this.Passing = Passing;
+            this.Dribble = Dribble;
+            this.Defence = Defence;
+            this.Intelligence = Intelligence;
+            this.HasBall = false;
+        }
+
+
+
 
         /// <summary>
         /// Make dicision while in possesion of the ball, Where to pass the ball or when to shoot. Based on intelligence.
