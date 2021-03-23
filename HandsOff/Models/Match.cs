@@ -20,17 +20,33 @@ namespace HandsOff.Models
 
         public void StartMatch()
         {
+            GiveBallToTeam(HomeTeam);
+        }
+
+        public void StartSecondHalf()
+        {
+            GiveBallToTeam(AwayTeam);
+        }
+
+        /// <summary>
+        /// give to a midfielder of the team, if there is no midfielder in the team then give the ball to a random player of the team.
+        /// </summary>
+        /// <param name="team"></param>
+        public void GiveBallToTeam(Team team)
+        {
 
         }
 
         public void ScoreHome()
         {
             this.HomeGoals++;
+            GiveBallToTeam(AwayTeam);
         }
 
         public void ScoreAway()
         {
             this.AwayGoals++;
+            GiveBallToTeam(HomeTeam);
         }
 
         public void HalfTime()
