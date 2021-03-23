@@ -27,9 +27,10 @@
             Width="600"
             Height="100"
             Foreground="Black"
-            Content="Simulate"
+            Content="Simulation overview"
             FontSize="50"
             Margin="0,0,0,40"
+            Click="Simulation_Click"
             />
 
         <Button 
