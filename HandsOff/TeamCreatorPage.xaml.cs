@@ -26,7 +26,7 @@ namespace HandsOff
         public TeamCreator()
         {
             this.InitializeComponent();
-            create_PlayerCreatorUI();
+            create_PlayerCreatorUI();    
         }
 
 
@@ -38,6 +38,7 @@ namespace HandsOff
             {
                 ScrollViewer scrollView = new ScrollViewer();
                 StackPanel stackPanel = new StackPanel();
+                stackPanel.Name = "stackpanel" + i;
                 TextBlock textBlock1 = new TextBlock();
                 textBlock1.Text = "Player " + i;
                 textBlock1.HorizontalAlignment = HorizontalAlignment.Center;
