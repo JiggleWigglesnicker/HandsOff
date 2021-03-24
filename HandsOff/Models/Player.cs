@@ -9,7 +9,7 @@ namespace HandsOff.Models
     public class Player
     {
         public int Number { get; set; }
-        public string Possition { get; set; }
+        public string Position { get; set; } // this refers to the role of the player; players 1-4 defenders, 4, 5, 6, are midfielders, and 7, 8, 10 are attackers
         public bool HasBall { get; set; }
 
         /// Player Skills are based on a scale of 1 - 99
@@ -19,12 +19,11 @@ namespace HandsOff.Models
         public int Dribble { get; set; } = 55;
         public int Defence { get; set; } = 55;
         public int Intelligence { get; set; } = 55; // Intelligence improves decision making. Where to pass the ball to, when to shoot.
-        public int positition { get; set; } = 0; // this refers to the role of the player; players 1-4 defenders, 4, 5, 6, are midfielders, and 7, 8, 10 are attackers
 
-        public Player(int Number, string Possition, int Pace, int Shooting, int Passing, int Dribble, int Defence, int Intelligence)
+        public Player(int Number, string Position, int Pace, int Shooting, int Passing, int Dribble, int Defence, int Intelligence)
         {
             this.Number = Number;
-            this.Possition = Possition;
+            this.Position = Position;
             this.Pace = Pace;
             this.Shooting = Shooting;
             this.Passing = Passing;
@@ -60,7 +59,7 @@ namespace HandsOff.Models
 
             if (goodDecision == true) // Good Decision
             {
-                if(this.Possition == "Attacker")
+                if(this.Position == "Attacker")
                 {
                     if (randomNumber > this.Dribble)
                     {
@@ -69,7 +68,7 @@ namespace HandsOff.Models
                     ShootOnGoal(false);
                     
                 }
-                if(this.Possition == "Defender")
+                if(this.Position == "Defender")
                 {
                     if (randomNumber > this.Dribble)
                     {
@@ -77,7 +76,7 @@ namespace HandsOff.Models
                     }
                     PassBall(false);
                 }
-                if(this.Possition == "Midfielder")
+                if(this.Position == "Midfielder")
                 {
                     if (randomNumber > this.Dribble)
                     {
@@ -88,15 +87,15 @@ namespace HandsOff.Models
             }
             if(goodDecision == false) // Bad Decision
             {
-                if (this.Possition == "Attacker")
+                if (this.Position == "Attacker")
                 {
                     PassBall(false);
                 }
-                if (this.Possition == "Defender")
+                if (this.Position == "Defender")
                 {
                     ShootOnGoal(false);
                 }
-                if (this.Possition == "Midfielder")
+                if (this.Position == "Midfielder")
                 {
                     ShootOnGoal(false);
                 }
