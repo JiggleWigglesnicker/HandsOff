@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HandsOff.Models
 {
-    class Player
+    public class Player
     {
         public int Number { get; set; }
         public string Possition { get; set; }
@@ -25,6 +25,18 @@ namespace HandsOff.Models
         {
             this.Number = Number;
             this.Possition = Possition;
+            this.Pace = Pace;
+            this.Shooting = Shooting;
+            this.Passing = Passing;
+            this.Dribble = Dribble;
+            this.Defence = Defence;
+            this.Intelligence = Intelligence;
+            this.HasBall = false;
+        }
+
+        public Player(int Number, int Pace, int Shooting, int Passing, int Dribble, int Defence, int Intelligence)
+        {
+            this.Number = Number;
             this.Pace = Pace;
             this.Shooting = Shooting;
             this.Passing = Passing;
