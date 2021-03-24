@@ -37,7 +37,7 @@ namespace HandsOff.Models
         {
             Team t = team;
             Random random = new Random();
-            int randomPlayerNumber = random.Next(0, t.Players.Length);
+            int randomPlayerNumber = random.Next(0, t.Players.Count);
 
             Player randomPlayer = t.Players[randomPlayerNumber];
             randomPlayer.HasBall = true;

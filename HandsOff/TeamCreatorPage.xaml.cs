@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HandsOff.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,16 +26,21 @@ namespace HandsOff
     /// </summary>
     public sealed partial class TeamCreator : Page
     {
+
+        private Team team { get; set; }
+
         public TeamCreator()
         {
             this.InitializeComponent();
-            TeamPageUIAsync();    
+            TeamPageUIAsync();
         }
 
 
 
-        public async void TeamPageUIAsync() {
-            await Task.Run(() => {
+        public async void TeamPageUIAsync()
+        {
+            await Task.Run(() =>
+            {
                 CreateTeamCreatorUI();
             });
         }
@@ -195,10 +201,45 @@ namespace HandsOff
         }
 
 
+
+        public Team CreateTeam()
+        {
+            Team team = new Team();
+            for (int i = 1; i < 12; i++)
+            {
+
+                StackPanel stackpanel = (StackPanel)this.FindName("stackpanel" + i);
+                TextBox textBox1 = (TextBox)stackpanel.Children[2];
+                TextBox textBox2 = (TextBox)stackpanel.Children[4];
+                TextBox textBox3 = (TextBox)stackpanel.Children[6];
+                TextBox textBox4 = (TextBox)stackpanel.Children[8];
+                TextBox textBox5 = (TextBox)stackpanel.Children[10];
+                TextBox textBox6 = (TextBox)stackpanel.Children[12];
+                int pace = (int)Int64.Parse(textBox1.Text);
+                int shooting = (int)Int64.Parse(textBox2.Text);
+                int passing = (int)Int64.Parse(textBox3.Text);
+                int dribble = (int)Int64.Parse(textBox4.Text);
+                int defence = (int)Int64.Parse(textBox5.Text);
+                int intelligence = (int)Int64.Parse(textBox6.Text);
+                Player player = new Player(i, pace, shooting, passing, dribble, defence, intelligence);
+                team.Players.Add(player);
+            }
+            return team;
+        }
+
+
+        private void CreateTeam_Click(object sender, RoutedEventArgs e)
+        {
+            team = CreateTeam();
+            team.TeamName = TeamNameBox.Text;
+        }
+
+
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             App.TryGoBack();
         }
+
 
     }
 }
