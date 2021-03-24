@@ -26,7 +26,6 @@ namespace HandsOff
     /// </summary>
     public sealed partial class TeamCreator : Page
     {
-
         private Team team { get; set; }
 
         public TeamCreator()
@@ -34,8 +33,6 @@ namespace HandsOff
             this.InitializeComponent();
             TeamPageUIAsync();
         }
-
-
 
         public async void TeamPageUIAsync()
         {
@@ -202,18 +199,13 @@ namespace HandsOff
                     }
                 });
             }
-
-
         }
-
-
 
         public Team CreateTeam()
         {
             Team team = new Team();
             for (int i = 1; i < 12; i++)
             {
-
                 StackPanel stackpanel = (StackPanel)this.FindName("stackpanel" + i);
                 TextBox textBox1 = (TextBox)stackpanel.Children[2];
                 TextBox textBox2 = (TextBox)stackpanel.Children[4];
@@ -227,12 +219,12 @@ namespace HandsOff
                 int dribble = (int)Int64.Parse(textBox4.Text);
                 int defence = (int)Int64.Parse(textBox5.Text);
                 int intelligence = (int)Int64.Parse(textBox6.Text);
-                Player player = new Player(i, pace, shooting, passing, dribble, defence, intelligence);
-                team.Players.Add(player);
+                String Position = "Attacker";
+                Player player = new Player(i, Position, pace, shooting, passing, dribble, defence, intelligence);
+                team.addPlayerToTeam(player);
             }
             return team;
         }
-
 
         private void CreateTeam_Click(object sender, RoutedEventArgs e)
         {
@@ -240,12 +232,9 @@ namespace HandsOff
             team.TeamName = TeamNameBox.Text;
         }
 
-
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             App.TryGoBack();
         }
-
-
     }
 }

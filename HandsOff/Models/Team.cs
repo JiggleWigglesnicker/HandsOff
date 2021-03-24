@@ -9,7 +9,7 @@ namespace HandsOff.Models
     public class Team
     {
         public String TeamName { get; set; }
-        public List<Player> Players { get; set; } // Array of Player, should not exceed 10 players/
+        public List<Player> Players = new List<Player>(); // Array of Player, should not exceed 10 players/
 
         /// <summary>
         /// Sets a "Random" team name.
@@ -21,6 +21,11 @@ namespace HandsOff.Models
             string RandomTeamName = TeamNames[random.Next(0, TeamName.Length)];
             Console.WriteLine("Random team name = "+RandomTeamName + ".");
             this.TeamName = RandomTeamName;
+        }
+
+        public void addPlayerToTeam(Player player)
+        {
+            Players.Add(player);
         }
 
         /// <summary>

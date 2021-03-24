@@ -33,7 +33,7 @@ namespace HandsOff.Models
             this.HasBall = false;
         }
 
-        public Player(int Number, int Pace, int Shooting, int Passing, int Dribble, int Defence, int Intelligence)
+        /*public Player(int Number, int Pace, int Shooting, int Passing, int Dribble, int Defence, int Intelligence)
         {
             this.Number = Number;
             this.Pace = Pace;
@@ -43,7 +43,7 @@ namespace HandsOff.Models
             this.Defence = Defence;
             this.Intelligence = Intelligence;
             this.HasBall = false;
-        }
+        }*/
 
         /// <summary>
         /// Make dicision while in possesion of the ball, Where to pass the ball or when to shoot. Based on intelligence.
