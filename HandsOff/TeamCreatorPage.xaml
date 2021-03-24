@@ -38,6 +38,7 @@
             />
 
         <TextBox
+            x:Name="TeamNameBox"
             Grid.Column="0"
             Grid.Row="2"
             Background="White"
@@ -50,6 +51,7 @@
             />
 
         <Button
+            Click="CreateTeam_Click"
             Grid.Column="0"
             Grid.Row="2"
             Background="White"

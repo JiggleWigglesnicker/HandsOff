@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HandsOff.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,16 +26,21 @@ namespace HandsOff
     /// </summary>
     public sealed partial class TeamCreator : Page
     {
+
+        private Team team { get; set; }
+
         public TeamCreator()
         {
             this.InitializeComponent();
-            TeamPageUIAsync();    
+            TeamPageUIAsync();
         }
 
 
 
-        public async void TeamPageUIAsync() {
-            await Task.Run(() => {
+        public async void TeamPageUIAsync()
+        {
+            await Task.Run(() =>
+            {
                 CreateTeamCreatorUI();
             });
         }
@@ -92,36 +98,42 @@ namespace HandsOff
                     textBlock7.Foreground = new SolidColorBrush(Colors.White);
                     textBlock7.Margin = new Thickness(15, 2, 0, 0);
                     TextBox textBox1 = new TextBox();
+                    textBox1.Text = "0";
                     textBox1.Background = new SolidColorBrush(Colors.Wheat);
                     textBox1.Foreground = new SolidColorBrush(Colors.Black);
                     textBox1.FontSize = 20;
                     textBox1.Height = 35;
                     textBox1.Width = 75;
                     TextBox textBox2 = new TextBox();
+                    textBox2.Text = "0";
                     textBox2.Background = new SolidColorBrush(Colors.Wheat);
                     textBox2.Foreground = new SolidColorBrush(Colors.Black);
                     textBox2.FontSize = 20;
                     textBox2.Height = 35;
                     textBox2.Width = 75;
                     TextBox textBox3 = new TextBox();
+                    textBox3.Text = "0";
                     textBox3.Background = new SolidColorBrush(Colors.Wheat);
                     textBox3.Foreground = new SolidColorBrush(Colors.Black);
                     textBox3.FontSize = 20;
                     textBox3.Height = 35;
                     textBox3.Width = 75;
                     TextBox textBox4 = new TextBox();
+                    textBox4.Text = "0";
                     textBox4.Background = new SolidColorBrush(Colors.Wheat);
                     textBox4.Foreground = new SolidColorBrush(Colors.Black);
                     textBox4.FontSize = 20;
                     textBox4.Height = 35;
                     textBox4.Width = 75;
                     TextBox textBox5 = new TextBox();
+                    textBox5.Text = "0";
                     textBox5.Background = new SolidColorBrush(Colors.Wheat);
                     textBox5.Foreground = new SolidColorBrush(Colors.Black);
                     textBox5.FontSize = 20;
                     textBox5.Height = 35;
                     textBox5.Width = 75;
                     TextBox textBox6 = new TextBox();
+                    textBox6.Text = "0";
                     textBox6.Background = new SolidColorBrush(Colors.Wheat);
                     textBox6.Foreground = new SolidColorBrush(Colors.Black);
                     textBox6.FontSize = 20;
@@ -195,10 +207,45 @@ namespace HandsOff
         }
 
 
+
+        public Team CreateTeam()
+        {
+            Team team = new Team();
+            for (int i = 1; i < 12; i++)
+            {
+
+                StackPanel stackpanel = (StackPanel)this.FindName("stackpanel" + i);
+                TextBox textBox1 = (TextBox)stackpanel.Children[2];
+                TextBox textBox2 = (TextBox)stackpanel.Children[4];
+                TextBox textBox3 = (TextBox)stackpanel.Children[6];
+                TextBox textBox4 = (TextBox)stackpanel.Children[8];
+                TextBox textBox5 = (TextBox)stackpanel.Children[10];
+                TextBox textBox6 = (TextBox)stackpanel.Children[12];
+                int pace = (int)Int64.Parse(textBox1.Text);
+                int shooting = (int)Int64.Parse(textBox2.Text);
+                int passing = (int)Int64.Parse(textBox3.Text);
+                int dribble = (int)Int64.Parse(textBox4.Text);
+                int defence = (int)Int64.Parse(textBox5.Text);
+                int intelligence = (int)Int64.Parse(textBox6.Text);
+                Player player = new Player(i, pace, shooting, passing, dribble, defence, intelligence);
+                team.Players.Add(player);
+            }
+            return team;
+        }
+
+
+        private void CreateTeam_Click(object sender, RoutedEventArgs e)
+        {
+            team = CreateTeam();
+            team.TeamName = TeamNameBox.Text;
+        }
+
+
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             App.TryGoBack();
         }
+
 
     }
 }
