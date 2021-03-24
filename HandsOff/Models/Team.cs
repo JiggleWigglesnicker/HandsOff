@@ -9,7 +9,8 @@ namespace HandsOff.Models
     class Team
     {
         public String TeamName { get; set; }
-        public Array Players { get; set; }
+        public Player[] Players { get; set; }
+
 
         public void GetRandomTeamName()
         {

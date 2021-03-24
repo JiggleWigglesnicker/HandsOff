@@ -14,8 +14,8 @@ namespace HandsOff.Models
         public int AwayGoals { get; set; }
         public int HalfTimeHomeGoals { get; set; }
         public int HalfTimeAwayGoals { get; set; }
-        public int turns { get; set; } // A game is based on turns instead of minutes, a game has x turns. This is a set value.
-        public int turnCounter { get; set; } // Keeps track of the amount of turns that has passed.
+        public int Turns { get; set; } // A game is based on turns instead of minutes, a game has x turns. This is a set value.
+        public int TurnCounter { get; set; } // Keeps track of the amount of turns that has passed.
 
 
 
@@ -37,9 +37,10 @@ namespace HandsOff.Models
         {
             Team t = team;
             Random random = new Random();
-            int playerNumber = random.Next(0, t.Players.Length);
+            int randomPlayerNumber = random.Next(0, t.Players.Length);
 
-
+            Player randomPlayer = t.Players[randomPlayerNumber];
+            randomPlayer.HasBall = true;
         }
 
         public void ScoreHome()
