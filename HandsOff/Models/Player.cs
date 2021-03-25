@@ -56,8 +56,7 @@ namespace HandsOff.Models
                     {
                         ShootOnGoal(DribbleWithBall());
                     }
-                    ShootOnGoal(false);
-                    
+                    ShootOnGoal(false);  
                 }
                 if(this.Position == "Defender")
                 {
@@ -91,27 +90,35 @@ namespace HandsOff.Models
                     ShootOnGoal(false);
                 }
             }
-
         }
-
 
         /// <summary>
         /// Succes rate is based on player possition, shooting skill and Dribble skill.
         /// </summary>
-        public void ShootOnGoal(bool dribbleBonus)
+        public bool ShootOnGoal(bool dribbleBonus)
         {
             int currentShootingSkill = this.Shooting;
-            if(dribbleBonus == true) { 
+            Random random = new Random();
+            int randomNumber = random.Next(1, 100);
+
+            if (dribbleBonus == true) { 
                 currentShootingSkill += 10; 
+            }
+            if (randomNumber > currentShootingSkill)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
         /// <summary>
-        /// Succes rate is based on player passing skill, dribble skill, and 
+        /// Succes rate is based on player passing skill, dribble skill
         /// </summary>
         public bool PassBall(bool dribbleBonus)
         {
-            bool succesfullPass;
             int currenPassingSkill = this.Shooting;
             Random random = new Random();
             int randomNumber = random.Next(1, 100);
@@ -122,16 +129,14 @@ namespace HandsOff.Models
                 currenPassingSkill += 10;
             }
 
-            if (randomNumber > this.Passing)
+            if (randomNumber > currenPassingSkill)
             {
-                succesfullPass = true;
+                return true;
             }
             else
             {
-                succesfullPass = false;
+                return false;
             }
-
-            return succesfullPass;
         }
 
         /// <summary>
@@ -139,18 +144,14 @@ namespace HandsOff.Models
         /// </summary>
         public bool DribbleWithBall()
         {
-            bool result = true;
             Random random = new Random();
             int randomNumber = random.Next(1, 100);
 
-
             if(randomNumber > this.Dribble)
             {
-                result = false;
+                return false;
             }
-
-            return result;
+            return true;
         }
-
     }
 }
