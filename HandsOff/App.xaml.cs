@@ -23,9 +23,9 @@ namespace HandsOff
     /// </summary>
     sealed partial class App : Application
     {
-        public Team team1 { get; set; }
-        public Team team2 { get; set; }
-        public Team team3 { get; set; }
+        public static Team team1 { get; private set; }
+        public static Team team2 { get; private set; }
+        public static Team team3 { get; private set; }
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
