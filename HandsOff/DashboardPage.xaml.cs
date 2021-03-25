@@ -50,10 +50,9 @@ namespace HandsOff
         {
             base.OnNavigatedTo(e);
 
-            if (e != null)
-            {
+            if (e.Parameter != null)
                 this.team = (Team)e.Parameter;
-            }
+         
 
         }
 
