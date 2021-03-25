@@ -201,6 +201,12 @@ namespace HandsOff
             }
         }
 
+        private void CreateTeam_Click(object sender, RoutedEventArgs e)
+        {
+            team = CreateTeam();
+            team.TeamName = TeamNameBox.Text;
+        }
+
         public Team CreateTeam()
         {
             Team team = new Team();
@@ -226,11 +232,7 @@ namespace HandsOff
             return team;
         }
 
-        private void CreateTeam_Click(object sender, RoutedEventArgs e)
-        {
-            team = CreateTeam();
-            team.TeamName = TeamNameBox.Text;
-        }
+
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {

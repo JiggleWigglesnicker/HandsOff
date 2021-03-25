@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HandsOff.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,6 +23,8 @@ namespace HandsOff
     /// </summary>
     sealed partial class App : Application
     {
+        private Team team { get; set; }
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -30,6 +33,33 @@ namespace HandsOff
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            team = CreateTeam();
+            team.TeamName = "Example Team 1";
+
+            team = CreateTeam();
+            team.TeamName = "Example Team 2";
+
+            team = CreateTeam();
+            team.TeamName = "Example Team 3";
+        }
+
+        public Team CreateTeam()
+        {
+            Team team = new Team();
+            for (int i = 1; i < 12; i++)
+            {
+                int pace = 15;
+                int shooting = 20;
+                int passing = 20;
+                int dribble = 10;
+                int defence = 80;
+                int intelligence = 50;
+                String Position = "Attacker";
+                Player player = new Player(i, Position, pace, shooting, passing, dribble, defence, intelligence);
+                team.AddPlayerToTeam(player);
+            }
+            return team;
         }
 
         /// <summary>
