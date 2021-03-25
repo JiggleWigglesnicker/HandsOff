@@ -38,8 +38,6 @@ namespace HandsOff
 
             team1 = CreateTeam();
             team1.TeamName = "Example Team 1";
-            //MatchPool.AddTeam(team1);
-
 
             team2 = CreateTeam();
             team2.TeamName = "Example Team 2";

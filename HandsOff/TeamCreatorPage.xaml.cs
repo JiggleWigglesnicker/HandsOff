@@ -232,8 +232,6 @@ namespace HandsOff
             return team;
         }
 
-
-
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(Dashboard), team);

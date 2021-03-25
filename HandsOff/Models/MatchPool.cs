@@ -8,11 +8,11 @@ namespace HandsOff.Models
 {
     class MatchPool
     {
-        List<Team> Teams = new List<Team>();
+        List<Match> Matches = new List<Match>();
 
-        public void AddTeam(Team team)
+        public void AddTeam(Match match)
         {
-            Teams.Add(team);
+            Matches.Add(match);
         }
     }
 }

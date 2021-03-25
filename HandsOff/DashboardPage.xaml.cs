@@ -52,9 +52,6 @@ namespace HandsOff
 
             if (e.Parameter != null)
                 this.team = (Team)e.Parameter;
-         
-
         }
-
     }
 }

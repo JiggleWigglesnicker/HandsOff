@@ -24,14 +24,36 @@ namespace HandsOff
     /// </summary>
     public sealed partial class MatchMaker : Page
     {
+        List<Team> Teams = new List<Team>();
 
         public MatchMaker()
         {
+            Teams.Add(App.team1);
+            Teams.Add(App.team2);
+            Teams.Add(App.team3);
+
             this.InitializeComponent();
-            CreateDropBoxTeams();
+            enterTeamsIntoDropBox();
+
+            //CreateDropBoxTeams();
         }
 
+        /// <summary>
+        /// this method fills in all the existing teams in the list into the dropboxes
+        /// </summary>
+        public void enterTeamsIntoDropBox()
+        {
+            ComboBox CB1 = this.TeamCB1;
+            ComboBox CB2 = this.TeamCB2;
 
+            foreach (Team team in Teams)
+            {
+                CB1.Items.Add(team);
+                CB2.Items.Add(team);
+
+                Console.WriteLine("added team {0}", team.getName());
+            }
+        }
 
         public void CreateDropBoxTeams()
         {
@@ -43,6 +65,15 @@ namespace HandsOff
             CB2.Items.Add(App.team1.getName());
             CB2.Items.Add(App.team2.getName());
             CB2.Items.Add(App.team3.getName());
+
+            Teams.Add(App.team1);
+            Teams.Add(App.team2);
+            Teams.Add(App.team3);
+        }
+
+        public void AddTeamToList(Team team)
+        {
+            Teams.Add(team);
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
