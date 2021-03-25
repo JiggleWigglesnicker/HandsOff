@@ -23,9 +23,9 @@ namespace HandsOff
     /// </summary>
     sealed partial class App : Application
     {
-        private Team team1 { get; set; }
-        private Team team2 { get; set; }
-        private Team team3 { get; set; }
+        public Team team1 { get; set; }
+        public Team team2 { get; set; }
+        public Team team3 { get; set; }
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -38,6 +38,8 @@ namespace HandsOff
 
             team1 = CreateTeam();
             team1.TeamName = "Example Team 1";
+            //MatchPool.AddTeam(team1);
+
 
             team2 = CreateTeam();
             team2.TeamName = "Example Team 2";
