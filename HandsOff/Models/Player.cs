@@ -108,12 +108,11 @@ namespace HandsOff.Models
         {
             int currentShootingSkill = this.Shooting;
             Random random = new Random();
-            int randomNumber = random.Next(1, 100);
 
             if (dribbleBonus == true) { 
                 currentShootingSkill += 10; 
             }
-            if (randomNumber > currentShootingSkill)
+            if (random.Next(1, 100) > currentShootingSkill)
             {
                 return true;
             }
@@ -130,15 +129,13 @@ namespace HandsOff.Models
         {
             int currenPassingSkill = this.Shooting;
             Random random = new Random();
-            int randomNumber = random.Next(1, 100);
-
 
             if (dribbleBonus == true)
             {
                 currenPassingSkill += 10;
             }
 
-            if (randomNumber > currenPassingSkill)
+            if (random.Next(1, 100) > currenPassingSkill)
             {
                 return true;
             }
@@ -154,9 +151,8 @@ namespace HandsOff.Models
         public bool DribbleWithBall()
         {
             Random random = new Random();
-            int randomNumber = random.Next(1, 100);
 
-            if(randomNumber > this.Dribble)
+            if(random.Next(1, 100) > this.Dribble)
             {
                 return false;
             }
