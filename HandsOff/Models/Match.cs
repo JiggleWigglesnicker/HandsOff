@@ -8,14 +8,14 @@ namespace HandsOff.Models
 {
     class Match
     {
-        public Team HomeTeam { get; set; }
-        public Team AwayTeam { get; set; }
-        public int HomeGoals { get; set; }
-        public int AwayGoals { get; set; }
-        public int HalfTimeHomeGoals { get; set; }
-        public int HalfTimeAwayGoals { get; set; }
-        public int Turns { get; set; } // A game is based on turns instead of minutes, a game has x turns. This is a set value.
-        public int TurnCounter { get; set; } // Keeps track of the amount of turns that has passed.
+        public Team HomeTeam            { get; set; }
+        public Team AwayTeam            { get; set; }
+        public int  HomeGoals           { get; set; }
+        public int  AwayGoals           { get; set; }
+        public int  HalfTimeHomeGoals   { get; set; }
+        public int  HalfTimeAwayGoals   { get; set; }
+        public int  Turns               { get; set; } // A game is based on turns instead of minutes, a game has x turns. This is a set value.
+        public int  TurnCounter         { get; set; } // Keeps track of the amount of turns that has passed.
 
         public void StartMatch()
         {
