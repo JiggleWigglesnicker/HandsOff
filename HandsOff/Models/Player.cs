@@ -11,7 +11,7 @@ namespace HandsOff.Models
         private const int BaseStat = 55;
 
         public int Number { get; set; }
-        public string Position { get; set; } // this refers to the role of the player; players 1-4 defenders, 4, 5, 6, are midfielders, and 7, 8, 10 are attackers
+        public string Position { get; set; } // this refers to the role of the player; players 1-2-3-4 defenders, 5, 6, 7, are midfielders, and 8, 9, 10 are attackers
         public bool HasBall { get; set; }
 
         /// Player Skills are based on a scale of 1 - 99
