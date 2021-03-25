@@ -8,7 +8,9 @@ namespace HandsOff.Models
 {
     public class Player
     {
-        private const int BaseStat = 55;
+        private const    int         BaseStat    = 55;
+        private readonly Random     random      = new Random();
+
 
         public int      Number          { get; set; }
         public string   Position        { get; set; } // this refers to the role of the player; players 1-2-3-4 defenders, 5, 6, 7, are midfielders, and 8, 9, 10 are attackers
@@ -44,7 +46,6 @@ namespace HandsOff.Models
         public void MakeDecision()
         {
             bool goodDecision;
-            Random random = new Random();
 
             // Calculate bad or good decision
             if (random.Next(1, 100) > this.Intelligence)
@@ -107,7 +108,6 @@ namespace HandsOff.Models
         public bool ShootOnGoal(bool dribbleBonus)
         {
             int currentShootingSkill = this.Shooting;
-            Random random = new Random();
 
             if (dribbleBonus == true) { 
                 currentShootingSkill += 10; 
@@ -128,7 +128,6 @@ namespace HandsOff.Models
         public bool PassBall(bool dribbleBonus)
         {
             int currenPassingSkill = this.Shooting;
-            Random random = new Random();
 
             if (dribbleBonus == true)
             {
@@ -150,8 +149,6 @@ namespace HandsOff.Models
         /// </summary>
         public bool DribbleWithBall()
         {
-            Random random = new Random();
-
             if(random.Next(1, 100) > this.Dribble)
             {
                 return false;
