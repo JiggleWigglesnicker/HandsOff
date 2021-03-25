@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace HandsOff.Models
 {
-    class Team
+    public class Team
     {
         public String TeamName { get; set; }
-        public Player[] Players { get; set; } // Array of Player, should not exceed 10 players/
+        public List<Player> Players = new List<Player>(); // Array of Player, should not exceed 10 players/
 
         /// <summary>
         /// Sets a "Random" team name.
@@ -23,13 +23,18 @@ namespace HandsOff.Models
             this.TeamName = RandomTeamName;
         }
 
+        public void addPlayerToTeam(Player player)
+        {
+            Players.Add(player);
+        }
+
         /// <summary>
         /// Check if team has 10 players and a team name
         /// </summary>
         /// <returns></returns>
         public bool CheckIfTeamIsComplete()
         {
-            if (this.Players.Length == 10)
+            if (this.Players.Count == 10)
             {
                 if (this.TeamName != null)
                 {

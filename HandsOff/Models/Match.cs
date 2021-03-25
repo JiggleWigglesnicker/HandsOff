@@ -17,8 +17,6 @@ namespace HandsOff.Models
         public int Turns { get; set; } // A game is based on turns instead of minutes, a game has x turns. This is a set value.
         public int TurnCounter { get; set; } // Keeps track of the amount of turns that has passed.
 
-
-
         public void StartMatch()
         {
             GiveBallToTeam(HomeTeam);
@@ -37,7 +35,7 @@ namespace HandsOff.Models
         {
             Team t = team;
             Random random = new Random();
-            int randomPlayerNumber = random.Next(0, t.Players.Length);
+            int randomPlayerNumber = random.Next(0, t.Players.Count);
 
             Player randomPlayer = t.Players[randomPlayerNumber];
             randomPlayer.HasBall = true;

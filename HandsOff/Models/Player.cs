@@ -6,27 +6,28 @@ using System.Threading.Tasks;
 
 namespace HandsOff.Models
 {
-    class Player
+    public class Player
     {
-        private const int BaseStat = 55;
+        public int Number { get; set; }
+        public string Position { get; set; } // this refers to the role of the player; players 1-4 defenders, 4, 5, 6, are midfielders, and 7, 8, 10 are attackers
+        public bool HasBall { get; set; }
 
         public int Number           { get; set; }
         public string Possition     { get; set; }
         public bool HasBall         { get; set; }
 
         /// Player Skills are based on a scale of 1 - 99
-        public int Pace             { get; set; } = BaseStat;
-        public int Shooting         { get; set; } = BaseStat;
-        public int Passing          { get; set; } = BaseStat;
-        public int Dribble          { get; set; } = BaseStat;
-        public int Defence          { get; set; } = BaseStat;
-        public int Intelligence     { get; set; } = BaseStat; // Intelligence improves decision making. Where to pass the ball to, when to shoot.
-        public int positition       { get; set; } // this refers to the role of the player; players 1-4 defenders, 4, 5, 6, are midfielders, and 7, 8, 10 are attackers
+        public int Pace { get; set; } =55;
+        public int Shooting { get; set; } = 55;
+        public int Passing { get; set; } = 55;
+        public int Dribble { get; set; } = 55;
+        public int Defence { get; set; } = 55;
+        public int Intelligence { get; set; } = 55; // Intelligence improves decision making. Where to pass the ball to, when to shoot.
 
-        public Player(int Number, string Possition, int Pace, int Shooting, int Passing, int Dribble, int Defence, int Intelligence)
+        public Player(int Number, string Position, int Pace, int Shooting, int Passing, int Dribble, int Defence, int Intelligence)
         {
             this.Number = Number;
-            this.Possition = Possition;
+            this.Position = Position;
             this.Pace = Pace;
             this.Shooting = Shooting;
             this.Passing = Passing;
@@ -35,6 +36,18 @@ namespace HandsOff.Models
             this.Intelligence = Intelligence;
             this.HasBall = false;
         }
+
+        /*public Player(int Number, int Pace, int Shooting, int Passing, int Dribble, int Defence, int Intelligence)
+        {
+            this.Number = Number;
+            this.Pace = Pace;
+            this.Shooting = Shooting;
+            this.Passing = Passing;
+            this.Dribble = Dribble;
+            this.Defence = Defence;
+            this.Intelligence = Intelligence;
+            this.HasBall = false;
+        }*/
 
         /// <summary>
         /// Make dicision while in possesion of the ball, Where to pass the ball or when to shoot. Based on intelligence.
@@ -50,7 +63,7 @@ namespace HandsOff.Models
 
             if (goodDecision == true) // Good Decision
             {
-                if(this.Possition == "Attacker")
+                if(this.Position == "Attacker")
                 {
                     if (randomNumber > this.Dribble)
                     {
@@ -59,7 +72,7 @@ namespace HandsOff.Models
                     ShootOnGoal(false);
                     
                 }
-                if(this.Possition == "Defender")
+                if(this.Position == "Defender")
                 {
                     if (randomNumber > this.Dribble)
                     {
@@ -67,7 +80,7 @@ namespace HandsOff.Models
                     }
                     PassBall(false);
                 }
-                if(this.Possition == "Midfielder")
+                if(this.Position == "Midfielder")
                 {
                     if (randomNumber > this.Dribble)
                     {
@@ -78,15 +91,15 @@ namespace HandsOff.Models
             }
             if(goodDecision == false) // Bad Decision
             {
-                if (this.Possition == "Attacker")
+                if (this.Position == "Attacker")
                 {
                     PassBall(false);
                 }
-                if (this.Possition == "Defender")
+                if (this.Position == "Defender")
                 {
                     ShootOnGoal(false);
                 }
-                if (this.Possition == "Midfielder")
+                if (this.Position == "Midfielder")
                 {
                     ShootOnGoal(false);
                 }

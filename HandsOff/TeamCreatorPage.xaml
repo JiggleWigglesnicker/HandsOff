@@ -24,45 +24,66 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        
+        <TextBlock
+            Grid.Column="0"
+            Grid.Row="2"
+            Foreground="White"
+            FontSize="25"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Center"
+            Text="Enter team name"
+            Height="50"
+            Width="200"
+            Margin="0,20,0,0"
+            />
+
+        <TextBox
+            x:Name="TeamNameBox"
+            Grid.Column="0"
+            Grid.Row="2"
+            Background="White"
+            Foreground="Black"
+            FontSize="25"
+            VerticalAlignment="Top"
+            Height="50"
+            Width="150"
+            Margin="0,55,0,0"
+            />
+
+        <Button
+            Click="CreateTeam_Click"
+            Grid.Column="0"
+            Grid.Row="2"
+            Background="White"
+            Foreground="Black"
+            FontSize="25"
+            VerticalAlignment="Top"
+            Content="Create Team"
+            Height="50"
+            Width="160"
+            Margin="100,120,0,0"
+            />
 
         <Button
             Grid.Column="0"
             Grid.Row="2"
-            VerticalAlignment="Top"
-            Height="135"
+            VerticalAlignment="Bottom"
+            Height="115"
             Width="150"
-            Margin="100,0,0,0"
+            Margin="20,0,0,10"
             Click="Back_Click"
             IsEnabled="{x:Bind Frame.CanGoBack, Mode=OneWay}"
             >
             <StackPanel>
                 <Image 
                     Source="Assets\ArrowBlack.png"
-                    Height="70"/>
+                    Height="60"/>
                 <TextBlock 
                     Text="Back"
                     FontSize="35"
                     Height="40"/>
             </StackPanel>
         </Button>
-
-        <Button
-            Grid.Column="0"
-            Grid.Row="2"
-            Background="White"
-            Foreground="Black"
-            FontSize="25"
-            VerticalAlignment="Bottom"
-            Content="Create Team"
-            Height="50"
-            Width="150"
-            Margin="100,0,0,50"
-            Click="Back_Click"
-            />
-
-
-
 
     </Grid>
 
