@@ -10,29 +10,31 @@ namespace HandsOff.Models
     {
         private const int BaseStat = 55;
 
-        public int Number { get; set; }
-        public string Position { get; set; } // this refers to the role of the player; players 1-2-3-4 defenders, 5, 6, 7, are midfielders, and 8, 9, 10 are attackers
-        public bool HasBall { get; set; }
+        public int      Number          { get; set; }
+        public string   Position        { get; set; } // this refers to the role of the player; players 1-2-3-4 defenders, 5, 6, 7, are midfielders, and 8, 9, 10 are attackers
+        public bool     HasBall         { get; set; }
 
+        /// <summary>
         /// Player Skills are based on a scale of 1 - 99
-        public int Pace { get; set; } =55;
-        public int Shooting { get; set; } = BaseStat;
-        public int Passing { get; set; } = BaseStat;
-        public int Dribble { get; set; } = BaseStat;
-        public int Defence { get; set; } = BaseStat;
-        public int Intelligence { get; set; } = BaseStat; // Intelligence improves decision making. Where to pass the ball to, when to shoot.
+        /// </summary>
+        public int      Pace            { get; set; }       = BaseStat;
+        public int      Shooting        { get; set; }       = BaseStat;
+        public int      Passing         { get; set; }       = BaseStat;
+        public int      Dribble         { get; set; }       = BaseStat;
+        public int      Defence         { get; set; }       = BaseStat;
+        public int      Intelligence    { get; set; }       = BaseStat; // Intelligence improves decision making. Where to pass the ball to, when to shoot.
 
         public Player(int Number, string Position, int Pace, int Shooting, int Passing, int Dribble, int Defence, int Intelligence)
         {
-            this.Number = Number;
-            this.Position = Position;
-            this.Pace = Pace;
-            this.Shooting = Shooting;
-            this.Passing = Passing;
-            this.Dribble = Dribble;
-            this.Defence = Defence;
-            this.Intelligence = Intelligence;
-            this.HasBall = false;
+            this.Number         = Number;
+            this.Position       = Position;
+            this.Pace           = Pace;
+            this.Shooting       = Shooting;
+            this.Passing        = Passing;
+            this.Dribble        = Dribble;
+            this.Defence        = Defence;
+            this.Intelligence   = Intelligence;
+            this.HasBall        = false;
         }
 
 
@@ -46,13 +48,16 @@ namespace HandsOff.Models
             int randomNumber = random.Next(1, 100);
 
             // Calculate bad or good decision
-            goodDecision = true; 
+            goodDecision = true;
+            
+
+
 
             if (goodDecision == true) // Good Decision
             {
                 if(this.Position == "Attacker")
                 {
-                    if (randomNumber > this.Dribble)
+                    if (random.Next(1, 100) > this.Dribble)
                     {
                         ShootOnGoal(DribbleWithBall());
                     }
@@ -60,7 +65,7 @@ namespace HandsOff.Models
                 }
                 if(this.Position == "Defender")
                 {
-                    if (randomNumber > this.Dribble)
+                    if (random.Next(1, 100) > this.Dribble)
                     {
                         PassBall(DribbleWithBall());
                     }
@@ -68,7 +73,7 @@ namespace HandsOff.Models
                 }
                 if(this.Position == "Midfielder")
                 {
-                    if (randomNumber > this.Dribble)
+                    if (random.Next(1, 100) > this.Dribble)
                     {
                         PassBall(DribbleWithBall());
                     }
