@@ -45,12 +45,16 @@ namespace HandsOff.Models
         {
             bool goodDecision;
             Random random = new Random();
-            int randomNumber = random.Next(1, 100);
 
             // Calculate bad or good decision
-            goodDecision = true;
-            
-
+            if (random.Next(1, 100) > this.Intelligence)
+            {
+                goodDecision = true;
+            }
+            else
+            {
+                goodDecision = false;
+            }
 
 
             if (goodDecision == true) // Good Decision
