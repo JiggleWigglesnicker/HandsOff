@@ -23,7 +23,9 @@ namespace HandsOff
     /// </summary>
     sealed partial class App : Application
     {
-        private Team team { get; set; }
+        private Team team1 { get; set; }
+        private Team team2 { get; set; }
+        private Team team3 { get; set; }
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -34,14 +36,14 @@ namespace HandsOff
             this.InitializeComponent();
             this.Suspending += OnSuspending;
 
-            team = CreateTeam();
-            team.TeamName = "Example Team 1";
+            team1 = CreateTeam();
+            team1.TeamName = "Example Team 1";
 
-            team = CreateTeam();
-            team.TeamName = "Example Team 2";
+            team2 = CreateTeam();
+            team2.TeamName = "Example Team 2";
 
-            team = CreateTeam();
-            team.TeamName = "Example Team 3";
+            team3 = CreateTeam();
+            team3.TeamName = "Example Team 3";
         }
 
         public Team CreateTeam()

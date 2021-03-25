@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -30,6 +31,16 @@ namespace HandsOff
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             App.TryGoBack();
+        }
+
+        private void TeamCB1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void TeamCB2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
