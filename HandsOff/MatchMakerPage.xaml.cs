@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HandsOff.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -23,9 +24,25 @@ namespace HandsOff
     /// </summary>
     public sealed partial class MatchMaker : Page
     {
+
         public MatchMaker()
         {
             this.InitializeComponent();
+            CreateDropBoxTeams();
+        }
+
+
+
+        public void CreateDropBoxTeams()
+        {
+            ComboBox CB1 = this.TeamCB1;
+            ComboBox CB2 = this.TeamCB2;
+            CB1.Items.Add(App.team1.getName());
+            CB1.Items.Add(App.team2.getName());
+            CB1.Items.Add(App.team3.getName());
+            CB2.Items.Add(App.team1.getName());
+            CB2.Items.Add(App.team2.getName());
+            CB2.Items.Add(App.team3.getName());
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
