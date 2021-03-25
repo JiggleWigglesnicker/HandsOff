@@ -234,7 +234,7 @@ namespace HandsOff
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            App.TryGoBack();
+            Frame.Navigate(typeof(Dashboard), team);
         }
     }
 }
