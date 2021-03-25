@@ -23,7 +23,7 @@ namespace HandsOff.Models
             this.TeamName = RandomTeamName;
         }
 
-        public void addPlayerToTeam(Player player)
+        public void AddPlayerToTeam(Player player)
         {
             Players.Add(player);
         }

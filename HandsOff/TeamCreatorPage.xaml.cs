@@ -221,7 +221,7 @@ namespace HandsOff
                 int intelligence = (int)Int64.Parse(textBox6.Text);
                 String Position = "Attacker";
                 Player player = new Player(i, Position, pace, shooting, passing, dribble, defence, intelligence);
-                team.addPlayerToTeam(player);
+                team.AddPlayerToTeam(player);
             }
             return team;
         }
