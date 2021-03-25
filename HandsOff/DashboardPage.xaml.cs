@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HandsOff.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,6 +23,9 @@ namespace HandsOff
     /// </summary>
     public sealed partial class Dashboard : Page
     {
+
+        private Team team { get; set; }
+
         public Dashboard()
         {
             this.InitializeComponent();
@@ -40,6 +44,17 @@ namespace HandsOff
         private void Simulation_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(SimulationPage));
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            if (e != null)
+            {
+                this.team = (Team)e.Parameter;
+            }
+
         }
 
     }
