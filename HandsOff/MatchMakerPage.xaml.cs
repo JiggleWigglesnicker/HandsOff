@@ -48,8 +48,8 @@ namespace HandsOff
 
             foreach (Team team in Teams)
             {
-                CB1.Items.Add(team);
-                CB2.Items.Add(team);
+                CB1.Items.Add(team.getName());
+                CB2.Items.Add(team.getName());
 
                 Console.WriteLine("added team {0}", team.getName());
             }
