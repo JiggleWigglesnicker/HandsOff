@@ -1,6 +1,7 @@
 ﻿using HandsOff.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -205,13 +206,12 @@ namespace HandsOff
         private void CreateTeam_Click(object sender, RoutedEventArgs e)
         {
             team = CreateTeam();
-            team.TeamName = TeamNameBox.Text;
-            Console.WriteLine("teamname is: {0}", TeamNameBox.Text);
         }
 
         public Team CreateTeam()
         {
             Team team = new Team();
+            team.TeamName = TeamNameBox.Text;
             for (int i = 1; i < 12; i++)
             {
                 StackPanel stackpanel = (StackPanel)this.FindName("stackpanel" + i);
