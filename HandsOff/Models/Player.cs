@@ -26,7 +26,8 @@ namespace HandsOff.Models
         public int      Defence         { get; set; }       = BaseStat;
         public int      Intelligence    { get; set; }       = BaseStat; // Intelligence improves decision making. Where to pass the ball to, when to shoot.
 
-        public Player(int Number, string Position, int Pace, int Shooting, int Passing, int Dribble, int Defence, int Intelligence)
+        public Player(int Number, string Position, int Pace, int Shooting, int Passing, int Dribble, int Defence,
+                      int Intelligence)
         {
             this.Number         = Number;
             this.Position       = Position;
@@ -105,6 +106,8 @@ namespace HandsOff.Models
         /// <summary>
         /// Succes rate is based on player possition, shooting skill and Dribble skill.
         /// </summary>
+        /// <param name="dribbleBonus"></param>
+        /// <returns></returns>
         public bool ShootOnGoal(bool dribbleBonus)
         {
             int currentShootingSkill = this.Shooting;
