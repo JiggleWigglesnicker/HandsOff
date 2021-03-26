@@ -67,7 +67,8 @@
             VerticalContentAlignment="Center"
             Height="50"
             Width="250"
-            HorizontalAlignment="Center"
+            HorizontalAlignment="Center" 
+            Click="Make_Match_Click"
             />
 
         <Button

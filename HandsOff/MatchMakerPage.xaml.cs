@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -25,6 +26,9 @@ namespace HandsOff
     public sealed partial class MatchMaker : Page
     {
         List<Team> Teams = new List<Team>();
+
+        Team SelectedTeam1;
+        Team SelectedTeam2;
 
         public MatchMaker()
         {
@@ -50,8 +54,6 @@ namespace HandsOff
             {
                 CB1.Items.Add(team.getName());
                 CB2.Items.Add(team.getName());
-
-                Console.WriteLine("added team {0}", team.getName());
             }
         }
 
@@ -59,9 +61,12 @@ namespace HandsOff
         {
             ComboBox CB1 = this.TeamCB1;
             ComboBox CB2 = this.TeamCB2;
+            
+            // fill in teams for ComboBox 1
             CB1.Items.Add(App.team1.getName());
             CB1.Items.Add(App.team2.getName());
             CB1.Items.Add(App.team3.getName());
+            // fill in teams for ComboBox 2
             CB2.Items.Add(App.team1.getName());
             CB2.Items.Add(App.team2.getName());
             CB2.Items.Add(App.team3.getName());
@@ -71,11 +76,6 @@ namespace HandsOff
             Teams.Add(App.team3);
         }
 
-        public void AddTeamToList(Team team)
-        {
-            Teams.Add(team);
-        }
-
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             App.TryGoBack();
@@ -83,12 +83,41 @@ namespace HandsOff
 
         private void TeamCB1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            String teamName = e.AddedItems[0].ToString();
+            
+            foreach (Team team in Teams)
+            {
+                if (teamName == team.getName())
+                {
+                    Debug.WriteLine("Match");
+                    Debug.WriteLine(team);
+                    Debug.WriteLine(teamName);
+                    SelectedTeam1 = team;
+                    Debug.WriteLine(SelectedTeam1);
+                }
+            }
         }
 
         private void TeamCB2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            String teamName = e.AddedItems[0].ToString();
 
+            foreach (Team team in Teams)
+            {
+                if (teamName == team.getName())
+                {
+                    Debug.WriteLine("Match");
+                    Debug.WriteLine(team);
+                    Debug.WriteLine(teamName);
+                    SelectedTeam2 = team;
+                    Debug.WriteLine(SelectedTeam1);
+                }
+            }
+        }
+
+        private void Make_Match_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(SimulationPage));
         }
     }
 }

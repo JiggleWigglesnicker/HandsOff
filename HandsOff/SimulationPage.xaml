@@ -28,7 +28,6 @@
                 
             </StackPanel>
         </ScrollViewer>
-        
 
         <Button
             HorizontalAlignment="Left"
@@ -48,7 +47,5 @@
                     Height="40"/>
             </StackPanel>
         </Button>
-
-
     </StackPanel>
 </Page>

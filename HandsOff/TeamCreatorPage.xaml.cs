@@ -32,6 +32,7 @@ namespace HandsOff
         {
             this.InitializeComponent();
             TeamPageUIAsync();
+            Console.WriteLine("test");
         }
 
         public async void TeamPageUIAsync()
@@ -205,6 +206,7 @@ namespace HandsOff
         {
             team = CreateTeam();
             team.TeamName = TeamNameBox.Text;
+            Console.WriteLine("teamname is: {0}", TeamNameBox.Text);
         }
 
         public Team CreateTeam()
