@@ -38,8 +38,6 @@ namespace HandsOff
 
             this.InitializeComponent();
             enterTeamsIntoDropBox();
-
-            //CreateDropBoxTeams();
         }
 
         /// <summary>
