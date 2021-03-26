@@ -33,7 +33,6 @@ namespace HandsOff
         {
             this.InitializeComponent();
             TeamPageUIAsync();
-            Console.WriteLine("test");
         }
 
         public async void TeamPageUIAsync()
