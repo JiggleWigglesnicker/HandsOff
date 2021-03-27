@@ -16,8 +16,12 @@ namespace HandsOff.Models
         private int TurnCounter = 0;
         private Player SelectedPlayerTeam1;
         private Player SelectedPlayerTeam2;
-        private int Team1Points = 0;
-        private int Team2Points = 0;
+        private int Team1Points = 0;            // Score van Team 1
+        private int Team2Points = 0;            // Score van Team 2
+        private int IsScoredValue = 100;        // Als de punten van een team hoger komt dan deze waarde, is er gescoord door het betreffende team
+        private int Team1Score = 0;             // De score van team 1, deze wordt uiteindelijk opgeslagen
+        private int Team2Score = 0;             // De score van team 2, deze wordt uiteindelijk opgeslagen
+
 
         public Match(Team team1, Team team2)
         {
@@ -27,6 +31,8 @@ namespace HandsOff.Models
             while (TurnCounter < MaxTurns)
             {
                 TakeTurn();
+                CheckIfScored();
+
                 TurnCounter++;
             }
         }
@@ -49,20 +55,39 @@ namespace HandsOff.Models
 
             if (SelectedPlayerTeam1.Shooting > SelectedPlayerTeam2.Shooting)
             {
-                // increment something
+                Team1Points++;
             }
             else
             {
-
+                Team2Points++;
             }
 
             if (SelectedPlayerTeam1.Defence > SelectedPlayerTeam2.Defence)
             {
-                // increment something
+                Team1Points++;
             }
             else
             {
+                Team2Points++;
+            }
+        }
 
+        private void CheckIfScored()
+        {
+            if(Team1Points > IsScoredValue)
+            {
+                Team1Score++;
+
+                Team1Points = 0;
+                Team2Points = 0;
+            }
+
+            if (Team2Points > IsScoredValue)
+            {
+                Team2Score++;
+
+                Team1Points = 0;
+                Team2Points = 0;
             }
         }
     }
