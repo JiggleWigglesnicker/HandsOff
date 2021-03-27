@@ -52,7 +52,7 @@ namespace HandsOff
             for (int i = 1; i < 12; i++)
             {
                 int pace = 65;
-                int shooting = 20;
+                int shooting = 80;
                 int passing = 10;
                 int dribble = 10;
                 int defence = 40;
@@ -73,7 +73,7 @@ namespace HandsOff
                 int shooting = 70;
                 int passing = 20;
                 int dribble = 10;
-                int defence = 80;
+                int defence = 60;
                 int intelligence = 50;
                 String Position = "Attacker";
                 Player player = new Player(i, Position, pace, shooting, passing, dribble, defence, intelligence);
@@ -91,7 +91,7 @@ namespace HandsOff
                 int shooting = 35;
                 int passing = 20;
                 int dribble = 10;
-                int defence = 20;
+                int defence = 80;
                 int intelligence = 50;
                 String Position = "Attacker";
                 Player player = new Player(i, Position, pace, shooting, passing, dribble, defence, intelligence);

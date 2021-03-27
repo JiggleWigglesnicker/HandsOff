@@ -12,13 +12,13 @@ namespace HandsOff.Models
         public Team team1 { get; set; }
         public Team team2 { get; set; }
 
-        private int MaxTurns = 100;                       // Maximale aantal turns. Arbitaire waarde
+        private int MaxTurns = 100;                         // Maximale aantal turns. Arbitaire waarde
         private int TurnCounter = 0;                        // Houdt het aantal turns bij
         private Player SelectedPlayerTeam1;
         private Player SelectedPlayerTeam2;
         private int Team1Points = 0;                        // Score van Team 1
         private int Team2Points = 0;                        // Score van Team 2
-        private int IsScoredValue = 5;                    // Als de punten van een team hoger komt dan deze waarde, is er gescoord door het betreffende team
+        private int IsScoredValue = 5;                      // Als de punten van een team hoger komt dan deze waarde, is er gescoord door het betreffende team
         public int Team1Score { get; private set; } = 0;    // De score van team 1, deze wordt uiteindelijk opgeslagen
         public int Team2Score { get; private set; } = 0;    // De score van team 2, deze wordt uiteindelijk opgeslagen
 
