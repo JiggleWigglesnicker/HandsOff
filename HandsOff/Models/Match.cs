@@ -16,8 +16,8 @@ namespace HandsOff.Models
         private int TurnCounter = 0;
         private Player SelectedPlayerTeam1;
         private Player SelectedPlayerTeam2;
-        private int Team1Points;
-        private int Team2oints;
+        private int Team1Points = 0;
+        private int Team2Points = 0;
 
         public Match(Team team1, Team team2)
         {
@@ -40,11 +40,11 @@ namespace HandsOff.Models
 
             if (SelectedPlayerTeam1.Pace > SelectedPlayerTeam2.Pace)
             {
-                // increment something
+                Team1Points++;
             }
             else
             {
-
+                Team2Points++;
             }
 
             if (SelectedPlayerTeam1.Shooting > SelectedPlayerTeam2.Shooting)
