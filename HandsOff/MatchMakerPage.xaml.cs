@@ -26,6 +26,7 @@ namespace HandsOff
     public sealed partial class MatchMaker : Page
     {
         List<Team> Teams = new List<Team>();
+        MatchPool matchPool = new MatchPool();
 
         Team SelectedTeam1;
         Team SelectedTeam2;
@@ -113,9 +114,16 @@ namespace HandsOff
             }
         }
 
+
+        public void MakeMatch() {
+            Match match = new Match(SelectedTeam1, SelectedTeam2);
+            matchPool.AddMatch(match);
+        }
+
         private void Make_Match_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(SimulationPage));
+            MakeMatch();
+            this.Frame.Navigate(typeof(SimulationPage), matchPool);
         }
     }
 }

@@ -6,57 +6,18 @@ using System.Threading.Tasks;
 
 namespace HandsOff.Models
 {
-    class Match
+    public class Match
     {
-        public Team HomeTeam            { get; set; }
-        public Team AwayTeam            { get; set; }
-        public int  HomeGoals           { get; set; }
-        public int  AwayGoals           { get; set; }
-        public int  HalfTimeHomeGoals   { get; set; }
-        public int  HalfTimeAwayGoals   { get; set; }
-        public int  Turns               { get; set; } // A game is based on turns instead of minutes, a game has x turns. This is a set value.
-        public int  TurnCounter         { get; set; } // Keeps track of the amount of turns that has passed.
+        public Team team1            { get; set; }
+        public Team team2            { get; set; }
+        
 
-        public void StartMatch()
+        public Match(Team team1, Team team2)
         {
-            GiveBallToTeam(HomeTeam);
+            this.team1 = team1;
+            this.team2 = team2;
         }
 
-        public void StartSecondHalf()
-        {
-            GiveBallToTeam(AwayTeam);
-        }
-
-        /// <summary>
-        /// give to a midfielder of the team, if there is no midfielder in the team then give the ball to a random player of the team.
-        /// </summary>
-        /// <param name="team"></param>
-        public void GiveBallToTeam(Team team)
-        {
-            Team t = team;
-            Random random = new Random();
-            int randomPlayerNumber = random.Next(0, t.Players.Count);
-
-            Player randomPlayer = t.Players[randomPlayerNumber];
-            randomPlayer.HasBall = true;
-        }
-
-        public void ScoreHome()
-        {
-            this.HomeGoals++;
-            GiveBallToTeam(AwayTeam);
-        }
-
-        public void ScoreAway()
-        {
-            this.AwayGoals++;
-            GiveBallToTeam(HomeTeam);
-        }
-
-        public void HalfTime()
-        {
-            this.HalfTimeHomeGoals = this.HomeGoals;
-            this.HalfTimeAwayGoals = this.AwayGoals;
-        }
+      
     }
 }
