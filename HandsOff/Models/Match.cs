@@ -22,6 +22,8 @@ namespace HandsOff.Models
         public int Team1Score { get; private set; } = 0;    // De score van team 1, deze wordt uiteindelijk opgeslagen
         public int Team2Score { get; private set; } = 0;    // De score van team 2, deze wordt uiteindelijk opgeslagen
 
+        System.Random random = new System.Random();
+        
         public Match(Team team1, Team team2)
         {
             this.team1 = team1;
@@ -30,7 +32,7 @@ namespace HandsOff.Models
 
         public void StartSimulation()
         {
-            Debug.WriteLine("Starting match");
+            Debug.WriteLine("Starting match!!!");
 
             while (TurnCounter < MaxTurns)
             {
@@ -38,14 +40,20 @@ namespace HandsOff.Models
                 CheckIfScored();
 
                 TurnCounter++;
+                Debug.WriteLine("Turn: ");
                 Debug.WriteLine(TurnCounter);
             }
         }
 
         private void TakeTurn()
         {
-            SelectedPlayerTeam1 = team1.Players[1];
-            SelectedPlayerTeam2 = team2.Players[1];
+            SelectedPlayerTeam1 = team1.Players[random.Next(11)];
+            Debug.WriteLine("Selected player on team 1 is: ");
+            Debug.Write(SelectedPlayerTeam1);
+            
+            SelectedPlayerTeam2 = team2.Players[random.Next(11)];
+            Debug.WriteLine("Selected player on team 2 is: ");
+            Debug.Write(SelectedPlayerTeam2);
 
             Debug.Write(SelectedPlayerTeam1.Defence);
 
@@ -86,8 +94,8 @@ namespace HandsOff.Models
                 Team1Points = 0;
                 Team2Points = 0;
 
-                Debug.Write("team 1 score updated: ");
-                Debug.WriteLine(Team1Score);
+                Debug.WriteLine("team 1 score updated: ");
+                Debug.Write(Team1Score);
             }
 
             if (Team2Points > IsScoredValue)
@@ -97,8 +105,8 @@ namespace HandsOff.Models
                 Team1Points = 0;
                 Team2Points = 0;
 
-                Debug.Write("team 2 score updated: ");
-                Debug.WriteLine(Team2Score);
+                Debug.WriteLine("team 2 score updated: ");
+                Debug.Write(Team2Score);
             }
         }
     }

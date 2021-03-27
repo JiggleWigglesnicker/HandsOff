@@ -23,7 +23,7 @@ namespace HandsOff.Models
 
         public void StartExecution()
         {
-            Debug.WriteLine("Starting simulation(s)");
+            Debug.WriteLine("Starting simulation(s) now!");
             foreach (Match match in Matches)
             {
                 match.StartSimulation();
