@@ -31,11 +31,11 @@ namespace HandsOff.Models
         {
             this.Number         = Number;
             this.Position       = Position;
-            this.Pace           = Pace;
-            this.Shooting       = Shooting;
-            this.Passing        = Passing;
-            this.Dribble        = Dribble;
-            this.Defence        = Defence;
+            this.Pace = Pace;             // Speed/SPD
+            this.Shooting = Shooting;         // Attack/ATK
+            this.Passing = Passing;
+            this.Dribble = Dribble;
+            this.Defence = Defence;          // Defense/DEF
             this.Intelligence   = Intelligence;
             this.HasBall        = false;
         }
