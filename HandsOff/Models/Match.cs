@@ -42,18 +42,26 @@ namespace HandsOff.Models
                 TurnCounter++;
                 Debug.WriteLine("Turn: ");
                 Debug.WriteLine(TurnCounter);
+                if(TurnCounter > 99)
+                {
+                    Debug.WriteLine("Done!");
+                    Debug.WriteLine(Team1Score);
+                    Debug.WriteLine(Team2Score);
+                }
             }
         }
 
         private void TakeTurn()
         {
-            SelectedPlayerTeam1 = team1.Players[random.Next(11)];
+            int selectedPlayer = random.Next(11);
+            SelectedPlayerTeam1 = team1.Players[selectedPlayer];
             Debug.WriteLine("Selected player on team 1 is: ");
-            Debug.Write(SelectedPlayerTeam1);
-            
-            SelectedPlayerTeam2 = team2.Players[random.Next(11)];
+            Debug.Write(selectedPlayer);
+
+            selectedPlayer = random.Next(11);
+            SelectedPlayerTeam2 = team2.Players[selectedPlayer];
             Debug.WriteLine("Selected player on team 2 is: ");
-            Debug.Write(SelectedPlayerTeam2);
+            Debug.Write(selectedPlayer);
 
             Debug.Write(SelectedPlayerTeam1.Defence);
 
@@ -61,7 +69,8 @@ namespace HandsOff.Models
             {
                 Team1Points++;
             }
-            else
+
+            if (SelectedPlayerTeam2.Pace > SelectedPlayerTeam1.Pace)
             {
                 Team2Points++;
             }
@@ -70,7 +79,8 @@ namespace HandsOff.Models
             {
                 Team1Points++;
             }
-            else
+
+            if (SelectedPlayerTeam2.Shooting > SelectedPlayerTeam1.Shooting)
             {
                 Team2Points++;
             }
@@ -79,7 +89,8 @@ namespace HandsOff.Models
             {
                 Team1Points++;
             }
-            else
+
+            if (SelectedPlayerTeam2.Defence > SelectedPlayerTeam1.Defence)
             {
                 Team2Points++;
             }
