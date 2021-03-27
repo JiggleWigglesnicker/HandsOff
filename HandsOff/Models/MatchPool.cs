@@ -11,7 +11,6 @@ namespace HandsOff.Models
         public List<Match> Matches = new List<Match>();
         //List<Match> Matches { get => Matches; set => Matches = value; } <----- Werkt dit ook ipv de AddTeam() ???
 
-
         public MatchPool()
         {
            

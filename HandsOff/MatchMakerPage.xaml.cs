@@ -114,9 +114,10 @@ namespace HandsOff
             }
         }
 
-
-        public void MakeMatch() {
+    public void MakeMatch() {
             Match match = new Match(SelectedTeam1, SelectedTeam2);
+            
+            // TODO: add for loop for the amount of simulations that have to executed, 1-00
             matchPool.AddMatch(match);
         }
 

@@ -23,10 +23,10 @@ namespace HandsOff.Models
             return TeamName;
         }
 
-        /// <summary>
-        /// Sets a "Random" team name.
-        /// </summary>
-        public void SetRandomTeamName()
+    /// <summary>
+    /// Sets a "Random" team name.
+    /// </summary>
+    public void SetRandomTeamName()
         {
             string[] TeamNames = { "Ajax", "Feyenoord", "PSV", "FC Emmen", "Manchester United", "Chelsea", "AZ", "Mongo Thierry", "Fc MusicMixer", "LTC Assen 6", "Mannen van het zesde", "FC Barcelona", "Tiri Boys", "VVJ Judas", "FcG", "C# Masters", "UWP 4 Life", "Fc Frenkie", "VV Baptist", "James Blunt's Boys", "Ltjes Rozenwater", "Fc Gaan met Die Banaan", "Oranje", "Blauw", "Rood Wit", "Jong Ajax", "GroenGeel", "OranjeRood" };
             string RandomTeamName = TeamNames[random.Next(0, TeamName.Length)];
