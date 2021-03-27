@@ -114,7 +114,7 @@ namespace HandsOff
             }
         }
 
-    public void MakeMatch() {
+        public void MakeMatch() {
             Match match = new Match(SelectedTeam1, SelectedTeam2);
             
             // TODO: add for loop for the amount of simulations that have to executed, 1-00
@@ -124,7 +124,7 @@ namespace HandsOff
         private void Make_Match_Click(object sender, RoutedEventArgs e)
         {
             MakeMatch();
-            this.Frame.Navigate(typeof(SimulationPage), matchPool);
+            this.Frame.Navigate(typeof(SimulationExecution), matchPool);
         }
     }
 }

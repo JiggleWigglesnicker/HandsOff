@@ -11,7 +11,6 @@ namespace HandsOff.Models
         private const    int         BaseStat    = 55;
         private readonly Random     random      = new Random();
 
-
         public int      Number          { get; set; }
         public string   Position        { get; set; } // this refers to the role of the player; players 1-2-3-4 defenders, 5, 6, 7, are midfielders, and 8, 9, 10 are attackers
         public bool     HasBall         { get; set; }
@@ -26,20 +25,18 @@ namespace HandsOff.Models
         public int      Defence         { get; set; }       = BaseStat;
         public int      Intelligence    { get; set; }       = BaseStat; // Intelligence improves decision making. Where to pass the ball to, when to shoot.
 
-        public Player(int Number, string Position, int Pace, int Shooting, int Passing, int Dribble, int Defence,
-                      int Intelligence)
+        public Player(int Number, string Position, int Pace, int Shooting, int Passing, int Dribble, int Defence, int Intelligence)
         {
-            this.Number         = Number;
-            this.Position       = Position;
-            this.Pace = Pace;             // Speed/SPD
-            this.Shooting = Shooting;         // Attack/ATK
+            this.Number = Number;
+            this.Position = Position;
+            this.Pace = Pace;                   // Speed/SPD
+            this.Shooting = Shooting;           // Attack/ATK
             this.Passing = Passing;
             this.Dribble = Dribble;
-            this.Defence = Defence;          // Defense/DEF
-            this.Intelligence   = Intelligence;
-            this.HasBall        = false;
+            this.Defence = Defence;             // Defense/DEF
+            this.Intelligence = Intelligence;
+            this.HasBall = false;
         }
-
 
         /// <summary>
         /// Make dicision while in possesion of the ball, Where to pass the ball or when to shoot. Based on intelligence.
@@ -57,7 +54,6 @@ namespace HandsOff.Models
             {
                 goodDecision = false;
             }
-
 
             if (goodDecision == true) // Good Decision
             {
@@ -86,6 +82,7 @@ namespace HandsOff.Models
                     PassBall(false);
                 }   
             }
+
             if(goodDecision == false) // Bad Decision
             {
                 if (this.Position == "Attacker")

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HandsOff.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,14 +23,24 @@ namespace HandsOff
     /// </summary>
     public sealed partial class SimulationExecution : Page
     {
+        public MatchPool matchPool = new MatchPool();
+
         public SimulationExecution()
         {
             this.InitializeComponent();
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            if (e.Parameter != null)
+                this.matchPool = (MatchPool)e.Parameter;
+        }
+
         private void StartSim_Click(object sender, RoutedEventArgs e)
         {
-
+            matchPool.StartExecution();
         }
     }
 }
