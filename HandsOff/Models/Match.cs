@@ -14,6 +14,7 @@ namespace HandsOff.Models
 
         private int MaxTurns = 10000;                        // Maximum amount of turns
         private int TurnCounter = 0;                        // Keep track of the number of turns passed
+        public String ProgressString { get; private set; } = "";
 
         public int Team1Score { get; private set; } = 0;    // De score van team 1, deze wordt uiteindelijk opgeslagen
         public int Team2Score { get; private set; } = 0;    // De score van team 2, deze wordt uiteindelijk opgeslagen
@@ -43,6 +44,17 @@ namespace HandsOff.Models
             this.team2 = team2;
         }
 
+        public void progressStringUpdate()
+        {
+            if (TurnCounter >= 200)
+                ProgressString += "#+";
+            if (TurnCounter < 200)
+            {
+                ProgressString += "#";
+            }
+
+        }
+
         public void StartSimulation()
         {
             Debug.WriteLine("Starting match!!!");
@@ -50,10 +62,19 @@ namespace HandsOff.Models
             // Start the match with Team 1 
             BallPosition = 4;
             BallOwner = 1;
+            int i = 0;
 
             while (TurnCounter < MaxTurns)
             {
+                i++;
                 TakeTurn();
+                if (i == 50 || TurnCounter >= 200)
+                {
+                    progressStringUpdate();
+                    i = 0;
+                }
+
+                
 
                 TurnCounter++;
 
@@ -205,7 +226,7 @@ namespace HandsOff.Models
 
                 // calculate if attacking team will be succesfull
                 double p;
-                    
+
                 p = (randomChangeGenerator.NextDouble() + 1);
                 TotalTeam1 = (((combinedAttackTeam1 + combinedSpeedTeam1) / 2) * p);
                 

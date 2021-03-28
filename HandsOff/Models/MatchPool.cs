@@ -29,5 +29,11 @@ namespace HandsOff.Models
                 match.StartSimulation();
             }
         }
+
+        public String ReturnProgress()
+        {
+            return "";
+        }
+
     }
 }
