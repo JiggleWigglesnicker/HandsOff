@@ -68,7 +68,7 @@ namespace HandsOff
                 textBlock3.Width = 250;
                 textBlock3.Margin = new Thickness(0, 10, 0, 0);
                 TextBlock textBlock4 = new TextBlock();
-                textBlock4.Name = "Progress" + i;
+                textBlock4.Name = "ProgressBar" + i;
                 textBlock4.Foreground = new SolidColorBrush(Colors.White);
                 textBlock4.FontSize = 35;
                 textBlock4.HorizontalAlignment = HorizontalAlignment.Center;
@@ -88,6 +88,18 @@ namespace HandsOff
             }
         }
 
+        public void updateProgressBar() {
+
+            int i = 1;
+
+            foreach (Match match in matchPool.Matches)
+            {
+                TextBlock textBlockProgress = (TextBlock)this.FindName("ProgressBar" + i);
+                textBlockProgress.Text += match.ProgressString;
+                i++;
+            }
+        
+        }
 
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -104,6 +116,7 @@ namespace HandsOff
         private void StartSim_Click(object sender, RoutedEventArgs e)
         {
             matchPool.StartExecution();
+            updateProgressBar();
         }
     }
 }
