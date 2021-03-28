@@ -36,65 +36,54 @@ namespace HandsOff
             this.InitializeComponent();
             this.Suspending += OnSuspending;
 
-            team1 = CreateTeam1();
+            team1 = CreateTeam();
             team1.TeamName = "Example Team 1";
 
-            team2 = CreateTeam2();
+            team2 = CreateTeam();
             team2.TeamName = "Example Team 2";
 
-            team3 = CreateTeam3();
+            team3 = CreateTeam();
             team3.TeamName = "Example Team 3";
         }
 
-        public Team CreateTeam1()
+        public Team CreateTeam()
         {
-            Team team = new Team();
-            for (int i = 1; i < 12; i++)
-            {
-                int pace = 65;
-                int shooting = 80;
-                int passing = 10;
-                int dribble = 10;
-                int defence = 40;
-                int intelligence = 15;
-                String Position = "Attacker";
-                Player player = new Player(i, Position, pace, shooting, passing, dribble, defence, intelligence);
-                team.AddPlayerToTeam(player);
-            }
-            return team;
-        }
+            System.Random randomSkill = new System.Random();
 
-        public Team CreateTeam2()
-        {
             Team team = new Team();
+            String Position;
             for (int i = 1; i < 12; i++)
             {
-                int pace = 15;
-                int shooting = 70;
-                int passing = 20;
-                int dribble = 10;
-                int defence = 60;
-                int intelligence = 50;
-                String Position = "Attacker";
-                Player player = new Player(i, Position, pace, shooting, passing, dribble, defence, intelligence);
-                team.AddPlayerToTeam(player);
-            }
-            return team;
-        }
-
-        public Team CreateTeam3()
-        {
-            Team team = new Team();
-            for (int i = 1; i < 12; i++)
-            {
-                int pace = 80;
-                int shooting = 35;
-                int passing = 20;
-                int dribble = 10;
-                int defence = 80;
-                int intelligence = 50;
-                String Position = "Attacker";
-                Player player = new Player(i, Position, pace, shooting, passing, dribble, defence, intelligence);
+                switch (i)
+                {
+                    case 1:
+                        Position = "Keeper";
+                        break;
+                    case 2:
+                    case 3:
+                    case 4:
+                    case 5:
+                        Position = "Defender";
+                        break;
+                    case 6:
+                    case 7:
+                    case 8:
+                        Position = "Midfielder";
+                        break;
+                    case 9:
+                    case 10:
+                    case 11:
+                    default:
+                        Position = "Attacker";
+                        break;
+                }
+                
+                int pace = randomSkill.Next(1, 101);
+                int shooting = randomSkill.Next(1, 101);
+                int defence = randomSkill.Next(1, 101);
+                
+                //int Luck = randomSkill.Next(1, 101);
+                Player player = new Player(i, Position, pace, shooting, defence);
                 team.AddPlayerToTeam(player);
             }
             return team;

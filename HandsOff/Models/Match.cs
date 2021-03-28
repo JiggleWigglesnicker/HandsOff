@@ -12,18 +12,33 @@ namespace HandsOff.Models
         public Team team1 { get; set; }
         public Team team2 { get; set; }
 
-        private int MaxTurns = 100;                         // Maximale aantal turns. Arbitaire waarde
-        private int TurnCounter = 0;                        // Houdt het aantal turns bij
-        private Player SelectedPlayerTeam1;
-        private Player SelectedPlayerTeam2;
-        private int Team1Points = 0;                        // Score van Team 1
-        private int Team2Points = 0;                        // Score van Team 2
-        private int IsScoredValue = 5;                      // Als de punten van een team hoger komt dan deze waarde, is er gescoord door het betreffende team
+        private int MaxTurns = 200;                          // Maximum amount of turns
+        private int TurnCounter = 0;                        // Keep track of the number of turns passed
+
         public int Team1Score { get; private set; } = 0;    // De score van team 1, deze wordt uiteindelijk opgeslagen
         public int Team2Score { get; private set; } = 0;    // De score van team 2, deze wordt uiteindelijk opgeslagen
 
-        System.Random random = new System.Random();
-        
+        private int BallPosition;                           // Position of the football. values 1-8
+        private int BallOwner;                              // welk Team balbezit heeft (1 of 2)
+
+        private Player SelectedPlayerTeam1;
+        private Player SelectedPlayerTeam2;
+
+        // placeholders for calculating the football game
+        private int combinedAttackTeam1;
+        private int combinedDefenseTeam1;
+        private int combinedSpeedTeam1;
+
+        private int combinedAttackTeam2;
+        private int combinedDefenseTeam2;
+        private int combinedSpeedTeam2;
+
+        double TotalTeam1;
+        double TotalTeam2;
+
+        System.Random randomPlayerSelector = new System.Random();
+        System.Random randomChangeGenerator = new System.Random();
+
         public Match(Team team1, Team team2)
         {
             this.team1 = team1;
@@ -34,90 +49,240 @@ namespace HandsOff.Models
         {
             Debug.WriteLine("Starting match!!!");
 
+            // Start the match with Team 1 
+            BallPosition = 4;
+            BallOwner = 1;
+
             while (TurnCounter < MaxTurns)
             {
                 TakeTurn();
-                CheckIfScored();
 
                 TurnCounter++;
-                Debug.WriteLine("Turn: ");
-                Debug.WriteLine(TurnCounter);
-                if(TurnCounter > 99)
+
+                Debug.WriteLine("Ball position: {0}", BallPosition);
+                Debug.WriteLine("Turn: {0}", TurnCounter);
+
+                if ((TurnCounter + 1) > MaxTurns)
                 {
-                    Debug.WriteLine("Done!");
-                    Debug.WriteLine(Team1Score);
-                    Debug.WriteLine(Team2Score);
+                    Debug.WriteLine("Done! final score: Team 1: {0} and Team 2: {1}", Team1Score, Team2Score);
                 }
             }
         }
 
         private void TakeTurn()
         {
-            int selectedPlayer = random.Next(11);
-            SelectedPlayerTeam1 = team1.Players[selectedPlayer];
-            Debug.WriteLine("Selected player on team 1 is: ");
-            Debug.Write(selectedPlayer);
-
-            selectedPlayer = random.Next(11);
-            SelectedPlayerTeam2 = team2.Players[selectedPlayer];
-            Debug.WriteLine("Selected player on team 2 is: ");
-            Debug.Write(selectedPlayer);
-
-            Debug.Write(SelectedPlayerTeam1.Defence);
-
-            if (SelectedPlayerTeam1.Pace > SelectedPlayerTeam2.Pace)
+            if (BallOwner == 1) // team 1 owns the ball
             {
-                Team1Points++;
+                // first check if a goal attempt is possible, if failed return the ball to the other team
+                // Goal attempt is made by just one attacker
+                // if goal is not possible, then team 1 trying to advance forwards
+                if (BallPosition == 8) // Ball has reached the bottom of the field and a goal attempt can be made
+                {
+                    if (AttemptAdvance(1, 1) == true)
+                    {
+                        Team1Score++;
+                        BallOwner = 2;
+                        BallPosition = 4;
+                    }
+                    else // failed! Team 2 gets the ball now
+                    {
+                        BallOwner = 2;
+                        BallPosition = 5;
+                    }
+                }
+                else if (BallPosition == 7) // Attempt to get through the defense players
+                {
+                    if (AttemptAdvance(3, 4) == true) // in all other cases, the attackers are trying to advance through the midfielders
+                    {
+                        BallPosition++;
+                    }
+                    else // failed! Team 2 gets the ball now
+                    {
+                        BallOwner = 2;
+                    }
+                }
+                else
+                {
+                    if (AttemptAdvance(3, 3) == true) // in all other cases, the attackers are trying to advance through the midfielders
+                    {
+                        BallPosition++;
+                    }
+                    else // failed! Team 2 gets the ball now
+                    {
+                        BallOwner = 2;
+                    }
+                }
             }
-
-            if (SelectedPlayerTeam2.Pace > SelectedPlayerTeam1.Pace)
+            else // team 2 owns the ball
             {
-                Team2Points++;
-            }
-
-            if (SelectedPlayerTeam1.Shooting > SelectedPlayerTeam2.Shooting)
-            {
-                Team1Points++;
-            }
-
-            if (SelectedPlayerTeam2.Shooting > SelectedPlayerTeam1.Shooting)
-            {
-                Team2Points++;
-            }
-
-            if (SelectedPlayerTeam1.Defence > SelectedPlayerTeam2.Defence)
-            {
-                Team1Points++;
-            }
-
-            if (SelectedPlayerTeam2.Defence > SelectedPlayerTeam1.Defence)
-            {
-                Team2Points++;
+                // first check if a goal attempt is possible, if failed return the ball to the other team
+                // Goal attempt is made by just one attacker
+                // if goal is not possible, then team 1 trying to advance forwards
+                if (BallPosition == 0) // Ball has reached the bottom of the field and a goal attempt can be made
+                {
+                    if (AttemptAdvance(1, 1) == true)
+                    {
+                        Team2Score++;
+                        BallOwner = 1;
+                        BallPosition = 4;
+                    }
+                    else // failed! Team 1 gets the ball now
+                    {
+                        BallOwner = 1;
+                        BallPosition = 4;
+                    }
+                }
+                else if (BallPosition == 1) // Attempt to get through the defense players
+                {
+                    if (AttemptAdvance(3, 4) == true) // in all other cases, the attackers are trying to advance through the midfielders
+                    {
+                        BallPosition--;
+                    }
+                    else // failed! Team 1 gets the ball now
+                    {
+                        BallOwner = 1;
+                    }
+                }
+                else
+                {
+                    if (AttemptAdvance(3, 3) == true) // in all other cases, the attackers are trying to advance through the midfielders
+                    {
+                        BallPosition--;
+                    }
+                    else // failed! Team 1 gets the ball now
+                    {
+                        BallOwner = 1;
+                    }
+                }
             }
         }
 
-        private void CheckIfScored()
+        private bool AttemptAdvance(int AmoundOfPlayersAttacking, int AmoundOfPlayersDefending)
         {
-            if(Team1Points > IsScoredValue)
+            // reset all values
+            combinedAttackTeam1 = 0;
+            combinedDefenseTeam1 = 0;
+            combinedSpeedTeam1 = 0;
+            combinedAttackTeam2 = 0;
+            combinedDefenseTeam2 = 0;
+            combinedSpeedTeam2 = 0;
+
+            TotalTeam1 = 0;
+            TotalTeam2 = 0;
+
+            if (BallOwner == 1)
             {
-                Team1Score++;
+                // get numbers for the attacking team (team 1)
+                int i;
+                for (i = AmoundOfPlayersAttacking; i > 0; i--)
+                {
+                    SelectedPlayerTeam1 = team1.Players[randomPlayerSelector.Next(11)]; // randomly choose between attackers
 
-                Team1Points = 0;
-                Team2Points = 0;
+                    combinedAttackTeam1 += SelectedPlayerTeam1.Shooting;
+                    combinedSpeedTeam1 += SelectedPlayerTeam1.Pace;
+                    //combinedDefenseTeam1 += SelectedPlayerTeam1.Defence;
+                }
 
-                Debug.WriteLine("team 1 score updated: ");
-                Debug.Write(Team1Score);
+                // get numbers for the defending team (team 2)
+                int u;
+                for (u = AmoundOfPlayersDefending; u > 0; u--)
+                {
+                    switch (AmoundOfPlayersDefending)
+                    {
+                        case 1:
+                            SelectedPlayerTeam2 = team2.Players[1]; // only one defender, therefore a goal attempt is being made. keeper is chosen
+                            break;
+                        case 2:
+                        case 3:
+                            SelectedPlayerTeam2 = team2.Players[randomPlayerSelector.Next(6, 9)]; // randomly choose between midfielders
+                            break;
+                        case 4:
+                        default:
+                            SelectedPlayerTeam2 = team2.Players[randomPlayerSelector.Next(2, 6)]; // randomly choose between defenders
+                            break;
+                    }
+
+                    //combinedAttackTeam2 += SelectedPlayerTeam2.Shooting;
+                    combinedSpeedTeam2 += SelectedPlayerTeam2.Pace;
+                    combinedDefenseTeam2 += SelectedPlayerTeam2.Defence;
+                }
+
+                // calculate if attacking team will be succesfull
+                double p;
+                    
+                p = (randomChangeGenerator.NextDouble() + 1);
+                Debug.WriteLine("random number generatoed: {0}", p);
+                TotalTeam1 = (((Convert.ToDouble(combinedAttackTeam1) + Convert.ToDouble(combinedSpeedTeam1)) / 2) * p);
+                
+                p = (randomChangeGenerator.NextDouble() + 1);
+                Debug.WriteLine("random number generatoed: {0}", p);
+                TotalTeam2 = (((Convert.ToDouble(combinedDefenseTeam2) + Convert.ToDouble(combinedSpeedTeam2)) / 2) * p);
+
+                if (TotalTeam1 > TotalTeam2)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-
-            if (Team2Points > IsScoredValue)
+            else
             {
-                Team2Score++;
- 
-                Team1Points = 0;
-                Team2Points = 0;
+                // get numbers for the attacking team (team 2)
+                int i;
+                for (i = AmoundOfPlayersAttacking; i > 0; i--)
+                {
+                    SelectedPlayerTeam2 = team2.Players[randomPlayerSelector.Next(11)]; // randomly choose between attackers
 
-                Debug.WriteLine("team 2 score updated: ");
-                Debug.Write(Team2Score);
+                    combinedAttackTeam2 += SelectedPlayerTeam2.Shooting;
+                    combinedSpeedTeam2 += SelectedPlayerTeam2.Pace;
+                    //combinedDefenseTeam2 += SelectedPlayerTeam2.Defence;
+                }
+
+                // get numbers for the defending team (team 1)
+                int u;
+                for (u = AmoundOfPlayersDefending; u > 0; u--)
+                {
+                    switch (AmoundOfPlayersDefending)
+                    {
+                        case 1:
+                            SelectedPlayerTeam1 = team1.Players[1]; // only one defender, therefore a goal attempt is being made. keeper is chosen
+                            break;
+                        case 2:
+                        case 3:
+                            SelectedPlayerTeam1 = team1.Players[randomPlayerSelector.Next(6, 9)]; // randomly choose between midfielders
+                            break;
+                        case 4:
+                        default:
+                            SelectedPlayerTeam1 = team1.Players[randomPlayerSelector.Next(2, 6)]; // randomly choose between defenders
+                            break;
+                    }
+
+                    //combinedAttackTeam1 += SelectedPlayerTeam1.Shooting;
+                    combinedSpeedTeam1 += SelectedPlayerTeam1.Pace;
+                    combinedDefenseTeam1 += SelectedPlayerTeam1.Defence;
+                }
+
+                // calculate if attacking team will be succesfull
+                double p;
+
+                p = (randomChangeGenerator.NextDouble() + 1);
+                Debug.WriteLine("random number generatoed: {0}", p);
+                TotalTeam2 = (((Convert.ToDouble(combinedAttackTeam1) + Convert.ToDouble(combinedSpeedTeam1)) / 2) * p);
+
+                p = (randomChangeGenerator.NextDouble() + 1);
+                Debug.WriteLine("random number generatoed: {0}", p);
+                TotalTeam1 = (((Convert.ToDouble(combinedDefenseTeam2) + Convert.ToDouble(combinedSpeedTeam2)) / 2) * p);
+
+                if (TotalTeam2 > TotalTeam1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
     }

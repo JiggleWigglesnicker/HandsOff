@@ -88,11 +88,8 @@ namespace HandsOff
             {
                 if (teamName == team.getName())
                 {
-                    Debug.WriteLine("Match");
-                    Debug.WriteLine(team);
-                    Debug.WriteLine(teamName);
                     SelectedTeam1 = team;
-                    Debug.WriteLine(SelectedTeam1);
+                    Debug.WriteLine("Selected as team 1: {0} with Team name: {1}", SelectedTeam1, teamName);
                 }
             }
         }
@@ -105,11 +102,8 @@ namespace HandsOff
             {
                 if (teamName == team.getName())
                 {
-                    Debug.WriteLine("Match");
-                    Debug.WriteLine(team);
-                    Debug.WriteLine(teamName);
                     SelectedTeam2 = team;
-                    Debug.WriteLine(SelectedTeam1);
+                    Debug.WriteLine("Selected as team 1: {0} with Team name: {1}", SelectedTeam1, teamName);
                 }
             }
         }

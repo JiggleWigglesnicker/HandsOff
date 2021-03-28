@@ -211,6 +211,8 @@ namespace HandsOff
         {
             Team team = new Team();
             team.TeamName = TeamNameBox.Text;
+            String Position;
+
             for (int i = 1; i < 12; i++)
             {
                 StackPanel stackpanel = (StackPanel)this.FindName("stackpanel" + i);
@@ -225,9 +227,33 @@ namespace HandsOff
                 int passing = (int)Int64.Parse(textBox3.Text);
                 int dribble = (int)Int64.Parse(textBox4.Text);
                 int defence = (int)Int64.Parse(textBox5.Text);
-                int intelligence = (int)Int64.Parse(textBox6.Text);
-                String Position = "Attacker";
-                Player player = new Player(i, Position, pace, shooting, passing, dribble, defence, intelligence);
+                //int luck = (int)Int64.Parse(textBox6.Text);
+
+                switch (i)
+                {
+                    case 1:
+                        Position = "Keeper";
+                        break;
+                    case 2:
+                    case 3:
+                    case 4:
+                    case 5:
+                        Position = "Defender";
+                        break;
+                    case 6:
+                    case 7:
+                    case 8:
+                        Position = "Midfielder";
+                        break;
+                    case 9:
+                    case 10:
+                    case 11:
+                    default:
+                        Position = "Attacker";
+                        break;
+                }
+
+                Player player = new Player(i, Position, pace, shooting, defence);
                 team.AddPlayerToTeam(player);
             }
             return team;
