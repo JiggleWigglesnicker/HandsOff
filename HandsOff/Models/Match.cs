@@ -12,7 +12,7 @@ namespace HandsOff.Models
         public Team team1 { get; set; }
         public Team team2 { get; set; }
 
-        private int MaxTurns = 200;                          // Maximum amount of turns
+        private int MaxTurns = 10000;                        // Maximum amount of turns
         private int TurnCounter = 0;                        // Keep track of the number of turns passed
 
         public int Team1Score { get; private set; } = 0;    // De score van team 1, deze wordt uiteindelijk opgeslagen
@@ -25,20 +25,18 @@ namespace HandsOff.Models
         private Player SelectedPlayerTeam2;
 
         // placeholders for calculating the football game
-        private int combinedAttackTeam1;
-        private int combinedDefenseTeam1;
-        private int combinedSpeedTeam1;
-
-        private int combinedAttackTeam2;
-        private int combinedDefenseTeam2;
-        private int combinedSpeedTeam2;
-
+        private double combinedAttackTeam1;
+        private double combinedDefenseTeam1;
+        private double combinedSpeedTeam1;
+        private double combinedAttackTeam2;
+        private double combinedDefenseTeam2;
+        private double combinedSpeedTeam2;
         double TotalTeam1;
         double TotalTeam2;
 
         System.Random randomPlayerSelector = new System.Random();
         System.Random randomChangeGenerator = new System.Random();
-
+        
         public Match(Team team1, Team team2)
         {
             this.team1 = team1;
@@ -59,8 +57,8 @@ namespace HandsOff.Models
 
                 TurnCounter++;
 
-                Debug.WriteLine("Ball position: {0}", BallPosition);
-                Debug.WriteLine("Turn: {0}", TurnCounter);
+                //Debug.WriteLine("Ball position: {0}", BallPosition);
+                //Debug.WriteLine("Turn: {0}", TurnCounter);
 
                 if ((TurnCounter + 1) > MaxTurns)
                 {
@@ -166,7 +164,6 @@ namespace HandsOff.Models
             combinedAttackTeam2 = 0;
             combinedDefenseTeam2 = 0;
             combinedSpeedTeam2 = 0;
-
             TotalTeam1 = 0;
             TotalTeam2 = 0;
 
@@ -176,11 +173,10 @@ namespace HandsOff.Models
                 int i;
                 for (i = AmoundOfPlayersAttacking; i > 0; i--)
                 {
-                    SelectedPlayerTeam1 = team1.Players[randomPlayerSelector.Next(11)]; // randomly choose between attackers
+                    SelectedPlayerTeam1 = team1.Players[randomPlayerSelector.Next(9, 11)]; // randomly choose between attackers
 
                     combinedAttackTeam1 += SelectedPlayerTeam1.Shooting;
                     combinedSpeedTeam1 += SelectedPlayerTeam1.Pace;
-                    //combinedDefenseTeam1 += SelectedPlayerTeam1.Defence;
                 }
 
                 // get numbers for the defending team (team 2)
@@ -190,7 +186,8 @@ namespace HandsOff.Models
                     switch (AmoundOfPlayersDefending)
                     {
                         case 1:
-                            SelectedPlayerTeam2 = team2.Players[1]; // only one defender, therefore a goal attempt is being made. keeper is chosen
+                            SelectedPlayerTeam2 = team2.Players[1]; // only one defender keeper is chosen
+                            //combinedDefenseTeam2 = combinedDefenseTeam2 + 1;
                             break;
                         case 2:
                         case 3:
@@ -202,21 +199,18 @@ namespace HandsOff.Models
                             break;
                     }
 
-                    //combinedAttackTeam2 += SelectedPlayerTeam2.Shooting;
-                    combinedSpeedTeam2 += SelectedPlayerTeam2.Pace;
                     combinedDefenseTeam2 += SelectedPlayerTeam2.Defence;
+                    combinedSpeedTeam2 += SelectedPlayerTeam2.Pace;
                 }
 
                 // calculate if attacking team will be succesfull
                 double p;
                     
                 p = (randomChangeGenerator.NextDouble() + 1);
-                Debug.WriteLine("random number generatoed: {0}", p);
-                TotalTeam1 = (((Convert.ToDouble(combinedAttackTeam1) + Convert.ToDouble(combinedSpeedTeam1)) / 2) * p);
+                TotalTeam1 = (((combinedAttackTeam1 + combinedSpeedTeam1) / 2) * p);
                 
                 p = (randomChangeGenerator.NextDouble() + 1);
-                Debug.WriteLine("random number generatoed: {0}", p);
-                TotalTeam2 = (((Convert.ToDouble(combinedDefenseTeam2) + Convert.ToDouble(combinedSpeedTeam2)) / 2) * p);
+                TotalTeam2 = (((combinedDefenseTeam2 + combinedSpeedTeam2) / 2) * p);
 
                 if (TotalTeam1 > TotalTeam2)
                 {
@@ -233,11 +227,10 @@ namespace HandsOff.Models
                 int i;
                 for (i = AmoundOfPlayersAttacking; i > 0; i--)
                 {
-                    SelectedPlayerTeam2 = team2.Players[randomPlayerSelector.Next(11)]; // randomly choose between attackers
+                    SelectedPlayerTeam2 = team2.Players[randomPlayerSelector.Next(9, 11)]; // randomly choose between attackers
 
                     combinedAttackTeam2 += SelectedPlayerTeam2.Shooting;
                     combinedSpeedTeam2 += SelectedPlayerTeam2.Pace;
-                    //combinedDefenseTeam2 += SelectedPlayerTeam2.Defence;
                 }
 
                 // get numbers for the defending team (team 1)
@@ -247,7 +240,8 @@ namespace HandsOff.Models
                     switch (AmoundOfPlayersDefending)
                     {
                         case 1:
-                            SelectedPlayerTeam1 = team1.Players[1]; // only one defender, therefore a goal attempt is being made. keeper is chosen
+                            SelectedPlayerTeam1 = team1.Players[1]; // only one defender. keeper is chosen
+                            //combinedDefenseTeam2 = combinedDefenseTeam2 + 1;
                             break;
                         case 2:
                         case 3:
@@ -259,21 +253,18 @@ namespace HandsOff.Models
                             break;
                     }
 
-                    //combinedAttackTeam1 += SelectedPlayerTeam1.Shooting;
-                    combinedSpeedTeam1 += SelectedPlayerTeam1.Pace;
                     combinedDefenseTeam1 += SelectedPlayerTeam1.Defence;
+                    combinedSpeedTeam1 += SelectedPlayerTeam1.Pace;
                 }
 
                 // calculate if attacking team will be succesfull
                 double p;
 
                 p = (randomChangeGenerator.NextDouble() + 1);
-                Debug.WriteLine("random number generatoed: {0}", p);
-                TotalTeam2 = (((Convert.ToDouble(combinedAttackTeam1) + Convert.ToDouble(combinedSpeedTeam1)) / 2) * p);
+                TotalTeam2 = (((combinedAttackTeam1 + combinedSpeedTeam1) / 2) * p);
 
                 p = (randomChangeGenerator.NextDouble() + 1);
-                Debug.WriteLine("random number generatoed: {0}", p);
-                TotalTeam1 = (((Convert.ToDouble(combinedDefenseTeam2) + Convert.ToDouble(combinedSpeedTeam2)) / 2) * p);
+                TotalTeam1 = (((combinedDefenseTeam2 + combinedSpeedTeam2) / 2) * p);
 
                 if (TotalTeam2 > TotalTeam1)
                 {

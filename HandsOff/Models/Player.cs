@@ -13,7 +13,7 @@ namespace HandsOff.Models
         public int Pace { get; set; }       
         public int Shooting { get; set; }
         public int Defence { get; set; }
-        public int Luck { get; set; }
+        //public int Luck { get; set; }
 
         public Player(int Number, String Position, int Pace, int Shooting, int Defence)
         {

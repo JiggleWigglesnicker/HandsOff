@@ -52,35 +52,47 @@ namespace HandsOff
 
             Team team = new Team();
             String Position;
+            int shooting;
+            int pace;
+            int defence;
+
             for (int i = 1; i < 12; i++)
             {
                 switch (i)
                 {
                     case 1:
                         Position = "Keeper";
+                        shooting = randomSkill.Next(50, 101);
+                        pace = randomSkill.Next(50, 101);
+                        defence = randomSkill.Next(50, 101);
                         break;
                     case 2:
                     case 3:
                     case 4:
                     case 5:
                         Position = "Defender";
+                        shooting = randomSkill.Next(50, 101);
+                        pace = randomSkill.Next(50, 101);
+                        defence = randomSkill.Next(50, 101);
                         break;
                     case 6:
                     case 7:
                     case 8:
                         Position = "Midfielder";
+                        shooting = randomSkill.Next(1, 101);
+                        pace = randomSkill.Next(50, 101);
+                        defence = randomSkill.Next(50, 101);
                         break;
                     case 9:
                     case 10:
                     case 11:
                     default:
                         Position = "Attacker";
+                        shooting = randomSkill.Next(1, 60);
+                        pace = randomSkill.Next(50, 101);
+                        defence = randomSkill.Next(50, 101);
                         break;
                 }
-                
-                int pace = randomSkill.Next(1, 101);
-                int shooting = randomSkill.Next(1, 101);
-                int defence = randomSkill.Next(1, 101);
                 
                 //int Luck = randomSkill.Next(1, 101);
                 Player player = new Player(i, Position, pace, shooting, defence);
