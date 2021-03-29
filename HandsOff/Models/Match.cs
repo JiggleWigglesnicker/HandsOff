@@ -12,11 +12,10 @@ namespace HandsOff.Models
         public Team team1 { get; set; }
         public Team team2 { get; set; }
 
-        private int MaxTurns = 10000;                        // Maximum amount of turns
-        private int TurnCounter = 0;                        // Keep track of the number of turns passed
-        public String ProgressString { get; private set; } = "";
+        private int MaxTurns = 2000;                        // Maximum amount of turns
+        public int TurnCounter { get; private set; }                        // Keep track of the number of turns passed
 
-        public int Team1Score { get; private set; } = 0;    // De score van team 1, deze wordt uiteindelijk opgeslagen
+        public int Team1Score { get; private set; }   // De score van team 1, deze wordt uiteindelijk opgeslagen
         public int Team2Score { get; private set; } = 0;    // De score van team 2, deze wordt uiteindelijk opgeslagen
 
         private int BallPosition;                           // Position of the football. values 1-8
@@ -37,23 +36,24 @@ namespace HandsOff.Models
 
         System.Random randomPlayerSelector = new System.Random();
         System.Random randomChangeGenerator = new System.Random();
-        
+
         public Match(Team team1, Team team2)
         {
             this.team1 = team1;
             this.team2 = team2;
         }
 
-        public void progressStringUpdate()
+        public async void StartSimulationAsync()
         {
-            if (TurnCounter >= 200)
-                ProgressString += "#+";
-            if (TurnCounter < 200)
+            await Task.Run(() =>
             {
-                ProgressString += "#";
-            }
+                StartSimulation();
+
+
+            });
 
         }
+
 
         public void StartSimulation()
         {
@@ -62,19 +62,11 @@ namespace HandsOff.Models
             // Start the match with Team 1 
             BallPosition = 4;
             BallOwner = 1;
-            int i = 0;
 
             while (TurnCounter < MaxTurns)
             {
-                i++;
-                TakeTurn();
-                if (i == 50 || TurnCounter >= 200)
-                {
-                    progressStringUpdate();
-                    i = 0;
-                }
 
-                
+                TakeTurn();
 
                 TurnCounter++;
 
@@ -229,7 +221,7 @@ namespace HandsOff.Models
 
                 p = (randomChangeGenerator.NextDouble() + 1);
                 TotalTeam1 = (((combinedAttackTeam1 + combinedSpeedTeam1) / 2) * p);
-                
+
                 p = (randomChangeGenerator.NextDouble() + 1);
                 TotalTeam2 = (((combinedDefenseTeam2 + combinedSpeedTeam2) / 2) * p);
 
