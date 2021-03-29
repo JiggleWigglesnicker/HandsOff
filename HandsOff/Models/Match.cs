@@ -12,7 +12,7 @@ namespace HandsOff.Models
         public Team team1 { get; set; }
         public Team team2 { get; set; }
 
-        private int MaxTurns = 10000;                        // Maximum amount of turns
+        private int MaxTurns = 2000;                       // Maximum amount of turns
         private int TurnCounter = 0;                        // Keep track of the number of turns passed
         public String ProgressString { get; private set; } = "";
 
@@ -52,7 +52,6 @@ namespace HandsOff.Models
             {
                 ProgressString += "#";
             }
-
         }
 
         public void StartSimulation()
@@ -73,8 +72,6 @@ namespace HandsOff.Models
                     progressStringUpdate();
                     i = 0;
                 }
-
-                
 
                 TurnCounter++;
 
