@@ -67,22 +67,25 @@ namespace HandsOff
                 textBlock3.Height = 50;
                 textBlock3.Width = 250;
                 textBlock3.Margin = new Thickness(0, 10, 0, 0);
-                TextBlock textBlock4 = new TextBlock();
-                textBlock4.Name = "ProgressBar" + i;
-                textBlock4.Foreground = new SolidColorBrush(Colors.White);
-                textBlock4.FontSize = 35;
-                textBlock4.HorizontalAlignment = HorizontalAlignment.Center;
-                textBlock4.Text = "+";
-                textBlock4.Height = 50;
-                textBlock4.Width = 250;
-                textBlock4.Margin = new Thickness(0, 0, 0, 20);
+                ProgressBar progressB = new ProgressBar();
+                progressB.Name = "ProgressBar" + i;
+                //progressB.Foreground = new SolidColorBrush(Colors.White);
+                //progressB.Background = new SolidColorBrush(Colors.Black);
+                progressB.IsIndeterminate = false;
+                progressB.Minimum = 0;
+                progressB.Maximum = 200;
+                //progressB.FontSize = 35;
+                //progressB.HorizontalAlignment = HorizontalAlignment.Center;
+                progressB.Height = 50;
+                progressB.Width = 250;
+                progressB.Margin = new Thickness(0, 0, 0, 20);
                 i++;
 
                 stackPanel.Children.Add(listView);
                 listView.Items.Add(textBlock1);
                 listView.Items.Add(textBlock2);
                 listView.Items.Add(textBlock3);
-                listView.Items.Add(textBlock4);
+                listView.Items.Add(progressB);
 
 
             }
@@ -94,8 +97,8 @@ namespace HandsOff
 
             foreach (Match match in matchPool.Matches)
             {
-                TextBlock textBlockProgress = (TextBlock)this.FindName("ProgressBar" + i);
-                textBlockProgress.Text += match.ProgressString;
+                ProgressBar progressB = (ProgressBar)this.FindName("ProgressBar" + i);
+                progressB.Value += match.TurnCounter;
                 i++;
             }
         
@@ -116,6 +119,7 @@ namespace HandsOff
         private void StartSim_Click(object sender, RoutedEventArgs e)
         {
             matchPool.StartExecution();
+            updateProgressBar();
         }
     }
 }

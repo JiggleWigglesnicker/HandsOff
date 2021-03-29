@@ -26,14 +26,11 @@ namespace HandsOff.Models
             Debug.WriteLine("Starting simulation(s) now!");
             foreach (Match match in Matches)
             {
-                match.StartSimulation();
+                match.StartSimulationAsync();
             }
         }
 
-        public String ReturnProgress()
-        {
-            return "";
-        }
+       
 
     }
 }
