@@ -84,7 +84,5 @@
                     Height="40"/>
             </StackPanel>
         </Button>
-
     </Grid>
-
 </Page>

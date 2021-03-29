@@ -18,7 +18,7 @@
             FontSize="100"
             Text="Match maker"
             TextAlignment="Center"
-            Margin="0,100,0,30"
+            Margin="0,80,0,10"
             />
         <TextBlock
             Foreground="White"
@@ -44,8 +44,8 @@
             FontSize="50"
             Text="Team 2"
             TextAlignment="Center"
-            Margin="0,30,0,10"
-            />
+            Margin="0,10,0,10"
+        />
 
         <ComboBox 
             x:Name="TeamCB2"
@@ -54,10 +54,32 @@
             HorizontalAlignment="Center"
             Height="50"
             Width="250"
-            Margin="0,0,0,40"
+            Margin="0,0,0,10"
             PlaceholderText="Select team"
             FontSize="25" SelectionChanged="TeamCB2_SelectionChanged">
         </ComboBox>
+
+        <TextBlock
+            x:Name="AmountOfMatches"
+            Foreground="White"
+            FontSize="50"
+            Text="Amound of matches:"
+            TextAlignment="Center"
+            Margin="0,10,0,10"
+        />
+
+        <TextBox
+            x:Name="NumberOfMatches"
+            Grid.Column="0"
+            Grid.Row="2"
+            Background="White"
+            Foreground="Black"
+            FontSize="25"
+            VerticalAlignment="Top"
+            Height="50"
+            Width="150"
+            Margin="0,0,0,60"
+            />
 
         <Button
             Background="White"
@@ -69,7 +91,7 @@
             Width="250"
             HorizontalAlignment="Center" 
             Click="Make_Match_Click"
-            />
+        />
 
         <Button
             HorizontalAlignment="Left"
@@ -89,6 +111,5 @@
                     Height="40"/>
             </StackPanel>
         </Button>
-
     </StackPanel>
 </Page>

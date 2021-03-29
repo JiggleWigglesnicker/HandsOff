@@ -13,9 +13,9 @@ namespace HandsOff.Models
         public Team team2 { get; set; }
 
         private int MaxTurns = 2000;                        // Maximum amount of turns
-        public int TurnCounter { get; private set; }                        // Keep track of the number of turns passed
+        public int TurnCounter { get; private set; } = 0;   // Keep track of the number of turns passed
 
-        public int Team1Score { get; private set; }   // De score van team 1, deze wordt uiteindelijk opgeslagen
+        public int Team1Score { get; private set; }         // De score van team 1, deze wordt uiteindelijk opgeslagen
         public int Team2Score { get; private set; } = 0;    // De score van team 2, deze wordt uiteindelijk opgeslagen
 
         private int BallPosition;                           // Position of the football. values 1-8
@@ -48,12 +48,8 @@ namespace HandsOff.Models
             await Task.Run(() =>
             {
                 StartSimulation();
-
-
             });
-
         }
-
 
         public void StartSimulation()
         {
@@ -65,7 +61,6 @@ namespace HandsOff.Models
 
             while (TurnCounter < MaxTurns)
             {
-
                 TakeTurn();
 
                 TurnCounter++;
