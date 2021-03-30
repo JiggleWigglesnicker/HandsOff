@@ -12,7 +12,7 @@ namespace HandsOff.Models
         public Team team1 { get; set; }
         public Team team2 { get; set; }
 
-        private int MaxTurns = 800000;                        // Maximum amount of turns
+        private int MaxTurns = 2000;                        // Maximum amount of turns
         public int TurnCounter { get; private set; } = 0;   // Keep track of the number of turns passed
 
         public int Team1Score { get; private set; }         // De score van team 1, deze wordt uiteindelijk opgeslagen
@@ -77,7 +77,7 @@ namespace HandsOff.Models
 
                     if (progress != null)
                     {
-                        progress.Report((tempCount * 800000 / MaxTurns));
+                        progress.Report((tempCount * 2000 / MaxTurns));
                     }
                     tempCount++;
                 }

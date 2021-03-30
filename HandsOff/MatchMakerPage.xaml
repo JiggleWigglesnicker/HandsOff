@@ -76,6 +76,7 @@
             Foreground="Black"
             FontSize="25"
             VerticalAlignment="Top"
+            Text="1"
             Height="50"
             Width="150"
             Margin="0,0,0,60"
