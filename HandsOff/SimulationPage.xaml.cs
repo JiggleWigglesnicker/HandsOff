@@ -24,20 +24,14 @@ namespace HandsOff
     public sealed partial class SimulationPage : Page
     {
 
-        public MatchPool matchPool = new MatchPool();
+      
 
         public SimulationPage()
         {
             this.InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-
-            if (e.Parameter != null)
-                this.matchPool = (MatchPool)e.Parameter;
-        }
+       
 
 
         private void Back_Click(object sender, RoutedEventArgs e)

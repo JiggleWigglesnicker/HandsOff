@@ -1,6 +1,7 @@
 ﻿using HandsOff.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -92,28 +93,28 @@ namespace HandsOff
             }
         }
 
-        public void updateProgressBar() {
+        public void updateProgressBar(int progress) {
 
             int i = 1; 
 
             foreach (Match match in matches)
             {
                 ProgressBar progressB = (ProgressBar)this.FindName("ProgressBar" + i);
-                progressB.Value += match.TurnCounter;
+                progressB.Value += progress;
                 i++;
             }
         
         }
 
-        /*public async void StartExecution()
+        public async void StartExecution()
         {
             Debug.WriteLine("Starting simulation(s) now!");
             foreach (Match match in matches)
             {
-                var progressIndicator = new Progress<int>();
-                await match.StartSimulationAsync();
+                var progressIndicator = new Progress<int>(updateProgressBar);
+                await match.StartSimulationAsync(progressIndicator);
             }
-        }*/
+        }
 
 
 
@@ -128,6 +129,11 @@ namespace HandsOff
             }
         }
 
-        
+        public void StartSim_Click(object sender, RoutedEventArgs e) {
+
+            StartExecution();
+        }
+
+
     }
 }
