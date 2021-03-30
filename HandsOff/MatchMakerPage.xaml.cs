@@ -26,7 +26,7 @@ namespace HandsOff
     public sealed partial class MatchMaker : Page
     {
         List<Team> Teams = new List<Team>();
-        MatchPool matchPool = new MatchPool();
+        List<Match> matches = new List<Match>();
 
         Team SelectedTeam1;
         Team SelectedTeam2;
@@ -117,7 +117,7 @@ namespace HandsOff
 
             while (AmountOfMatches > 0)
             {
-                matchPool.AddMatch(match);
+                matches.Add(match);
                 Debug.WriteLine("Added match to list! numbers left: {0}", AmountOfMatches);
 
                 AmountOfMatches--;
@@ -127,7 +127,7 @@ namespace HandsOff
         private void Make_Match_Click(object sender, RoutedEventArgs e)
         {
             MakeMatch();
-            this.Frame.Navigate(typeof(SimulationExecution), matchPool);
+            this.Frame.Navigate(typeof(SimulationExecution), matches);
         }
     }
 }

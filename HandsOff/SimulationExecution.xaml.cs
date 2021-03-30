@@ -24,7 +24,8 @@ namespace HandsOff
     /// </summary>
     public sealed partial class SimulationExecution : Page
     {
-        public MatchPool matchPool = new MatchPool();
+        
+        public List<Match> matches = new List<Match>();
 
         public SimulationExecution()
         {
@@ -37,7 +38,7 @@ namespace HandsOff
             StackPanel stackPanel = this.MatchList;
             int i = 1;
 
-            foreach (Match match in matchPool.Matches)
+            foreach (Match match in matches)
             {
                 ListView listView = new ListView();
                 listView.IsHitTestVisible = false;
@@ -93,9 +94,9 @@ namespace HandsOff
 
         public void updateProgressBar() {
 
-            int i = 1;
+            int i = 1; 
 
-            foreach (Match match in matchPool.Matches)
+            foreach (Match match in matches)
             {
                 ProgressBar progressB = (ProgressBar)this.FindName("ProgressBar" + i);
                 progressB.Value += match.TurnCounter;
@@ -104,6 +105,17 @@ namespace HandsOff
         
         }
 
+        /*public async void StartExecution()
+        {
+            Debug.WriteLine("Starting simulation(s) now!");
+            foreach (Match match in matches)
+            {
+                var progressIndicator = new Progress<int>();
+                await match.StartSimulationAsync();
+            }
+        }*/
+
+
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -111,15 +123,11 @@ namespace HandsOff
 
             if (e.Parameter != null)
             {
-                this.matchPool = (MatchPool)e.Parameter;
+                this.matches = (List<Match>)e.Parameter;
                 CreateMatchListUI();
             }
         }
 
-        private void StartSim_Click(object sender, RoutedEventArgs e)
-        {
-            matchPool.StartExecution();
-            updateProgressBar();
-        }
+        
     }
 }

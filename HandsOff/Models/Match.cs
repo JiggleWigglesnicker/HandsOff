@@ -43,36 +43,50 @@ namespace HandsOff.Models
             this.team2 = team2;
         }
 
-        public async void StartSimulationAsync()
+        /*public async Task<int> StartSimulationAsync(IProgress<int> progress)
         {
             await Task.Run(() =>
             {
                 StartSimulation();
             });
-        }
+        }*/
 
-        public void StartSimulation()
+        public async Task<int> StartSimulationAsync(IProgress<int> progress)
         {
             Debug.WriteLine("Starting match!!!");
-
-            // Start the match with Team 1 
-            BallPosition = 4;
-            BallOwner = 1;
-
-            while (TurnCounter < MaxTurns)
+            int processCount = await Task.Run<int>(() =>
             {
-                TakeTurn();
+                // Start the match with Team 1 
+                BallPosition = 4;
+                BallOwner = 1;
 
-                TurnCounter++;
-
-                //Debug.WriteLine("Ball position: {0}", BallPosition);
-                //Debug.WriteLine("Turn: {0}", TurnCounter);
-
-                if ((TurnCounter + 1) > MaxTurns)
+                int tempCount = 0;
+                while (TurnCounter < MaxTurns)
                 {
-                    Debug.WriteLine("Done! final score: Team 1: {0} and Team 2: {1}", Team1Score, Team2Score);
+                    TakeTurn();
+
+                    TurnCounter++;
+
+                    //Debug.WriteLine("Ball position: {0}", BallPosition);
+                    //Debug.WriteLine("Turn: {0}", TurnCounter);
+
+                    if ((TurnCounter + 1) > MaxTurns)
+                    {
+                        Debug.WriteLine("Done! final score: Team 1: {0} and Team 2: {1}", Team1Score, Team2Score);
+                    }
+
+                    if (progress != null)
+                    {
+                        progress.Report((tempCount * 2000 / MaxTurns));
+                    }
+                    tempCount++;
                 }
-            }
+
+                return tempCount;
+            });
+
+            return processCount;
+
         }
 
         private void TakeTurn()
