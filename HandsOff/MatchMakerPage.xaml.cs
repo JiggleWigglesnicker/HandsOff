@@ -109,15 +109,13 @@ namespace HandsOff
         }
 
         public void MakeMatch() {
-            Match match = new Match(SelectedTeam1, SelectedTeam2);
-
-            // TODO: add for loop for the amount of simulations that have to executed, 1-100
-            
             int AmountOfMatches = (int)Int64.Parse(NumberOfMatches.Text);
 
             while (AmountOfMatches > 0)
             {
+                Match match = new Match(SelectedTeam1, SelectedTeam2);
                 matches.Add(match);
+                
                 Debug.WriteLine("Added match to list! numbers left: {0}", AmountOfMatches);
 
                 AmountOfMatches--;
