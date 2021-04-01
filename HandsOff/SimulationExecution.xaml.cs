@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI;
@@ -25,7 +26,7 @@ namespace HandsOff
     /// </summary>
     public sealed partial class SimulationExecution : Page
     {
-        
+
         public List<Match> matches = new List<Match>();
 
         public SimulationExecution()
@@ -75,7 +76,7 @@ namespace HandsOff
                 //progressB.Background = new SolidColorBrush(Colors.Black);
                 progressB.IsIndeterminate = false;
                 progressB.Minimum = 0;
-                progressB.Maximum = 200;
+                progressB.Maximum = 100000;
                 //progressB.FontSize = 35;
                 //progressB.HorizontalAlignment = HorizontalAlignment.Center;
                 progressB.Height = 50;
@@ -93,27 +94,32 @@ namespace HandsOff
             }
         }
 
-        public void updateProgressBar(int progress) {
-
-            int i = 1; 
-
-            foreach (Match match in matches)
+        public async void updateProgressBar()
+        {
+            await Task.Run(() =>
             {
-                ProgressBar progressB = (ProgressBar)this.FindName("ProgressBar" + i);
-                progressB.Value += progress;
-                i++;
-            }
-        
+                int i = 1;
+
+                foreach (Match match in matches)
+                {
+                    ProgressBar progressB = (ProgressBar)this.FindName("ProgressBar" + i);
+                    progressB.Value += match.TurnCounter;
+                    i++;
+                }
+            });
+
         }
 
         public async void StartExecution()
         {
-            Debug.WriteLine("Starting simulation(s) now!");
-            foreach (Match match in matches)
+
+            Parallel.ForEach(matches, match =>
             {
-                var progressIndicator = new Progress<int>(updateProgressBar);
-                await match.StartSimulationAsync(progressIndicator);
-            }
+                match.StartSimulation();
+
+            });
+
+          
         }
 
 
@@ -129,7 +135,8 @@ namespace HandsOff
             }
         }
 
-        public void StartSim_Click(object sender, RoutedEventArgs e) {
+        public void StartSim_Click(object sender, RoutedEventArgs e)
+        {
 
             StartExecution();
         }
