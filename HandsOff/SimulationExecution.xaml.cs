@@ -29,11 +29,12 @@ namespace HandsOff
     {
 
         public List<Match> matches = new List<Match>();
-        
+        public ProgressBar BigBar;
 
         public SimulationExecution()
         {
             this.InitializeComponent();
+            BigBar = this.AllBar;
 
         }
 
@@ -94,32 +95,36 @@ namespace HandsOff
 
 
             }
+
+            BigBar.Maximum = matches.Count();
         }
 
 
         public async void StartExecution()
         {
             int i = 1;
-            await Task.Run(() =>
+            await Task.Run(async () =>
             {
-                
+
                 Parallel.ForEach(matches, async match =>
                 {
-                    
+
                     match.StartSimulation();
-                    
+
                     await Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
                     {
                         ProgressBar bar = (ProgressBar)this.FindName("ProgressBar" + i);
                         bar.Value = match.TurnCounter;
                         i++;
-                    });
-                        
-                });
+                        BigBar.Value += 1;
 
+                    });
+
+                });
+                
             });
 
-
+          
         }
 
 

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 
 namespace HandsOff.Models
 {
@@ -12,7 +7,7 @@ namespace HandsOff.Models
         public Team team1 { get; set; }
         public Team team2 { get; set; }
 
-        private int MaxTurns = 10000000;                      // Maximum amount of turns
+        private readonly int MaxTurns = 10000000;                      // Maximum amount of turns
         public int TurnCounter { get; private set; } = 0;   // Keep track of the number of turns passed
 
         public int Team1Score { get; private set; }         // De score van team 1, deze wordt uiteindelijk opgeslagen
@@ -26,9 +21,8 @@ namespace HandsOff.Models
 
         // placeholders for calculating the football game
         private double combinedAttackTeam1, combinedDefenseTeam1, combinedSpeedTeam1, combinedAttackTeam2, combinedDefenseTeam2, combinedSpeedTeam2, TotalTeam1, TotalTeam2;
-
-        System.Random randomPlayerSelector = new System.Random();
-        System.Random randomChangeGenerator = new System.Random();
+        readonly System.Random randomPlayerSelector = new System.Random();
+        readonly System.Random randomChangeGenerator = new System.Random();
 
         public Match(Team team1, Team team2)
         {
@@ -40,27 +34,27 @@ namespace HandsOff.Models
         public void StartSimulation()
         {
             Debug.WriteLine("Starting match!!!");
-            
-                // Start the match with Team 1 
-                BallPosition = 4;
-                BallOwner = 1;
 
-                while (TurnCounter < MaxTurns)
+            // Start the match with Team 1 
+            BallPosition = 4;
+            BallOwner = 1;
+
+            while (TurnCounter < MaxTurns)
+            {
+                TakeTurn();
+
+                TurnCounter++;
+
+                //Debug.WriteLine("Ball position: {0}", BallPosition);
+                //Debug.WriteLine("Turn: {0}", TurnCounter);
+
+                if ((TurnCounter + 1) > MaxTurns)
                 {
-                    TakeTurn();
-
-                    TurnCounter++;
-
-                    //Debug.WriteLine("Ball position: {0}", BallPosition);
-                    //Debug.WriteLine("Turn: {0}", TurnCounter);
-
-                    if ((TurnCounter + 1) > MaxTurns)
-                    {
-                        Debug.WriteLine("Done! final score: Team 1: {0} and Team 2: {1}", Team1Score, Team2Score);
-                    }
-
-                   
+                    Debug.WriteLine("Done! final score: Team 1: {0} and Team 2: {1}", Team1Score, Team2Score);
                 }
+
+
+            }
         }
 
         private void TakeTurn()

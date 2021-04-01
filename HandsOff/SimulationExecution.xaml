@@ -28,6 +28,16 @@
 
         </ScrollViewer>
 
+        <ProgressBar 
+            x:Name="AllBar"
+            Minimum="0"
+            Maximum="100"
+            Grid.Row="1"
+            VerticalAlignment="Bottom"
+            Width="1000"
+            Height="100"
+            />
+
         <Button
             Click="StartSim_Click"
             Grid.Column="0"
