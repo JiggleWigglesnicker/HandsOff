@@ -26,12 +26,13 @@ namespace HandsOff
     /// </summary>
     public sealed partial class SimulationExecution : Page
     {
-        
+
         public List<Match> matches = new List<Match>();
 
         public SimulationExecution()
         {
             this.InitializeComponent();
+
         }
 
         public void CreateMatchListUI()
@@ -88,34 +89,30 @@ namespace HandsOff
                 listView.Items.Add(textBlock2);
                 listView.Items.Add(textBlock3);
                 listView.Items.Add(progressB);
+
+
             }
         }
 
-        public async void updateProgressBar()
-        {
-            await Task.Run(() =>
-            {
-                int i = 1;
-
-            foreach (Match match in matches)
-            {
-                ProgressBar progressB = (ProgressBar)this.FindName("ProgressBar" + i);
-                progressB.Value += progress;
-                i++;
-            }
-        }
 
         public async void StartExecution()
         {
-
-            Parallel.ForEach(matches, match =>
+            await Task.Run(() =>
             {
-                match.StartSimulation();
+
+                Parallel.ForEach(matches, match =>
+                {
+                    match.StartSimulation();
+
+                });
 
             });
 
-          
+
         }
+
+
+
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -133,5 +130,7 @@ namespace HandsOff
 
             StartExecution();
         }
+
+
     }
 }
