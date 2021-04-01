@@ -94,33 +94,23 @@ namespace HandsOff
             }
         }
 
-        public async void updateProgressBar()
-        {
-            await Task.Run(() =>
-            {
-                int i = 1;
-
-                foreach (Match match in matches)
-                {
-                    ProgressBar progressB = (ProgressBar)this.FindName("ProgressBar" + i);
-                    progressB.Value += match.TurnCounter;
-                    i++;
-                }
-            });
-
-        }
 
         public async void StartExecution()
         {
-
-            Parallel.ForEach(matches, match =>
+            await Task.Run(() =>
             {
-                match.StartSimulation();
+
+                Parallel.ForEach(matches, match =>
+                {
+                    match.StartSimulation();
+
+                });
 
             });
 
-          
+
         }
+
 
 
 
