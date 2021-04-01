@@ -151,7 +151,7 @@ namespace HandsOff.Models
             }
         }
 
-        private bool AttemptAdvance(int AmoundOfPlayersAttacking, int AmoundOfPlayersDefending)
+        private bool AttemptAdvance(int AmountOfPlayersAttacking, int AmountOfPlayersDefending)
         {
             // reset all values
             combinedAttackTeam1 = 0;
@@ -167,7 +167,7 @@ namespace HandsOff.Models
             {
                 // get numbers for the attacking team (team 1)
                 int i;
-                for (i = AmoundOfPlayersAttacking; i > 0; i--)
+                for (i = AmountOfPlayersAttacking; i > 0; i--)
                 {
                     SelectedPlayerTeam1 = team1.Players[randomPlayerSelector.Next(9, 11)]; // randomly choose between attackers
 
@@ -177,9 +177,9 @@ namespace HandsOff.Models
 
                 // get numbers for the defending team (team 2)
                 int u;
-                for (u = AmoundOfPlayersDefending; u > 0; u--)
+                for (u = AmountOfPlayersDefending; u > 0; u--)
                 {
-                    switch (AmoundOfPlayersDefending)
+                    switch (AmountOfPlayersDefending)
                     {
                         case 1:
                             SelectedPlayerTeam2 = team2.Players[1]; // only one defender keeper is chosen
@@ -200,6 +200,7 @@ namespace HandsOff.Models
                 }
 
                 // calculate if attacking team will be succesfull
+                
                 double p;
 
                 p = (randomChangeGenerator.NextDouble() + 1);
@@ -207,6 +208,10 @@ namespace HandsOff.Models
 
                 p = (randomChangeGenerator.NextDouble() + 1);
                 TotalTeam2 = (((combinedDefenseTeam2 + combinedSpeedTeam2) / 2) * p);
+                
+
+                //TotalTeam1 = (combinedAttackTeam1 + combinedSpeedTeam1);
+                //TotalTeam2 = (combinedDefenseTeam2 + combinedSpeedTeam2);
 
                 if (TotalTeam1 > TotalTeam2)
                 {
@@ -221,7 +226,7 @@ namespace HandsOff.Models
             {
                 // get numbers for the attacking team (team 2)
                 int i;
-                for (i = AmoundOfPlayersAttacking; i > 0; i--)
+                for (i = AmountOfPlayersAttacking; i > 0; i--)
                 {
                     SelectedPlayerTeam2 = team2.Players[randomPlayerSelector.Next(9, 11)]; // randomly choose between attackers
 
@@ -231,9 +236,9 @@ namespace HandsOff.Models
 
                 // get numbers for the defending team (team 1)
                 int u;
-                for (u = AmoundOfPlayersDefending; u > 0; u--)
+                for (u = AmountOfPlayersDefending; u > 0; u--)
                 {
-                    switch (AmoundOfPlayersDefending)
+                    switch (AmountOfPlayersDefending)
                     {
                         case 1:
                             SelectedPlayerTeam1 = team1.Players[1]; // only one defender. keeper is chosen
@@ -257,10 +262,10 @@ namespace HandsOff.Models
                 double p;
 
                 p = (randomChangeGenerator.NextDouble() + 1);
-                TotalTeam2 = (((combinedAttackTeam1 + combinedSpeedTeam1) / 2) * p);
+                TotalTeam2 = (((combinedAttackTeam2 + combinedSpeedTeam2) / 2) * p);
 
                 p = (randomChangeGenerator.NextDouble() + 1);
-                TotalTeam1 = (((combinedDefenseTeam2 + combinedSpeedTeam2) / 2) * p);
+                TotalTeam1 = (((combinedDefenseTeam1 + combinedSpeedTeam1) / 2) * p);
 
                 if (TotalTeam2 > TotalTeam1)
                 {
