@@ -23,6 +23,7 @@ namespace HandsOff.Models
             return TeamName;
         }
 
+        /*
     /// <summary>
     /// Sets a "Random" team name.
     /// </summary>
@@ -55,6 +56,6 @@ namespace HandsOff.Models
             {
                 return false;
             }
-        }
+        }*/
     }
 }

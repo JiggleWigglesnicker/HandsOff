@@ -23,21 +23,14 @@ namespace HandsOff
     /// </summary>
     public sealed partial class SimulationPage : Page
     {
-
-      
-
         public SimulationPage()
         {
             this.InitializeComponent();
         }
 
-       
-
-
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             App.TryGoBack();
         }
-
     }
 }

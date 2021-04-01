@@ -12,7 +12,7 @@ namespace HandsOff.Models
         public Team team1 { get; set; }
         public Team team2 { get; set; }
 
-        private int MaxTurns = 100000;                      // Maximum amount of turns
+        private int MaxTurns = 200000;                      // Maximum amount of turns
         public int TurnCounter { get; private set; } = 0;   // Keep track of the number of turns passed
 
         public int Team1Score { get; private set; }         // De score van team 1, deze wordt uiteindelijk opgeslagen
@@ -25,14 +25,7 @@ namespace HandsOff.Models
         private Player SelectedPlayerTeam2;
 
         // placeholders for calculating the football game
-        private double combinedAttackTeam1;
-        private double combinedDefenseTeam1;
-        private double combinedSpeedTeam1;
-        private double combinedAttackTeam2;
-        private double combinedDefenseTeam2;
-        private double combinedSpeedTeam2;
-        double TotalTeam1;
-        double TotalTeam2;
+        private double combinedAttackTeam1, combinedDefenseTeam1, combinedSpeedTeam1, combinedAttackTeam2, combinedDefenseTeam2, combinedSpeedTeam2, TotalTeam1, TotalTeam2;
 
         System.Random randomPlayerSelector = new System.Random();
         System.Random randomChangeGenerator = new System.Random();
@@ -86,8 +79,7 @@ namespace HandsOff.Models
             });
 
             return processCount;
-
-        }
+        } 
 
         private void TakeTurn()
         {
