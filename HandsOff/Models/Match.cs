@@ -12,7 +12,7 @@ namespace HandsOff.Models
         public Team team1 { get; set; }
         public Team team2 { get; set; }
 
-        private int MaxTurns = 200000;                      // Maximum amount of turns
+        private int MaxTurns = 10000000;                      // Maximum amount of turns
         public int TurnCounter { get; private set; } = 0;   // Keep track of the number of turns passed
 
         public int Team1Score { get; private set; }         // De score van team 1, deze wordt uiteindelijk opgeslagen
@@ -36,24 +36,15 @@ namespace HandsOff.Models
             this.team2 = team2;
         }
 
-        /*public async Task<int> StartSimulationAsync(IProgress<int> progress)
-        {
-            await Task.Run(() =>
-            {
-                StartSimulation();
-            });
-        }*/
 
-        public async Task<int> StartSimulationAsync(IProgress<int> progress)
+        public void StartSimulation()
         {
             Debug.WriteLine("Starting match!!!");
-            int processCount = await Task.Run<int>(() =>
-            {
+            
                 // Start the match with Team 1 
                 BallPosition = 4;
                 BallOwner = 1;
 
-                int tempCount = 0;
                 while (TurnCounter < MaxTurns)
                 {
                     TakeTurn();
@@ -68,18 +59,9 @@ namespace HandsOff.Models
                         Debug.WriteLine("Done! final score: Team 1: {0} and Team 2: {1}", Team1Score, Team2Score);
                     }
 
-                    if (progress != null)
-                    {
-                        progress.Report((tempCount * 2000 / MaxTurns));
-                    }
-                    tempCount++;
+                   
                 }
-
-                return tempCount;
-            });
-
-            return processCount;
-        } 
+        }
 
         private void TakeTurn()
         {
