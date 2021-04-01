@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -28,6 +29,7 @@ namespace HandsOff
     {
 
         public List<Match> matches = new List<Match>();
+        
 
         public SimulationExecution()
         {
@@ -97,13 +99,22 @@ namespace HandsOff
 
         public async void StartExecution()
         {
+            int i = 1;
             await Task.Run(() =>
             {
-
-                Parallel.ForEach(matches, match =>
+                
+                Parallel.ForEach(matches, async match =>
                 {
+                    
                     match.StartSimulation();
-
+                    
+                    await Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
+                    {
+                        ProgressBar bar = (ProgressBar)this.FindName("ProgressBar" + i);
+                        bar.Value = match.TurnCounter;
+                        i++;
+                    });
+                        
                 });
 
             });
