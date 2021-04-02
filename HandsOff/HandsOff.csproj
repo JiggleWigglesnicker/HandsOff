@@ -206,9 +206,6 @@
       <Version>1.0.113.7</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Database\database.db" />
-  </ItemGroup>
   <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
