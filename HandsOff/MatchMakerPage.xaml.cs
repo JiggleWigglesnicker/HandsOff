@@ -1,20 +1,8 @@
 ﻿using HandsOff.Models;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -25,8 +13,8 @@ namespace HandsOff
     /// </summary>
     public sealed partial class MatchMaker : Page
     {
-        List<Team> Teams = new List<Team>();
-        List<Match> matches = new List<Match>();
+        readonly List<Team> Teams = new List<Team>();
+        readonly List<Match> matches = new List<Match>();
 
         Team SelectedTeam1;
         Team SelectedTeam2;
@@ -60,7 +48,7 @@ namespace HandsOff
         {
             ComboBox CB1 = this.TeamCB1;
             ComboBox CB2 = this.TeamCB2;
-            
+
             // fill in teams for ComboBox 1
             CB1.Items.Add(App.team1.getName());
             CB1.Items.Add(App.team2.getName());
@@ -83,7 +71,7 @@ namespace HandsOff
         private void TeamCB1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             String teamName = e.AddedItems[0].ToString();
-            
+
             foreach (Team team in Teams)
             {
                 if (teamName == team.getName())
@@ -108,14 +96,15 @@ namespace HandsOff
             }
         }
 
-        public void MakeMatch() {
+        public void MakeMatch()
+        {
             int AmountOfMatches = (int)Int64.Parse(NumberOfMatches.Text);
 
             while (AmountOfMatches > 0)
             {
                 Match match = new Match(SelectedTeam1, SelectedTeam2);
                 matches.Add(match);
-                
+
                 //Debug.WriteLine("Added match to list! numbers left: {0}", AmountOfMatches);
 
                 AmountOfMatches--;

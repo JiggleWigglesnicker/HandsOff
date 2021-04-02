@@ -69,7 +69,7 @@ namespace HandsOff.Models
                         BallOwner = 2;
                         BallPosition = 4;
                     }
-                    else if(AttemptAdvance(1, 1) == 0)
+                    else if (AttemptAdvance(1, 1) == 0)
                     {
                         // stalemate. nothing changes, team 1 gets to try another time to break the defense.
                     }
@@ -85,7 +85,7 @@ namespace HandsOff.Models
                     {
                         BallPosition++;
                     }
-                    else if(AttemptAdvance(3, 4) == 0)
+                    else if (AttemptAdvance(3, 4) == 0)
                     {
                         // stalemate. nothing changes, team 1 gets to try another time to break the defense.
                     }
@@ -100,7 +100,7 @@ namespace HandsOff.Models
                     {
                         BallPosition++;
                     }
-                    else if(AttemptAdvance(3, 3) == 0)
+                    else if (AttemptAdvance(3, 3) == 0)
                     {
                         // stalemate. nothing changes, team 1 gets to try another time to break the defense.
                     }
@@ -123,7 +123,7 @@ namespace HandsOff.Models
                         BallOwner = 1;
                         BallPosition = 4;
                     }
-                    else if(AttemptAdvance(1, 1) == 0)
+                    else if (AttemptAdvance(1, 1) == 0)
                     {
                         // stalemate. nothing changes, team 2 gets to try another time to break the defense.
                     }
@@ -139,7 +139,7 @@ namespace HandsOff.Models
                     {
                         BallPosition--;
                     }
-                    else if(AttemptAdvance(3, 4) == 0)
+                    else if (AttemptAdvance(3, 4) == 0)
                     {
                         // stalemate. nothing changes, team 2 gets to try another time to break the defense.
                     }
@@ -154,7 +154,7 @@ namespace HandsOff.Models
                     {
                         BallPosition--;
                     }
-                    else if(AttemptAdvance(3, 3) == 0)
+                    else if (AttemptAdvance(3, 3) == 0)
                     {
                         // stalemate. nothing changes, team 2 gets to try another time to break the defense.
                     }
