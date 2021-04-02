@@ -198,7 +198,7 @@ namespace HandsOff.Models
                     {
                         case 1:
                             SelectedPlayerTeam2 = team2.Players[1]; // only one defender keeper is chosen
-                            combinedDefenseTeam2 = combinedDefenseTeam2 + 0.1;
+                            combinedDefenseTeam2 = combinedDefenseTeam2 + 150;
                             break;
                         case 2:
                         case 3:
@@ -215,26 +215,26 @@ namespace HandsOff.Models
                 }
 
                 /** calculate if attacking team will be succesfull **/
-                double p;
-                p = (randomChangeGenerator.NextDouble() + 100);
-                TotalTeam1 = (p + (combinedAttackTeam1 / 10) + (combinedAttackTeam1 / 10));
+                int q;
+                q = (randomChangeGenerator.Next(1,91));
+                TotalTeam1 = (q + (combinedAttackTeam1 / 30) + (combinedSpeedTeam1 / 30));
 
-                p = (randomChangeGenerator.NextDouble() + 100);
-                TotalTeam2 = (p + (combinedDefenseTeam2 / 10) + (combinedSpeedTeam2 / 10));
+                q = (randomChangeGenerator.Next(1, 91));
+                TotalTeam2 = (q + (combinedDefenseTeam2 / 30) + (combinedSpeedTeam2 / 30));
 
                 //Debug.WriteLine("Total attacking team 1: {0} Total defending team 2: {1}", TotalTeam1, TotalTeam2);
 
-                if ((TotalTeam1 / TotalTeam2) >= 1.4)
+                if ((TotalTeam1 / TotalTeam2) >= 3.9)
                 {
                     return 1;
                 }
-                else if ((TotalTeam1 / TotalTeam2) >= 1.0 && (TotalTeam1 / TotalTeam2) < 1.4)
+                else if ((TotalTeam1 / TotalTeam2) >= 1.5 && (TotalTeam1 / TotalTeam2) < 3.9)
                 {
                     return 0;
                 }
                 else
                 {
-                    return 0;
+                    return -1;
                 }
             }
             else
@@ -257,7 +257,7 @@ namespace HandsOff.Models
                     {
                         case 1:
                             SelectedPlayerTeam1 = team1.Players[1]; // only one defender. keeper is chosen
-                            combinedDefenseTeam2 = combinedDefenseTeam2 + 0.1;
+                            combinedDefenseTeam2 = combinedDefenseTeam2 + 150;
                             break;
                         case 2:
                         case 3:
@@ -274,20 +274,20 @@ namespace HandsOff.Models
                 }
 
                 /** calculate if attacking team will be succesfull */
-                double p;
-                p = (randomChangeGenerator.NextDouble() + 100);
-                TotalTeam2 = (p + (combinedAttackTeam2 / 10) + (combinedSpeedTeam2 / 10));
+                int q;
+                q = (randomChangeGenerator.Next(1, 91));
+                TotalTeam2 = (q + (combinedAttackTeam2 / 30) + (combinedSpeedTeam2 / 30));
 
-                p = (randomChangeGenerator.NextDouble() + 100);
-                TotalTeam1 = (p + (combinedDefenseTeam1 / 10) + (combinedSpeedTeam1 / 10));
+                q = (randomChangeGenerator.Next(1, 91));
+                TotalTeam1 = (q + (combinedDefenseTeam1 / 30) + (combinedSpeedTeam1 / 30));
 
                 //Debug.WriteLine("Total attacking team 2: {0} Total defending team 1: {1}", TotalTeam2, TotalTeam1);
 
-                if ((TotalTeam2 / TotalTeam1) >= 1.4)
+                if ((TotalTeam2 / TotalTeam1) >= 3.9)
                 {
                     return 1;
                 }
-                else if ((TotalTeam2 / TotalTeam1) >= 1.0 && (TotalTeam2 / TotalTeam1) < 1.4)
+                else if ((TotalTeam2 / TotalTeam1) >= 1.5 && (TotalTeam2 / TotalTeam1) < 3.9)
                 {
                     return 0;
                 }
