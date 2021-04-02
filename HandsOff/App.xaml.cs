@@ -62,35 +62,35 @@ namespace HandsOff
                 {
                     case 1:
                         Position = "Keeper";
-                        shooting = randomSkill.Next(50, 101);
-                        pace = randomSkill.Next(50, 101);
-                        defence = randomSkill.Next(50, 101);
+                        shooting = randomSkill.Next(1, 101);
+                        pace = randomSkill.Next(90, 101);
+                        defence = randomSkill.Next(90, 101);
                         break;
                     case 2:
                     case 3:
                     case 4:
                     case 5:
                         Position = "Defender";
-                        shooting = randomSkill.Next(50, 101);
-                        pace = randomSkill.Next(50, 101);
-                        defence = randomSkill.Next(50, 101);
+                        shooting = randomSkill.Next(1, 101);
+                        pace = randomSkill.Next(90, 101);
+                        defence = randomSkill.Next(90, 101);
                         break;
                     case 6:
                     case 7:
                     case 8:
                         Position = "Midfielder";
                         shooting = randomSkill.Next(1, 101);
-                        pace = randomSkill.Next(50, 101);
-                        defence = randomSkill.Next(50, 101);
+                        pace = randomSkill.Next(90, 101);
+                        defence = randomSkill.Next(90, 101);
                         break;
                     case 9:
                     case 10:
                     case 11:
                     default:
                         Position = "Attacker";
-                        shooting = randomSkill.Next(1, 60);
-                        pace = randomSkill.Next(50, 101);
-                        defence = randomSkill.Next(50, 101);
+                        shooting = randomSkill.Next(90, 101);
+                        pace = randomSkill.Next(90, 101);
+                        defence = randomSkill.Next(1, 101);
                         break;
                 }
                 

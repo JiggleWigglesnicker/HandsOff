@@ -89,7 +89,7 @@ namespace HandsOff
                 if (teamName == team.getName())
                 {
                     SelectedTeam1 = team;
-                    Debug.WriteLine("Selected as team 1: {0} with Team name: {1}", SelectedTeam1, teamName);
+                    //Debug.WriteLine("Selected as team 1: {0} with Team name: {1}", SelectedTeam1, teamName);
                 }
             }
         }
@@ -103,7 +103,7 @@ namespace HandsOff
                 if (teamName == team.getName())
                 {
                     SelectedTeam2 = team;
-                    Debug.WriteLine("Selected as team 1: {0} with Team name: {1}", SelectedTeam1, teamName);
+                    //Debug.WriteLine("Selected as team 1: {0} with Team name: {1}", SelectedTeam1, teamName);
                 }
             }
         }
@@ -116,7 +116,7 @@ namespace HandsOff
                 Match match = new Match(SelectedTeam1, SelectedTeam2);
                 matches.Add(match);
                 
-                Debug.WriteLine("Added match to list! numbers left: {0}", AmountOfMatches);
+                //Debug.WriteLine("Added match to list! numbers left: {0}", AmountOfMatches);
 
                 AmountOfMatches--;
             }

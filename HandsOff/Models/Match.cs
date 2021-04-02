@@ -7,7 +7,7 @@ namespace HandsOff.Models
         public Team team1 { get; set; }
         public Team team2 { get; set; }
 
-        private readonly int MaxTurns = 10000000;                      // Maximum amount of turns
+        private readonly int MaxTurns = 5000000;             // Maximum amount of turns
         public int TurnCounter { get; private set; } = 0;   // Keep track of the number of turns passed
 
         public int Team1Score { get; private set; }         // De score van team 1, deze wordt uiteindelijk opgeslagen
@@ -30,7 +30,6 @@ namespace HandsOff.Models
             this.team2 = team2;
         }
 
-
         public void StartSimulation()
         {
             Debug.WriteLine("Starting match!!!");
@@ -52,8 +51,6 @@ namespace HandsOff.Models
                 {
                     Debug.WriteLine("Done! final score: Team 1: {0} and Team 2: {1}", Team1Score, Team2Score);
                 }
-
-
             }
         }
 
@@ -66,11 +63,15 @@ namespace HandsOff.Models
                 // if goal is not possible, then team 1 trying to advance forwards
                 if (BallPosition == 8) // Ball has reached the bottom of the field and a goal attempt can be made
                 {
-                    if (AttemptAdvance(1, 1) == true)
+                    if (AttemptAdvance(1, 1) == 1)
                     {
                         Team1Score++;
                         BallOwner = 2;
                         BallPosition = 4;
+                    }
+                    else if(AttemptAdvance(1, 1) == 0)
+                    {
+                        // stalemate. nothing changes, team 1 gets to try another time to break the defense.
                     }
                     else // failed! Team 2 gets the ball now
                     {
@@ -80,9 +81,13 @@ namespace HandsOff.Models
                 }
                 else if (BallPosition == 7) // Attempt to get through the defense players
                 {
-                    if (AttemptAdvance(3, 4) == true) // in all other cases, the attackers are trying to advance through the midfielders
+                    if (AttemptAdvance(3, 4) == 1) // in all other cases, the attackers are trying to advance through the midfielders
                     {
                         BallPosition++;
+                    }
+                    else if(AttemptAdvance(3, 4) == 0)
+                    {
+                        // stalemate. nothing changes, team 1 gets to try another time to break the defense.
                     }
                     else // failed! Team 2 gets the ball now
                     {
@@ -91,9 +96,13 @@ namespace HandsOff.Models
                 }
                 else
                 {
-                    if (AttemptAdvance(3, 3) == true) // in all other cases, the attackers are trying to advance through the midfielders
+                    if (AttemptAdvance(3, 3) == 1) // in all other cases, the attackers are trying to advance through the midfielders
                     {
                         BallPosition++;
+                    }
+                    else if(AttemptAdvance(3, 3) == 0)
+                    {
+                        // stalemate. nothing changes, team 1 gets to try another time to break the defense.
                     }
                     else // failed! Team 2 gets the ball now
                     {
@@ -108,11 +117,15 @@ namespace HandsOff.Models
                 // if goal is not possible, then team 1 trying to advance forwards
                 if (BallPosition == 0) // Ball has reached the bottom of the field and a goal attempt can be made
                 {
-                    if (AttemptAdvance(1, 1) == true)
+                    if (AttemptAdvance(1, 1) == 1)
                     {
                         Team2Score++;
                         BallOwner = 1;
                         BallPosition = 4;
+                    }
+                    else if(AttemptAdvance(1, 1) == 0)
+                    {
+                        // stalemate. nothing changes, team 2 gets to try another time to break the defense.
                     }
                     else // failed! Team 1 gets the ball now
                     {
@@ -122,9 +135,13 @@ namespace HandsOff.Models
                 }
                 else if (BallPosition == 1) // Attempt to get through the defense players
                 {
-                    if (AttemptAdvance(3, 4) == true) // in all other cases, the attackers are trying to advance through the midfielders
+                    if (AttemptAdvance(3, 4) == 1) // in all other cases, the attackers are trying to advance through the midfielders
                     {
                         BallPosition--;
+                    }
+                    else if(AttemptAdvance(3, 4) == 0)
+                    {
+                        // stalemate. nothing changes, team 2 gets to try another time to break the defense.
                     }
                     else // failed! Team 1 gets the ball now
                     {
@@ -133,9 +150,13 @@ namespace HandsOff.Models
                 }
                 else
                 {
-                    if (AttemptAdvance(3, 3) == true) // in all other cases, the attackers are trying to advance through the midfielders
+                    if (AttemptAdvance(3, 3) == 1) // in all other cases, the attackers are trying to advance through the midfielders
                     {
                         BallPosition--;
+                    }
+                    else if(AttemptAdvance(3, 3) == 0)
+                    {
+                        // stalemate. nothing changes, team 2 gets to try another time to break the defense.
                     }
                     else // failed! Team 1 gets the ball now
                     {
@@ -145,7 +166,7 @@ namespace HandsOff.Models
             }
         }
 
-        private bool AttemptAdvance(int AmountOfPlayersAttacking, int AmountOfPlayersDefending)
+        private int AttemptAdvance(int AmountOfPlayersAttacking, int AmountOfPlayersDefending)
         {
             // reset all values
             combinedAttackTeam1 = 0;
@@ -177,7 +198,7 @@ namespace HandsOff.Models
                     {
                         case 1:
                             SelectedPlayerTeam2 = team2.Players[1]; // only one defender keeper is chosen
-                            //combinedDefenseTeam2 = combinedDefenseTeam2 + 1;
+                            combinedDefenseTeam2 = combinedDefenseTeam2 + 0.1;
                             break;
                         case 2:
                         case 3:
@@ -193,27 +214,27 @@ namespace HandsOff.Models
                     combinedSpeedTeam2 += SelectedPlayerTeam2.Pace;
                 }
 
-                // calculate if attacking team will be succesfull
-                
+                /** calculate if attacking team will be succesfull **/
                 double p;
+                p = (randomChangeGenerator.NextDouble() + 100);
+                TotalTeam1 = (p + (combinedAttackTeam1 / 10) + (combinedAttackTeam1 / 10));
 
-                p = (randomChangeGenerator.NextDouble() + 1);
-                TotalTeam1 = (((combinedAttackTeam1 + combinedSpeedTeam1) / 2) * p);
+                p = (randomChangeGenerator.NextDouble() + 100);
+                TotalTeam2 = (p + (combinedDefenseTeam2 / 10) + (combinedSpeedTeam2 / 10));
 
-                p = (randomChangeGenerator.NextDouble() + 1);
-                TotalTeam2 = (((combinedDefenseTeam2 + combinedSpeedTeam2) / 2) * p);
-                
+                //Debug.WriteLine("Total attacking team 1: {0} Total defending team 2: {1}", TotalTeam1, TotalTeam2);
 
-                //TotalTeam1 = (combinedAttackTeam1 + combinedSpeedTeam1);
-                //TotalTeam2 = (combinedDefenseTeam2 + combinedSpeedTeam2);
-
-                if (TotalTeam1 > TotalTeam2)
+                if ((TotalTeam1 / TotalTeam2) >= 1.4)
                 {
-                    return true;
+                    return 1;
+                }
+                else if ((TotalTeam1 / TotalTeam2) >= 1.0 && (TotalTeam1 / TotalTeam2) < 1.4)
+                {
+                    return 0;
                 }
                 else
                 {
-                    return false;
+                    return 0;
                 }
             }
             else
@@ -236,7 +257,7 @@ namespace HandsOff.Models
                     {
                         case 1:
                             SelectedPlayerTeam1 = team1.Players[1]; // only one defender. keeper is chosen
-                            //combinedDefenseTeam2 = combinedDefenseTeam2 + 1;
+                            combinedDefenseTeam2 = combinedDefenseTeam2 + 0.1;
                             break;
                         case 2:
                         case 3:
@@ -252,20 +273,28 @@ namespace HandsOff.Models
                     combinedSpeedTeam1 += SelectedPlayerTeam1.Pace;
                 }
 
-                // calculate if attacking team will be succesfull
+                /** calculate if attacking team will be succesfull */
                 double p;
+                p = (randomChangeGenerator.NextDouble() + 100);
+                TotalTeam2 = (p + (combinedAttackTeam2 / 10) + (combinedSpeedTeam2 / 10));
 
-                p = (randomChangeGenerator.NextDouble() + 1);
-                TotalTeam2 = (((combinedAttackTeam2 + combinedSpeedTeam2) / 2) * p);
+                p = (randomChangeGenerator.NextDouble() + 100);
+                TotalTeam1 = (p + (combinedDefenseTeam1 / 10) + (combinedSpeedTeam1 / 10));
 
-                p = (randomChangeGenerator.NextDouble() + 1);
-                TotalTeam1 = (((combinedDefenseTeam1 + combinedSpeedTeam1) / 2) * p);
+                //Debug.WriteLine("Total attacking team 2: {0} Total defending team 1: {1}", TotalTeam2, TotalTeam1);
 
-                if (TotalTeam2 > TotalTeam1)
+                if ((TotalTeam2 / TotalTeam1) >= 1.4)
                 {
-                    return true;
+                    return 1;
                 }
-                return false;
+                else if ((TotalTeam2 / TotalTeam1) >= 1.0 && (TotalTeam2 / TotalTeam1) < 1.4)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return -1;
+                }
             }
         }
     }
