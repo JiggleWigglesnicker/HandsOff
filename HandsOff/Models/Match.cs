@@ -7,7 +7,7 @@ namespace HandsOff.Models
         public Team team1 { get; set; }
         public Team team2 { get; set; }
 
-        private readonly int MaxTurns = 5000000;             // Maximum amount of turns
+        private static readonly int MaxTurns = 5000000;     // Maximum amount of turns
         public int TurnCounter { get; private set; } = 0;   // Keep track of the number of turns passed
 
         public int Team1Score { get; private set; }         // De score van team 1, deze wordt uiteindelijk opgeslagen
@@ -15,6 +15,7 @@ namespace HandsOff.Models
 
         private int BallPosition;                           // Position of the football. values 1-8
         private int BallOwner;                              // welk Team balbezit heeft (1 of 2)
+        private int randomLuck;                             // Generates a random number from 1-90, representing the luck 
 
         private Player SelectedPlayerTeam1;
         private Player SelectedPlayerTeam2;
@@ -41,11 +42,7 @@ namespace HandsOff.Models
             while (TurnCounter < MaxTurns)
             {
                 TakeTurn();
-
                 TurnCounter++;
-
-                //Debug.WriteLine("Ball position: {0}", BallPosition);
-                //Debug.WriteLine("Turn: {0}", TurnCounter);
 
                 if ((TurnCounter + 1) > MaxTurns)
                 {
@@ -215,12 +212,11 @@ namespace HandsOff.Models
                 }
 
                 /** calculate if attacking team will be succesfull **/
-                int q;
-                q = (randomChangeGenerator.Next(1,91));
-                TotalTeam1 = (q + (combinedAttackTeam1 / 30) + (combinedSpeedTeam1 / 30));
+                randomLuck = (randomChangeGenerator.Next(1, 91));
+                TotalTeam1 = (randomLuck + (combinedAttackTeam1 / 30) + (combinedSpeedTeam1 / 30));
 
-                q = (randomChangeGenerator.Next(1, 91));
-                TotalTeam2 = (q + (combinedDefenseTeam2 / 30) + (combinedSpeedTeam2 / 30));
+                randomLuck = (randomChangeGenerator.Next(1, 91));
+                TotalTeam2 = (randomLuck + (combinedDefenseTeam2 / 30) + (combinedSpeedTeam2 / 30));
 
                 //Debug.WriteLine("Total attacking team 1: {0} Total defending team 2: {1}", TotalTeam1, TotalTeam2);
 
@@ -274,12 +270,11 @@ namespace HandsOff.Models
                 }
 
                 /** calculate if attacking team will be succesfull */
-                int q;
-                q = (randomChangeGenerator.Next(1, 91));
-                TotalTeam2 = (q + (combinedAttackTeam2 / 30) + (combinedSpeedTeam2 / 30));
+                randomLuck = (randomChangeGenerator.Next(1, 91));
+                TotalTeam2 = (randomLuck + (combinedAttackTeam2 / 30) + (combinedSpeedTeam2 / 30));
 
-                q = (randomChangeGenerator.Next(1, 91));
-                TotalTeam1 = (q + (combinedDefenseTeam1 / 30) + (combinedSpeedTeam1 / 30));
+                randomLuck = (randomChangeGenerator.Next(1, 91));
+                TotalTeam1 = (randomLuck + (combinedDefenseTeam1 / 30) + (combinedSpeedTeam1 / 30));
 
                 //Debug.WriteLine("Total attacking team 2: {0} Total defending team 1: {1}", TotalTeam2, TotalTeam1);
 

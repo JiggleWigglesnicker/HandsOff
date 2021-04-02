@@ -23,7 +23,6 @@ namespace HandsOff
     /// </summary>
     public sealed partial class SimulationExecution : Page
     {
-
         public List<Match> matches = new List<Match>();
         public ProgressBar BigBar;
 
@@ -52,7 +51,7 @@ namespace HandsOff
                 textBlock1.Text = "Match" + i;
                 textBlock1.Height = 50;
                 textBlock1.Width = 200;
-                textBlock1.Margin = new Thickness(0, 50, 0, 0);
+                textBlock1.Margin = new Thickness(0, 40, 0, 0);
                 TextBlock textBlock2 = new TextBlock();
                 textBlock2.Foreground = new SolidColorBrush(Colors.White);
                 textBlock2.FontSize = 15;
@@ -60,7 +59,7 @@ namespace HandsOff
                 textBlock2.Text = match.team1.TeamName + " VS " + match.team2.TeamName;
                 textBlock2.Height = 50;
                 textBlock2.Width = 250;
-                textBlock2.Margin = new Thickness(0, 20, 0, 10);
+                textBlock2.Margin = new Thickness(0, 5, 0, -35);
                 TextBlock textBlock3 = new TextBlock();
                 textBlock3.Foreground = new SolidColorBrush(Colors.White);
                 textBlock3.FontSize = 35;
@@ -68,19 +67,19 @@ namespace HandsOff
                 textBlock3.Text = "Progress";
                 textBlock3.Height = 50;
                 textBlock3.Width = 250;
-                textBlock3.Margin = new Thickness(0, 10, 0, 0);
+                textBlock3.Margin = new Thickness(0, 0, 0, 0);
                 ProgressBar progressB = new ProgressBar();
                 progressB.Name = "ProgressBar" + i;
                 //progressB.Foreground = new SolidColorBrush(Colors.White);
                 //progressB.Background = new SolidColorBrush(Colors.Black);
                 progressB.IsIndeterminate = false;
                 progressB.Minimum = 0;
-                progressB.Maximum = 100000;
+                progressB.Maximum = 5000000;
                 //progressB.FontSize = 35;
                 //progressB.HorizontalAlignment = HorizontalAlignment.Center;
                 progressB.Height = 50;
                 progressB.Width = 250;
-                progressB.Margin = new Thickness(0, 0, 0, 20);
+                progressB.Margin = new Thickness(0, 0, 0, 0);
                 i++;
 
                 stackPanel.Children.Add(listView);
@@ -88,23 +87,18 @@ namespace HandsOff
                 listView.Items.Add(textBlock2);
                 listView.Items.Add(textBlock3);
                 listView.Items.Add(progressB);
-
-
             }
 
             BigBar.Maximum = matches.Count();
         }
-
 
         public async void StartExecution()
         {
             int i = 1;
             await Task.Run(async () =>
             {
-
                 Parallel.ForEach(matches, async match =>
                 {
-
                     match.StartSimulation();
 
                     await Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
@@ -113,21 +107,17 @@ namespace HandsOff
                         bar.Value = match.TurnCounter;
                         i++;
                         BigBar.Value += 1;
-
                     });
-
                 });
-
             });
-
-
         }
 
-        public async void sqlAsync() {
-            
+        public async void sqlAsync()
+        {
+
             string stm = "SELECT SQLITE_VERSION()";
             StorageFile dbfile = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///database.db"));
-            var con = new SQLiteConnection("Data Source=" + dbfile.Path +";");
+            var con = new SQLiteConnection("Data Source=" + dbfile.Path + ";");
             con.Open();
 
             var cmd = new SQLiteCommand(stm, con);
@@ -136,9 +126,6 @@ namespace HandsOff
             Debug.WriteLine($"SQLite version: {version}");
 
         }
-
-
-
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -153,10 +140,12 @@ namespace HandsOff
 
         public void StartSim_Click(object sender, RoutedEventArgs e)
         {
-
             StartExecution();
         }
 
-
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            App.TryGoBack();
+        }
     }
 }

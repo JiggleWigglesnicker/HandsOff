@@ -41,7 +41,6 @@ namespace HandsOff
             System.Random randomSkill = new System.Random();
 
             Team team = new Team();
-            String Position;
             int shooting;
             int pace;
             int defence;
@@ -51,7 +50,6 @@ namespace HandsOff
                 switch (i)
                 {
                     case 1:
-                        Position = "Keeper";
                         shooting = randomSkill.Next(1, 101);
                         pace = randomSkill.Next(90, 101);
                         defence = randomSkill.Next(90, 101);
@@ -60,7 +58,6 @@ namespace HandsOff
                     case 3:
                     case 4:
                     case 5:
-                        Position = "Defender";
                         shooting = randomSkill.Next(1, 101);
                         pace = randomSkill.Next(90, 101);
                         defence = randomSkill.Next(90, 101);
@@ -68,7 +65,6 @@ namespace HandsOff
                     case 6:
                     case 7:
                     case 8:
-                        Position = "Midfielder";
                         shooting = randomSkill.Next(1, 101);
                         pace = randomSkill.Next(90, 101);
                         defence = randomSkill.Next(90, 101);
@@ -77,7 +73,6 @@ namespace HandsOff
                     case 10:
                     case 11:
                     default:
-                        Position = "Attacker";
                         shooting = randomSkill.Next(90, 101);
                         pace = randomSkill.Next(90, 101);
                         defence = randomSkill.Next(1, 101);
@@ -85,7 +80,7 @@ namespace HandsOff
                 }
 
                 //int Luck = randomSkill.Next(1, 101);
-                Player player = new Player(i, Position, pace, shooting, defence);
+                Player player = new Player(i, pace, shooting, defence);
                 team.AddPlayerToTeam(player);
             }
             return team;
@@ -155,7 +150,6 @@ namespace HandsOff
             //TODO: Save application state and stop any background activity
             deferral.Complete();
         }
-
 
         public static bool TryGoBack()
         {

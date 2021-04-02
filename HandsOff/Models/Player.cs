@@ -11,14 +11,12 @@ namespace HandsOff.Models
         public int Defence { get; set; }
         //public int Luck { get; set; }
 
-        public Player(int Number, String Position, int Pace, int Shooting, int Defence)
+        public Player(int Number, int Pace, int Shooting, int Defence)
         {
             this.Number = Number;
-            this.Position = Position;
             this.Pace = Pace;           // Speed/SPD
             this.Shooting = Shooting;   // Attack/ATK
             this.Defence = Defence;     // Defense/DEF
-            //this.Luck = Luck;           
         }
     }
 }
