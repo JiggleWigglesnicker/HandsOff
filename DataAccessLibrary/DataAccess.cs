@@ -1,12 +1,8 @@
-﻿using System;
+﻿using Microsoft.Data.Sqlite;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.Storage;
-using Microsoft.Data.Sqlite;
 
 namespace DataAccessLibrary
 {
@@ -79,7 +75,7 @@ namespace DataAccessLibrary
         /// <returns></returns>
         public static List<object[]> GetData()
         {
-            List<object[]> entries = new List<object[]> ();
+            List<object[]> entries = new List<object[]>();
 
             string dbpath = Path.Combine(ApplicationData.Current.LocalFolder.Path, "database.db");
             using (SqliteConnection db =

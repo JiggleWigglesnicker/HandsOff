@@ -38,6 +38,7 @@ namespace HandsOff
             team3 = CreateTeam();
             team3.TeamName = "Example Team 3";
 
+            //Initialize the database at startup
             DataAccess.InitializeDatabase();
 
             // DataAccess.AddScores("test22", "test2", 1, 2);
