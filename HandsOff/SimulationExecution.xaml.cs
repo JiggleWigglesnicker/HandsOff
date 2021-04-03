@@ -89,14 +89,6 @@ namespace HandsOff
 
                 switch (x)
                 {
-                    case 0:
-                        stackpanel1.Children.Add(listView);
-                        listView.Items.Add(textBlock1);
-                        listView.Items.Add(textBlock2);
-                        listView.Items.Add(textBlock3);
-                        listView.Items.Add(progressB);
-                        x++;
-                        break;
                     case 1:
                         stackpanel2.Children.Add(listView);
                         listView.Items.Add(textBlock1);
@@ -115,6 +107,12 @@ namespace HandsOff
                         break;
                     default:
                         x = 0;
+                        stackpanel1.Children.Add(listView);
+                        listView.Items.Add(textBlock1);
+                        listView.Items.Add(textBlock2);
+                        listView.Items.Add(textBlock3);
+                        listView.Items.Add(progressB);
+                        x++;
                         break;
                 }
 
