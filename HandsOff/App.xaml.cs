@@ -1,7 +1,9 @@
 ﻿using HandsOff.Models;
 using System;
+using System.Diagnostics;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -34,6 +36,20 @@ namespace HandsOff
 
             team3 = CreateTeam();
             team3.TeamName = "Example Team 3";
+            copyDB();
+
+        }
+
+        public static async void copyDB() {
+
+            try
+            {
+                var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///database.db"));
+                await file.CopyAsync(ApplicationData.Current.LocalFolder);
+            }
+            catch (Exception e) {
+                Debug.WriteLine("Error:" + e.Message);
+            }
         }
 
         public Team CreateTeam()
