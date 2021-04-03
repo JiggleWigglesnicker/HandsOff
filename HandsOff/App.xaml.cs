@@ -40,9 +40,9 @@ namespace HandsOff
 
             DataAccess.InitializeDatabase();
 
-            //DataAccess.AddScores("test22", "test2", 1, 2);
+            // DataAccess.AddScores("test22", "test2", 1, 2);
 
-            //Debug.Write(DataAccess.GetData()[0]);
+            // Debug.Write(DataAccess.GetData()[0][1]);
 
         }
 
