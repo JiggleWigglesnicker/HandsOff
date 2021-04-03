@@ -22,7 +22,7 @@
             Grid.Column="0">
 
             <Grid>
-                
+
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -47,7 +47,17 @@
 
             </Grid>
         </ScrollViewer>
-
+        
+        <TextBlock 
+           Text="Progress of all matches"
+            FontSize="40"
+            Grid.Row="1"
+            VerticalAlignment="Bottom"
+            Width="1000"
+            Height="100"
+            Margin="800,0,0,90"
+            />
+        
         <ProgressBar 
             x:Name="AllBar"
             Minimum="0"
