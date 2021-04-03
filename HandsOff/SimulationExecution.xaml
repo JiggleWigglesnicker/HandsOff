@@ -21,10 +21,31 @@
         <ScrollViewer
             Grid.Column="0">
 
-            <StackPanel x:Name="MatchList">
+            <Grid>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel x:Name="MatchList1" Grid.Column="0">
 
 
-            </StackPanel>
+                </StackPanel>
+
+                <StackPanel x:Name="MatchList2" Grid.Column="1">
+
+
+                </StackPanel>
+
+                <StackPanel x:Name="MatchList3" Grid.Column="2">
+
+
+                </StackPanel>
+
+
+            </Grid>
         </ScrollViewer>
 
         <ProgressBar 
