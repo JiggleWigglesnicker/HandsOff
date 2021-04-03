@@ -7,6 +7,7 @@ using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using DataAccessLibrary;
 
 namespace HandsOff
 {
@@ -36,20 +37,13 @@ namespace HandsOff
 
             team3 = CreateTeam();
             team3.TeamName = "Example Team 3";
-            copyDB();
 
-        }
+            DataAccess.InitializeDatabase();
 
-        public static async void copyDB() {
+            //DataAccess.AddScores("test22", "test2", 1, 2);
 
-            try
-            {
-                var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///database.db"));
-                await file.CopyAsync(ApplicationData.Current.LocalFolder);
-            }
-            catch (Exception e) {
-                Debug.WriteLine("Error:" + e.Message);
-            }
+            //Debug.Write(DataAccess.GetData()[0]);
+
         }
 
         public Team CreateTeam()

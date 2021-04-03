@@ -1,7 +1,6 @@
 ﻿using HandsOff.Models;
 using System;
 using System.Collections.Generic;
-using System.Data.SQLite;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -30,7 +29,6 @@ namespace HandsOff
         {
             this.InitializeComponent();
             BigBar = this.AllBar;
-            sqlAsync();
         }
 
         public void CreateMatchListUI()
@@ -112,20 +110,6 @@ namespace HandsOff
             });
         }
 
-        public async void sqlAsync()
-        {
-
-            string stm = "SELECT SQLITE_VERSION()";
-            StorageFile dbfile = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///database.db"));
-            var con = new SQLiteConnection("Data Source=" + dbfile.Path + ";");
-            con.Open();
-
-            var cmd = new SQLiteCommand(stm, con);
-            string version = cmd.ExecuteScalar().ToString();
-
-            Debug.WriteLine($"SQLite version: {version}");
-
-        }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
