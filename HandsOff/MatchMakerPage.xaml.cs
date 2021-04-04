@@ -1,6 +1,8 @@
 ﻿using HandsOff.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -111,8 +113,28 @@ namespace HandsOff
             }
         }
 
-        private void Make_Match_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// When the match click button is pressed check if teams chosen and execute MakeMatch.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void Make_Match_Click(object sender, RoutedEventArgs e)
         {
+            if (SelectedTeam1 == null || SelectedTeam2 == null)
+            {
+                //Show dialog if only one or no teams are selected.
+                MessageDialog showDialog = new MessageDialog("Kies 2 teams");
+                showDialog.Commands.Add(new UICommand("Ok")
+                {
+                    Id = 0
+                });
+                showDialog.DefaultCommandIndex = 0;
+                var result = await showDialog.ShowAsync();
+                if ((int)result.Id == 0)
+                {
+                    return;
+                }
+            }
             MakeMatch();
             this.Frame.Navigate(typeof(SimulationExecution), matches);
         }
