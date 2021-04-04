@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using DataAccessLibrary;
@@ -20,8 +21,12 @@ namespace HandsOff
 
             foreach (var scoreobj in DataAccess.GetData())
             {
+                if (scores.Any(p => p == scoreobj))
+                {
+                    return;
+                }
                 scores.Add(scoreobj);
-                // Score score = new Score(scoreobj[0].ToString(), scoreobj[1], scoreobj[2], scoreobj[3]);
+                // Dit moet nog gecheckt worden
             }
         }
 
