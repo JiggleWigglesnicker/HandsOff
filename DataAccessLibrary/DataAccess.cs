@@ -69,11 +69,12 @@ namespace DataAccessLibrary
         }
 
         /// <summary>
-        /// Return scores from the database as list of objects
+        /// Return scores from the database as list of objects in descending order
         /// Example code: DataAccess.GetData()[0][0] //This returns the first row and first field
         /// </summary>
+        /// <param name="rows">Amount of rows to return, when 0 or nothing given return all rows</param>
         /// <returns></returns>
-        public static List<object[]> GetData()
+        public static List<object[]> GetData(int rows = 0)
         {
             List<object[]> entries = new List<object[]>();
 
@@ -83,8 +84,19 @@ namespace DataAccessLibrary
             {
                 db.Open();
 
-                SqliteCommand selectCommand = new SqliteCommand
-                    ("SELECT Teamname1, Teamname2, Teamscore1, Teamscore2 from Scores", db);
+                SqliteCommand selectCommand;
+
+                if (rows == 0)
+                {
+                    selectCommand = new SqliteCommand
+                        ("SELECT Teamname1, Teamname2, Teamscore1, Teamscore2 from Scores ORDER BY ID DESC", db);
+                }
+                else
+                {
+                    selectCommand = new SqliteCommand
+                        ("SELECT Teamname1, Teamname2, Teamscore1, Teamscore2 from Scores ORDER BY ID DESC LIMIT " + rows, db);
+                }
+                
 
                 SqliteDataReader query = selectCommand.ExecuteReader();
 
