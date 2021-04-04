@@ -91,7 +91,7 @@ namespace DataAccessLibrary
                 while (query.Read())
                 {
                     object[] objs = new object[4];
-                    int quant = query.GetValues(objs);
+                    query.GetValues(objs);
                     entries.Add(objs);
                 }
 
