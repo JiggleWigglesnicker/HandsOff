@@ -88,44 +88,14 @@ namespace HandsOff
                         progressB.Margin = new Thickness(0, 0, 0, 0);
                         i++;
 
+                stackPanel.Children.Add(listView);
+                listView.Items.Add(textBlock1);
+                listView.Items.Add(textBlock2);
+                listView.Items.Add(textBlock3);
+                listView.Items.Add(progressB);
+            }
 
-                        switch (x)
-                        {
-                            case 1:
-                                stackpanel2.Children.Add(listView);
-                                listView.Items.Add(textBlock1);
-                                listView.Items.Add(textBlock2);
-                                listView.Items.Add(textBlock3);
-                                listView.Items.Add(progressB);
-                                x++;
-                                break;
-                            case 2:
-                                stackpanel3.Children.Add(listView);
-                                listView.Items.Add(textBlock1);
-                                listView.Items.Add(textBlock2);
-                                listView.Items.Add(textBlock3);
-                                listView.Items.Add(progressB);
-                                x++;
-                                break;
-                            default:
-                                x = 0;
-                                stackpanel1.Children.Add(listView);
-                                listView.Items.Add(textBlock1);
-                                listView.Items.Add(textBlock2);
-                                listView.Items.Add(textBlock3);
-                                listView.Items.Add(progressB);
-                                x++;
-                                break;
-
-
-                        }
-                        BigBar.Maximum = matches.Count();
-                    });
-                });
-
-
-                
-            });
+            BigBar.Maximum = matches.Count();
         }
 
         public async void StartExecution()
@@ -147,7 +117,6 @@ namespace HandsOff
                 });
             });
         }
-
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {

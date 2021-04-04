@@ -106,7 +106,6 @@ namespace HandsOff
                 matches.Add(match);
 
                 //Debug.WriteLine("Added match to list! numbers left: {0}", AmountOfMatches);
-
                 AmountOfMatches--;
             }
         }
