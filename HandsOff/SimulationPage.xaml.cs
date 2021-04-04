@@ -32,7 +32,7 @@ namespace HandsOff
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            App.TryGoBack();
+            this.Frame.Navigate(typeof(Dashboard));
         }
     }
 }
