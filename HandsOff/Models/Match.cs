@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using DataAccessLibrary;
 
 namespace HandsOff.Models
 {
@@ -46,6 +47,7 @@ namespace HandsOff.Models
 
                 if ((TurnCounter + 1) > MaxTurns)
                 {
+                    DataAccess.AddScores(team1.TeamName, team2.TeamName, Team1Score, Team2Score);
                     Debug.WriteLine("Done! final score: Team 1: {0} and Team 2: {1}", Team1Score, Team2Score);
                 }
             }

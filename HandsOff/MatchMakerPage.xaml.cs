@@ -1,6 +1,8 @@
 ﻿using HandsOff.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -13,7 +15,6 @@ namespace HandsOff
     /// </summary>
     public sealed partial class MatchMaker : Page
     {
-        readonly List<Team> Teams = new List<Team>();
         readonly List<Match> matches = new List<Match>();
 
         Team SelectedTeam1;
@@ -21,10 +22,6 @@ namespace HandsOff
 
         public MatchMaker()
         {
-            Teams.Add(App.team1);
-            Teams.Add(App.team2);
-            Teams.Add(App.team3);
-
             this.InitializeComponent();
             enterTeamsIntoDropBox();
         }
@@ -37,17 +34,19 @@ namespace HandsOff
             ComboBox CB1 = this.TeamCB1;
             ComboBox CB2 = this.TeamCB2;
 
-            foreach (Team team in Teams)
+            foreach (Team team in App.teams)
             {
                 CB1.Items.Add(team.getName());
                 CB2.Items.Add(team.getName());
             }
         }
 
+        /*
         public void CreateDropBoxTeams()
         {
             ComboBox CB1 = this.TeamCB1;
             ComboBox CB2 = this.TeamCB2;
+
 
             // fill in teams for ComboBox 1
             CB1.Items.Add(App.team1.getName());
@@ -61,7 +60,7 @@ namespace HandsOff
             Teams.Add(App.team1);
             Teams.Add(App.team2);
             Teams.Add(App.team3);
-        }
+        }*/
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
@@ -72,7 +71,7 @@ namespace HandsOff
         {
             String teamName = e.AddedItems[0].ToString();
 
-            foreach (Team team in Teams)
+            foreach (Team team in App.teams)
             {
                 if (teamName == team.getName())
                 {
@@ -86,7 +85,7 @@ namespace HandsOff
         {
             String teamName = e.AddedItems[0].ToString();
 
-            foreach (Team team in Teams)
+            foreach (Team team in App.teams)
             {
                 if (teamName == team.getName())
                 {
@@ -110,8 +109,28 @@ namespace HandsOff
             }
         }
 
-        private void Make_Match_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// When the match click button is pressed check if teams chosen and execute MakeMatch.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void Make_Match_Click(object sender, RoutedEventArgs e)
         {
+            if (SelectedTeam1 == null || SelectedTeam2 == null)
+            {
+                //Show dialog if only one or no teams are selected.
+                MessageDialog showDialog = new MessageDialog("Kies 2 teams");
+                showDialog.Commands.Add(new UICommand("Ok")
+                {
+                    Id = 0
+                });
+                showDialog.DefaultCommandIndex = 0;
+                var result = await showDialog.ShowAsync();
+                if ((int)result.Id == 0)
+                {
+                    return;
+                }
+            }
             MakeMatch();
             this.Frame.Navigate(typeof(SimulationExecution), matches);
         }

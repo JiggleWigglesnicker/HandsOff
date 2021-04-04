@@ -1,16 +1,16 @@
-﻿using System;
+﻿using Microsoft.Data.Sqlite;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.Storage;
-using Microsoft.Data.Sqlite;
 
 namespace DataAccessLibrary
 {
     public static class DataAccess
     {
+        /// <summary>
+        /// Initializes the database and creates one if not existing
+        /// </summary>
         public async static void InitializeDatabase()
         {
             await ApplicationData.Current.LocalFolder.CreateFileAsync("database.db", CreationCollisionOption.OpenIfExists);
@@ -35,6 +35,14 @@ namespace DataAccessLibrary
             }
         }
 
+        /// <summary>
+        /// Add scores to the database
+        /// example code: DataAccess.AddScores("test22", "test2", 1, 2);
+        /// </summary>
+        /// <param name="team1"></param>
+        /// <param name="team2"></param>
+        /// <param name="score1"></param>
+        /// <param name="score2"></param>
         public static void AddScores(string team1, string team2, int score1, int score2)
         {
             string dbpath = Path.Combine(ApplicationData.Current.LocalFolder.Path, "database.db");
@@ -60,10 +68,15 @@ namespace DataAccessLibrary
 
         }
 
-        //TODO ADD ALL FIELDS
-        public static List<String> GetData()
+        /// <summary>
+        /// Return scores from the database as list of Score objects in descending order
+        /// Example code: DataAccess.GetData()
+        /// </summary>
+        /// <param name="rows">Amount of rows to return, when 0 or nothing given return all rows</param>
+        /// <returns></returns>
+        public static List<Score> GetData(int rows = 0)
         {
-            List<String> entries = new List<string>();
+            List<Score> entries = new List<Score>();
 
             string dbpath = Path.Combine(ApplicationData.Current.LocalFolder.Path, "database.db");
             using (SqliteConnection db =
@@ -71,14 +84,25 @@ namespace DataAccessLibrary
             {
                 db.Open();
 
-                SqliteCommand selectCommand = new SqliteCommand
-                    ("SELECT Teamname1 from Scores", db);
+                SqliteCommand selectCommand;
+
+                if (rows == 0)
+                {
+                    selectCommand = new SqliteCommand
+                        ("SELECT Teamname1, Teamname2, Teamscore1, Teamscore2 from Scores ORDER BY ID DESC", db);
+                }
+                else
+                {
+                    selectCommand = new SqliteCommand
+                        ("SELECT Teamname1, Teamname2, Teamscore1, Teamscore2 from Scores ORDER BY ID DESC LIMIT " + rows, db);
+                }
+                
 
                 SqliteDataReader query = selectCommand.ExecuteReader();
 
                 while (query.Read())
                 {
-                    entries.Add(query.GetString(0));
+                    entries.Add(new Score(query.GetString(0), query.GetString(1), query.GetInt32(2), query.GetInt32(3)));
                 }
 
                 db.Close();

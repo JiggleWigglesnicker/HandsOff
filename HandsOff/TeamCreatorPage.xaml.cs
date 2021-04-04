@@ -16,7 +16,7 @@ namespace HandsOff
     /// </summary>
     public sealed partial class TeamCreator : Page
     {
-        private Team team { get; set; }
+        
 
         public TeamCreator()
         {
@@ -41,25 +41,30 @@ namespace HandsOff
                 await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     ScrollViewer scrollView = new ScrollViewer();
+
                     StackPanel stackPanel = new StackPanel();
                     stackPanel.Name = "stackpanel" + i;
+
                     TextBlock textBlock1 = new TextBlock();
                     textBlock1.Text = "Player " + i;
                     textBlock1.HorizontalAlignment = HorizontalAlignment.Center;
                     textBlock1.FontSize = 40;
                     textBlock1.Foreground = new SolidColorBrush(Colors.White);
+
                     TextBlock textBlock2 = new TextBlock();
                     textBlock2.Text = "Speed";
                     textBlock2.HorizontalAlignment = HorizontalAlignment.Center;
                     textBlock2.FontSize = 30;
                     textBlock2.Foreground = new SolidColorBrush(Colors.White);
                     textBlock2.Margin = new Thickness(15, 5, 0, 0);
+
                     TextBlock textBlock3 = new TextBlock();
                     textBlock3.Text = "Attack";
                     textBlock3.HorizontalAlignment = HorizontalAlignment.Center;
                     textBlock3.FontSize = 30;
                     textBlock3.Foreground = new SolidColorBrush(Colors.White);
                     textBlock3.Margin = new Thickness(15, 2, 0, 0);
+
                     TextBlock textBlock6 = new TextBlock();
                     textBlock6.Text = "Defence";
                     textBlock6.HorizontalAlignment = HorizontalAlignment.Center;
@@ -74,6 +79,7 @@ namespace HandsOff
                     textBox1.FontSize = 20;
                     textBox1.Height = 35;
                     textBox1.Width = 75;
+
                     TextBox textBox2 = new TextBox();
                     textBox2.Text = "0";
                     textBox2.Background = new SolidColorBrush(Colors.Wheat);
@@ -81,6 +87,7 @@ namespace HandsOff
                     textBox2.FontSize = 20;
                     textBox2.Height = 35;
                     textBox2.Width = 75;
+
                     TextBox textBox5 = new TextBox();
                     textBox5.Text = "0";
                     textBox5.Background = new SolidColorBrush(Colors.Wheat);
@@ -146,10 +153,10 @@ namespace HandsOff
 
         private void CreateTeam_Click(object sender, RoutedEventArgs e)
         {
-            team = CreateTeam();
+            App.teams.Add(CreateCustomTeam());
         }
 
-        public Team CreateTeam()
+        public Team CreateCustomTeam()
         {
             Team team = new Team();
             team.TeamName = TeamNameBox.Text;
@@ -159,7 +166,7 @@ namespace HandsOff
                 StackPanel stackpanel = (StackPanel)this.FindName("stackpanel" + i);
                 TextBox textBox1 = (TextBox)stackpanel.Children[2];
                 TextBox textBox2 = (TextBox)stackpanel.Children[4];
-                TextBox textBox5 = (TextBox)stackpanel.Children[10];
+                TextBox textBox5 = (TextBox)stackpanel.Children[6];
                 int pace = (int)Int64.Parse(textBox1.Text);
                 int shooting = (int)Int64.Parse(textBox2.Text);
                 int defence = (int)Int64.Parse(textBox5.Text);
@@ -172,7 +179,7 @@ namespace HandsOff
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(Dashboard), team);
+            App.TryGoBack();
         }
     }
 }
