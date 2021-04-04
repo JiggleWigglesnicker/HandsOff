@@ -23,8 +23,12 @@
             />
 
         <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-            <ListBox x:Name="Scoresource" Height="500">
+            <ListBox x:Name="Scoresource" Height="500" Background="LightSteelBlue" Foreground="Black">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
