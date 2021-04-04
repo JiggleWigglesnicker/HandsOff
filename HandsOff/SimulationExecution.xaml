@@ -47,17 +47,16 @@
 
             </Grid>
         </ScrollViewer>
-        
+
         <TextBlock 
            Text="Progress of all matches"
             FontSize="40"
             Grid.Row="1"
             VerticalAlignment="Bottom"
-            Width="1000"
-            Height="100"
-            Margin="800,0,0,90"
+            Height="85"
+            Margin="516,0,495,120"
             />
-        
+
         <ProgressBar 
             x:Name="AllBar"
             Minimum="0"
@@ -95,6 +94,29 @@
                     Height="70"/>
                 <TextBlock 
                     Text="Back"
+                    FontSize="35"
+                    Height="40"/>
+            </StackPanel>
+        </Button>
+        
+        <Button x:Name = "continueButton"
+            Height="135"
+            Width="160"
+            Visibility="Collapsed"
+            Margin="1236,183,0,0"
+            Click="Continue_Click"
+            Grid.Row="1" VerticalAlignment="Top"
+            >
+            <StackPanel>
+                <Image 
+                    Source="/Assets/ArrowBlack.png"
+                    Height="70" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <CompositeTransform Rotation="180"/>
+                    </Image.RenderTransform>
+                </Image>
+                <TextBlock 
+                    Text="Continue"
                     FontSize="35"
                     Height="40"/>
             </StackPanel>

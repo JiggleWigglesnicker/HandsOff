@@ -88,7 +88,6 @@ namespace HandsOff
                         progressB.Margin = new Thickness(0, 0, 0, 0);
                         i++;
 
-
                         switch (x)
                         {
                             case 1:
@@ -116,15 +115,10 @@ namespace HandsOff
                                 listView.Items.Add(progressB);
                                 x++;
                                 break;
-
-
                         }
                         BigBar.Maximum = matches.Count();
                     });
                 });
-
-
-
             });
         }
 
@@ -145,9 +139,14 @@ namespace HandsOff
                         BigBar.Value += 1;
                     });
                 });
-            });
-        }
 
+
+            });
+
+            Button nextbutton = (Button)this.continueButton;
+
+            nextbutton.Visibility = Visibility.Visible;
+        }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -168,6 +167,11 @@ namespace HandsOff
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             App.TryGoBack();
+        }
+
+        private void Continue_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(SimulationPage));
         }
     }
 }
