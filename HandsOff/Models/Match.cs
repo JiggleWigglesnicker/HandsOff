@@ -216,7 +216,6 @@ namespace HandsOff.Models
                 /** calculate if attacking team will be succesfull **/
                 randomLuck = (randomChangeGenerator.Next(1,91));
                 TotalTeam1 = (randomLuck + (combinedAttackTeam1 / 30) + (combinedSpeedTeam1 / 30));
-                TotalTeam1 = (q + (combinedAttackTeam1 / 30) + (combinedSpeedTeam1 / 30));
 
                 randomLuck = (randomChangeGenerator.Next(1, 91));
                 TotalTeam2 = (randomLuck + (combinedDefenseTeam2 / 30) + (combinedSpeedTeam2 / 30));
