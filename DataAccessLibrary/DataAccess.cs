@@ -69,14 +69,14 @@ namespace DataAccessLibrary
         }
 
         /// <summary>
-        /// Return scores from the database as list of objects in descending order
-        /// Example code: DataAccess.GetData()[0][0] //This returns the first row and first field
+        /// Return scores from the database as list of Score objects in descending order
+        /// Example code: DataAccess.GetData()
         /// </summary>
         /// <param name="rows">Amount of rows to return, when 0 or nothing given return all rows</param>
         /// <returns></returns>
-        public static List<object[]> GetData(int rows = 0)
+        public static List<Score> GetData(int rows = 0)
         {
-            List<object[]> entries = new List<object[]>();
+            List<Score> entries = new List<Score>();
 
             string dbpath = Path.Combine(ApplicationData.Current.LocalFolder.Path, "database.db");
             using (SqliteConnection db =
@@ -102,9 +102,7 @@ namespace DataAccessLibrary
 
                 while (query.Read())
                 {
-                    object[] objs = new object[4];
-                    query.GetValues(objs);
-                    entries.Add(objs);
+                    entries.Add(new Score(query.GetString(0), query.GetString(1), query.GetInt32(2), query.GetInt32(3)));
                 }
 
                 db.Close();

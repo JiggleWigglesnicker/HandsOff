@@ -5,6 +5,7 @@
     xmlns:local="using:HandsOff"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:dataAccessLibrary="using:DataAccessLibrary"
     mc:Ignorable="d"
     Background="SaddleBrown">
 
@@ -21,13 +22,23 @@
             Margin="0,35,0,50"
             />
 
-        <ScrollViewer>
-            <StackPanel
-                Height="500"
-               >
-                
-            </StackPanel>
-        </ScrollViewer>
+        <Grid>
+
+            <ListBox x:Name="Scoresource" Height="500">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Padding="5,0,5,0" Text="{Binding TeamName1}" />
+                            <TextBlock Text="{Binding TeamName2}" />
+                            <TextBlock Text=", Score 1:  " />
+                            <TextBlock Text="{Binding TeamScore1}" />
+                            <TextBlock Text=", Score 2:  " />
+                            <TextBlock Text="{Binding TeamScore2}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
 
         <Button
             HorizontalAlignment="Left"
