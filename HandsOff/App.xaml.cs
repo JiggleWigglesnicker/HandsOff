@@ -8,6 +8,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using DataAccessLibrary;
+using System.Collections.Generic;
 
 namespace HandsOff
 {
@@ -16,9 +17,11 @@ namespace HandsOff
     /// </summary>
     sealed partial class App : Application
     {
-        public static Team team1 { get; private set; }
-        public static Team team2 { get; private set; }
-        public static Team team3 { get; private set; }
+        public static List<Team> teams = new List<Team>();
+
+        //public static Team team1 { get; private set; }
+        //public static Team team2 { get; private set; }
+        //public static Team team3 { get; private set; }
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -29,15 +32,15 @@ namespace HandsOff
             this.InitializeComponent();
             this.Suspending += OnSuspending;
 
-            team1 = CreateTeam();
+            Team team1 = CreateTeam();
             team1.TeamName = "Example Team 1";
-
-            team2 = CreateTeam();
+            teams.Add(team1);
+            Team team2 = CreateTeam();
             team2.TeamName = "Example Team 2";
-
-            team3 = CreateTeam();
+            teams.Add(team2);
+            Team team3 = CreateTeam();
             team3.TeamName = "Example Team 3";
-
+            teams.Add(team3);
             //Initialize the database at startup
             DataAccess.InitializeDatabase();
 
