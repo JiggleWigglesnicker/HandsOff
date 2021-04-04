@@ -19,10 +19,6 @@ namespace HandsOff
     {
         public static List<Team> teams = new List<Team>();
 
-        //public static Team team1 { get; private set; }
-        //public static Team team2 { get; private set; }
-        //public static Team team3 { get; private set; }
-
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -32,72 +28,12 @@ namespace HandsOff
             this.InitializeComponent();
             this.Suspending += OnSuspending;
 
-            Team team1 = CreateTeam();
-            team1.TeamName = "Example Team 1";
-            teams.Add(team1);
-            Team team2 = CreateTeam();
-            team2.TeamName = "Example Team 2";
-            teams.Add(team2);
-            Team team3 = CreateTeam();
-            team3.TeamName = "Example Team 3";
-            teams.Add(team3);
             //Initialize the database at startup
             DataAccess.InitializeDatabase();
 
             // DataAccess.AddScores("test22", "test2", 1, 2);
 
             // Debug.Write(DataAccess.GetData()[0][1]);
-
-        }
-
-        public Team CreateTeam()
-        {
-            System.Random randomSkill = new System.Random();
-
-            Team team = new Team();
-            int shooting;
-            int pace;
-            int defence;
-
-            for (int i = 1; i < 12; i++)
-            {
-                switch (i)
-                {
-                    case 1:
-                        shooting = randomSkill.Next(1, 101);
-                        pace = randomSkill.Next(90, 101);
-                        defence = randomSkill.Next(90, 101);
-                        break;
-                    case 2:
-                    case 3:
-                    case 4:
-                    case 5:
-                        shooting = randomSkill.Next(1, 101);
-                        pace = randomSkill.Next(90, 101);
-                        defence = randomSkill.Next(90, 101);
-                        break;
-                    case 6:
-                    case 7:
-                    case 8:
-                        shooting = randomSkill.Next(1, 101);
-                        pace = randomSkill.Next(90, 101);
-                        defence = randomSkill.Next(90, 101);
-                        break;
-                    case 9:
-                    case 10:
-                    case 11:
-                    default:
-                        shooting = randomSkill.Next(90, 101);
-                        pace = randomSkill.Next(90, 101);
-                        defence = randomSkill.Next(1, 101);
-                        break;
-                }
-
-                //int Luck = randomSkill.Next(1, 101);
-                Player player = new Player(i, pace, shooting, defence);
-                team.AddPlayerToTeam(player);
-            }
-            return team;
         }
 
         /// <summary>
@@ -175,6 +111,5 @@ namespace HandsOff
             }
             return false;
         }
-
     }
 }

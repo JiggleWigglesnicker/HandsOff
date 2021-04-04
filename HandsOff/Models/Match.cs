@@ -23,6 +23,7 @@ namespace HandsOff.Models
 
         // placeholders for calculating the football game
         private double combinedAttackTeam1, combinedDefenseTeam1, combinedSpeedTeam1, combinedAttackTeam2, combinedDefenseTeam2, combinedSpeedTeam2, TotalTeam1, TotalTeam2;
+        // Random number generators to simulate the game
         readonly System.Random randomPlayerSelector = new System.Random();
         readonly System.Random randomChangeGenerator = new System.Random();
 

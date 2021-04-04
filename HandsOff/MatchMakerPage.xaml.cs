@@ -41,27 +41,6 @@ namespace HandsOff
             }
         }
 
-        /*
-        public void CreateDropBoxTeams()
-        {
-            ComboBox CB1 = this.TeamCB1;
-            ComboBox CB2 = this.TeamCB2;
-
-
-            // fill in teams for ComboBox 1
-            CB1.Items.Add(App.team1.getName());
-            CB1.Items.Add(App.team2.getName());
-            CB1.Items.Add(App.team3.getName());
-            // fill in teams for ComboBox 2
-            CB2.Items.Add(App.team1.getName());
-            CB2.Items.Add(App.team2.getName());
-            CB2.Items.Add(App.team3.getName());
-
-            Teams.Add(App.team1);
-            Teams.Add(App.team2);
-            Teams.Add(App.team3);
-        }*/
-
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             App.TryGoBack();
