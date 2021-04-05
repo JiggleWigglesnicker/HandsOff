@@ -47,66 +47,66 @@ namespace HandsOff
                     StackPanel stackPanel = new StackPanel();
                     stackPanel.Name = "stackpanel" + i;
 
-                    TextBlock textBlock1 = new TextBlock();
-                    textBlock1.Text = "Player " + i;
-                    textBlock1.HorizontalAlignment = HorizontalAlignment.Center;
-                    textBlock1.FontSize = 40;
-                    textBlock1.Foreground = new SolidColorBrush(Colors.White);
+                    TextBlock playerLabel = new TextBlock();
+                    playerLabel.Text = "Player " + i;
+                    playerLabel.HorizontalAlignment = HorizontalAlignment.Center;
+                    playerLabel.FontSize = 40;
+                    playerLabel.Foreground = new SolidColorBrush(Colors.White);
 
-                    TextBlock textBlock2 = new TextBlock();
-                    textBlock2.Text = "Speed";
-                    textBlock2.HorizontalAlignment = HorizontalAlignment.Center;
-                    textBlock2.FontSize = 30;
-                    textBlock2.Foreground = new SolidColorBrush(Colors.White);
-                    textBlock2.Margin = new Thickness(15, 5, 0, 0);
+                    TextBlock speedLabel = new TextBlock();
+                    speedLabel.Text = "Speed";
+                    speedLabel.HorizontalAlignment = HorizontalAlignment.Center;
+                    speedLabel.FontSize = 30;
+                    speedLabel.Foreground = new SolidColorBrush(Colors.White);
+                    speedLabel.Margin = new Thickness(15, 5, 0, 0);
 
-                    TextBlock textBlock3 = new TextBlock();
-                    textBlock3.Text = "Attack";
-                    textBlock3.HorizontalAlignment = HorizontalAlignment.Center;
-                    textBlock3.FontSize = 30;
-                    textBlock3.Foreground = new SolidColorBrush(Colors.White);
-                    textBlock3.Margin = new Thickness(15, 2, 0, 0);
+                    TextBlock attackLabel = new TextBlock();
+                    attackLabel.Text = "Attack";
+                    attackLabel.HorizontalAlignment = HorizontalAlignment.Center;
+                    attackLabel.FontSize = 30;
+                    attackLabel.Foreground = new SolidColorBrush(Colors.White);
+                    attackLabel.Margin = new Thickness(15, 2, 0, 0);
 
-                    TextBlock textBlock6 = new TextBlock();
-                    textBlock6.Text = "Defence";
-                    textBlock6.HorizontalAlignment = HorizontalAlignment.Center;
-                    textBlock6.FontSize = 30;
-                    textBlock6.Foreground = new SolidColorBrush(Colors.White);
-                    textBlock6.Margin = new Thickness(15, 2, 0, 0);
+                    TextBlock defenceLabel = new TextBlock();
+                    defenceLabel.Text = "Defence";
+                    defenceLabel.HorizontalAlignment = HorizontalAlignment.Center;
+                    defenceLabel.FontSize = 30;
+                    defenceLabel.Foreground = new SolidColorBrush(Colors.White);
+                    defenceLabel.Margin = new Thickness(15, 2, 0, 0);
                     
-                    TextBox textBox1 = new TextBox();
-                    textBox1.Text = "0";
-                    textBox1.Background = new SolidColorBrush(Colors.Wheat);
-                    textBox1.Foreground = new SolidColorBrush(Colors.Black);
-                    textBox1.FontSize = 20;
-                    textBox1.Height = 35;
-                    textBox1.Width = 75;
+                    TextBox speedTextBox = new TextBox();
+                    speedTextBox.Text = "0";
+                    speedTextBox.Background = new SolidColorBrush(Colors.Wheat);
+                    speedTextBox.Foreground = new SolidColorBrush(Colors.Black);
+                    speedTextBox.FontSize = 20;
+                    speedTextBox.Height = 35;
+                    speedTextBox.Width = 75;
 
-                    TextBox textBox2 = new TextBox();
-                    textBox2.Text = "0";
-                    textBox2.Background = new SolidColorBrush(Colors.Wheat);
-                    textBox2.Foreground = new SolidColorBrush(Colors.Black);
-                    textBox2.FontSize = 20;
-                    textBox2.Height = 35;
-                    textBox2.Width = 75;
+                    TextBox attackTextBox = new TextBox();
+                    attackTextBox.Text = "0";
+                    attackTextBox.Background = new SolidColorBrush(Colors.Wheat);
+                    attackTextBox.Foreground = new SolidColorBrush(Colors.Black);
+                    attackTextBox.FontSize = 20;
+                    attackTextBox.Height = 35;
+                    attackTextBox.Width = 75;
 
-                    TextBox textBox5 = new TextBox();
-                    textBox5.Text = "0";
-                    textBox5.Background = new SolidColorBrush(Colors.Wheat);
-                    textBox5.Foreground = new SolidColorBrush(Colors.Black);
-                    textBox5.FontSize = 20;
-                    textBox5.Height = 35;
-                    textBox5.Width = 75;
+                    TextBox defenceTextBox = new TextBox();
+                    defenceTextBox.Text = "0";
+                    defenceTextBox.Background = new SolidColorBrush(Colors.Wheat);
+                    defenceTextBox.Foreground = new SolidColorBrush(Colors.Black);
+                    defenceTextBox.FontSize = 20;
+                    defenceTextBox.Height = 35;
+                    defenceTextBox.Width = 75;
 
                     grid.Children.Add(scrollView);
                     scrollView.Content = stackPanel;
-                    stackPanel.Children.Add(textBlock1);
-                    stackPanel.Children.Add(textBlock2);
-                    stackPanel.Children.Add(textBox1);
-                    stackPanel.Children.Add(textBlock3);
-                    stackPanel.Children.Add(textBox2);
-                    stackPanel.Children.Add(textBlock6);
-                    stackPanel.Children.Add(textBox5);
+                    stackPanel.Children.Add(playerLabel);
+                    stackPanel.Children.Add(speedLabel);
+                    stackPanel.Children.Add(speedTextBox);
+                    stackPanel.Children.Add(attackLabel);
+                    stackPanel.Children.Add(attackTextBox);
+                    stackPanel.Children.Add(defenceLabel);
+                    stackPanel.Children.Add(defenceTextBox);
 
                     if (i <= 4)
                     {
