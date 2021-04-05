@@ -14,13 +14,12 @@
         x:Name="MatchGrid">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height= "*"/>
+            <RowDefinition Height= "auto"/>
         </Grid.RowDefinitions>
 
         <ScrollViewer
             Grid.Column="0">
-
             <Grid>
 
                 <Grid.ColumnDefinitions>
@@ -50,11 +49,11 @@
 
         <TextBlock 
            Text="Progress of all matches"
-            FontSize="40"
+            FontSize="28"
             Grid.Row="1"
             VerticalAlignment="Bottom"
             Height="85"
-            Margin="516,0,495,120"
+            Margin="240,0,241,100" HorizontalAlignment="Center"
             />
 
         <ProgressBar 
@@ -75,10 +74,10 @@
             Background="White"
             Foreground="Black"
             FontSize="25"
-            Content="Start simulation!"
+            Content="Start!"
             Height="50"
-            Width="300"
-            Margin="297,0,0,0"
+            Width="auto"
+            Margin="200,0,0,150" HorizontalAlignment="Left" VerticalAlignment="Top"
             />
 
         <Button
@@ -98,7 +97,7 @@
                     Height="40"/>
             </StackPanel>
         </Button>
-        
+
         <Button x:Name = "continueButton"
             Height="135"
             Width="160"

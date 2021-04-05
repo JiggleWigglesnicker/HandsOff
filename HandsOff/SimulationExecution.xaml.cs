@@ -46,46 +46,56 @@ namespace HandsOff
                 {
                     await Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
                     {
-                        ListView listView = new ListView();
-                        listView.IsHitTestVisible = false;
-                        listView.HorizontalAlignment = HorizontalAlignment.Center;
-                        listView.Width = 350;
+                        ListView listView = new ListView
+                        {
+                            IsHitTestVisible = false,
+                            HorizontalAlignment = HorizontalAlignment.Center,
+                            Width = 350
+                        };
 
-                        TextBlock textBlock1 = new TextBlock();
-                        textBlock1.Foreground = new SolidColorBrush(Colors.White);
-                        textBlock1.FontSize = 45;
-                        textBlock1.HorizontalAlignment = HorizontalAlignment.Center;
-                        textBlock1.Text = "Match" + i;
-                        textBlock1.Height = 50;
-                        textBlock1.Width = 200;
-                        textBlock1.Margin = new Thickness(0, 40, 0, 0);
+                        TextBlock textBlock1 = new TextBlock
+                        {
+                            Foreground = new SolidColorBrush(Colors.White),
+                            FontSize = 18,
+                            HorizontalAlignment = HorizontalAlignment.Center,
+                            Text = "Match" + i,
+                            Height = 50,
+                            Width = 200,
+                            Margin = new Thickness(0, 40, 0, 0)
+                        };
 
-                        TextBlock textBlock2 = new TextBlock();
-                        textBlock2.Foreground = new SolidColorBrush(Colors.White);
-                        textBlock2.FontSize = 15;
-                        textBlock2.HorizontalAlignment = HorizontalAlignment.Center;
-                        textBlock2.Text = match.team1.TeamName + " VS " + match.team2.TeamName;
-                        textBlock2.Height = 50;
-                        textBlock2.Width = 250;
-                        textBlock2.Margin = new Thickness(0, 5, 0, -35);
+                        TextBlock textBlock2 = new TextBlock
+                        {
+                            Foreground = new SolidColorBrush(Colors.White),
+                            FontSize = 15,
+                            HorizontalAlignment = HorizontalAlignment.Center,
+                            Text = match.team1.TeamName + " VS " + match.team2.TeamName,
+                            Height = 50,
+                            Width = 250,
+                            Margin = new Thickness(0, 5, 0, -35)
+                        };
 
-                        TextBlock textBlock3 = new TextBlock();
-                        textBlock3.Foreground = new SolidColorBrush(Colors.White);
-                        textBlock3.FontSize = 35;
-                        textBlock3.HorizontalAlignment = HorizontalAlignment.Center;
-                        textBlock3.Text = "Progress";
-                        textBlock3.Height = 50;
-                        textBlock3.Width = 250;
-                        textBlock3.Margin = new Thickness(0, 0, 0, 0);
+                        TextBlock textBlock3 = new TextBlock
+                        {
+                            Foreground = new SolidColorBrush(Colors.White),
+                            FontSize = 18,
+                            HorizontalAlignment = HorizontalAlignment.Center,
+                            Text = "Progress",
+                            Height = 50,
+                            Width = 250,
+                            Margin = new Thickness(0, 0, 0, 0)
+                        };
 
-                        ProgressBar progressB = new ProgressBar();
-                        progressB.Name = "ProgressBar" + i;
-                        progressB.IsIndeterminate = false;
-                        progressB.Minimum = 0;
-                        progressB.Maximum = 5000000;
-                        progressB.Height = 50;
-                        progressB.Width = 250;
-                        progressB.Margin = new Thickness(0, 0, 0, 0);
+                        ProgressBar progressB = new ProgressBar
+                        {
+                            Name = "ProgressBar" + i,
+                            IsIndeterminate = false,
+                            Minimum = 0,
+                            Maximum = 5000000,
+                            Height = 25,
+                            Width = 250,
+                            Margin = new Thickness(0, 0, 0, 0)
+                        };
                         i++;
 
                         switch (x)
@@ -125,7 +135,7 @@ namespace HandsOff
         public async void StartExecution()
         {
             int i = 1;
-            await Task.Run(async () =>
+            await Task.Run(() =>
             {
                 Parallel.ForEach(matches, async match =>
                 {
