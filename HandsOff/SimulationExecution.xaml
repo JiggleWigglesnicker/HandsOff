@@ -67,7 +67,7 @@
 
         <Button
             Click="StartSim_Click"
-            Name="startSimButton"
+            x:Name="startSimButton"
             Height="135"
             Width="160"
             Grid.Column="0"
