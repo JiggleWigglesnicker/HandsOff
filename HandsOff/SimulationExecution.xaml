@@ -61,29 +61,25 @@
             Minimum="0"
             Maximum="100"
             Grid.Row="1"
-            VerticalAlignment="Bottom"
-            Width="1000"
             Height="100"
-            Margin="0,0,0,40"
+            Margin="399,0,400,0" UseLayoutRounding="True"
             />
 
         <Button
             Click="StartSim_Click"
+            Height="135"
+            Width="150"
             Grid.Column="0"
             Grid.Row="1"
-            Background="White"
-            Foreground="Black"
             FontSize="25"
             Content="Start!"
-            Height="50"
-            Width="auto"
-            Margin="200,0,0,150" HorizontalAlignment="Left" VerticalAlignment="Top"
+            Margin="218,0,0,0"
             />
 
         <Button
             Height="135"
             Width="150"
-            Margin="39,0,0,0"
+            Margin="40,0,0,0"
             Click="Back_Click"
             IsEnabled="{x:Bind Frame.CanGoBack, Mode=OneWay}" Grid.Row="1"
             >
@@ -100,11 +96,11 @@
 
         <Button x:Name = "continueButton"
             Height="135"
-            Width="160"
-            Visibility="Collapsed"
-            Margin="1236,183,0,0"
+            Width="150"
+            Visibility="Visible"
+            Margin="0,0,40,0"
             Click="Continue_Click"
-            Grid.Row="1" VerticalAlignment="Top"
+            Grid.Row="1" HorizontalAlignment="Right"
             >
             <StackPanel>
                 <Image 
