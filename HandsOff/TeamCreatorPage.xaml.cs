@@ -3,6 +3,7 @@ using System;
 using System.Threading.Tasks;
 using Windows.UI;
 using Windows.UI.Core;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -232,12 +233,25 @@ namespace HandsOff
             App.TryGoBack();
         }
 
-        private void CreateRandomTeam_Click(object sender, RoutedEventArgs e)
+        private async void CreateRandomTeam_Click(object sender, RoutedEventArgs e)
         {
             Team RandomTeam = CreateTeam();
 
             RandomTeam.TeamName = Generate_TeamName();
             App.teams.Add(RandomTeam);
+
+            // Show message dialog when random team has been generated.
+            MessageDialog showDialog = new MessageDialog("Random team has been generated with the name : " + RandomTeam.TeamName);
+            showDialog.Commands.Add(new UICommand("Ok")
+            {
+                Id = 0
+            });
+            showDialog.DefaultCommandIndex = 0;
+            var result = await showDialog.ShowAsync();
+            if ((int)result.Id == 0)
+            {
+                return;
+            }
         }
 
         public String Generate_TeamName()
