@@ -75,7 +75,7 @@ namespace HandsOff
                     defenceLabel.Margin = new Thickness(15, 2, 0, 0);
                     
                     TextBox speedTextBox = new TextBox();
-                    speedTextBox.Text = "0";
+                    speedTextBox.Text = "55";
                     speedTextBox.Background = new SolidColorBrush(Colors.Wheat);
                     speedTextBox.Foreground = new SolidColorBrush(Colors.Black);
                     speedTextBox.FontSize = 20;
@@ -83,7 +83,7 @@ namespace HandsOff
                     speedTextBox.Width = 75;
 
                     TextBox attackTextBox = new TextBox();
-                    attackTextBox.Text = "0";
+                    attackTextBox.Text = "55";
                     attackTextBox.Background = new SolidColorBrush(Colors.Wheat);
                     attackTextBox.Foreground = new SolidColorBrush(Colors.Black);
                     attackTextBox.FontSize = 20;
@@ -91,7 +91,7 @@ namespace HandsOff
                     attackTextBox.Width = 75;
 
                     TextBox defenceTextBox = new TextBox();
-                    defenceTextBox.Text = "0";
+                    defenceTextBox.Text = "55";
                     defenceTextBox.Background = new SolidColorBrush(Colors.Wheat);
                     defenceTextBox.Foreground = new SolidColorBrush(Colors.Black);
                     defenceTextBox.FontSize = 20;
