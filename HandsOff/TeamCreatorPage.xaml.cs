@@ -108,10 +108,22 @@ namespace HandsOff
                     stackPanel.Children.Add(defenceLabel);
                     stackPanel.Children.Add(defenceTextBox);
 
-                    if (i <= 4)
+                    if (i <= 1)
                     {
-                        Grid.SetColumn(scrollView, x);
-                        Grid.SetRow(scrollView, 0);
+                        Grid.SetColumn(scrollView, x + 2);
+                        Grid.SetRow(scrollView, 3);
+
+                        x++;
+
+                        if (x == 1)
+                        {
+                            x = 0;
+                        }
+                    }
+                    else if (i > 1 && i <= 5)
+                    {
+                        Grid.SetColumn(scrollView, x +1);
+                        Grid.SetRow(scrollView, 2);
 
                         x++;
 
@@ -120,9 +132,9 @@ namespace HandsOff
                             x = 0;
                         }
                     }
-                    else if (i > 4 && i < 9)
+                    else if (i > 5 && i <= 9)
                     {
-                        Grid.SetColumn(scrollView, x);
+                        Grid.SetColumn(scrollView, x +1);
                         Grid.SetRow(scrollView, 1);
 
                         x++;
@@ -132,19 +144,16 @@ namespace HandsOff
                             x = 0;
                         }
                     }
-                    else if (i >= 9)
+                    else if (i > 9)
                     {
-                        if (i == 9)
-                        {
-                            x++;
-                        }
+                   
 
-                        Grid.SetColumn(scrollView, x);
-                        Grid.SetRow(scrollView, 2);
+                        Grid.SetColumn(scrollView, x +2);
+                        Grid.SetRow(scrollView, 0);
 
                         x++;
 
-                        if (x == 4)
+                        if (x == 2)
                         {
                             x = 0;
                         }
