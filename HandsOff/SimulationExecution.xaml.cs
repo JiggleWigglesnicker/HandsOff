@@ -69,7 +69,7 @@ namespace HandsOff
                             Foreground = new SolidColorBrush(Colors.White),
                             FontSize = 15,
                             HorizontalAlignment = HorizontalAlignment.Center,
-                            Text = match.team1.TeamName + " VS " + match.team2.TeamName,
+                            Text = match.Team1.TeamName + " VS " + match.Team2.TeamName,
                             Height = 50,
                             Width = 250,
                             Margin = new Thickness(0, 5, 0, -35)

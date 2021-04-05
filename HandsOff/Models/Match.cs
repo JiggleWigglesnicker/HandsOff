@@ -5,8 +5,8 @@ namespace HandsOff.Models
 {
     public class Match
     {
-        public Team team1 { get; set; }
-        public Team team2 { get; set; }
+        public Team Team1 { get; set; }
+        public Team Team2 { get; set; }
 
         private static readonly int MaxTurns = 3000000;     // Maximum amount of turns
         public int TurnCounter { get; private set; } = 0;   // Keep track of the number of turns passed
@@ -29,8 +29,8 @@ namespace HandsOff.Models
 
         public Match(Team team1, Team team2)
         {
-            this.team1 = team1;
-            this.team2 = team2;
+            this.Team1 = team1;
+            this.Team2 = team2;
         }
 
         public void StartSimulation()
@@ -48,7 +48,7 @@ namespace HandsOff.Models
 
                 if ((TurnCounter + 1) > MaxTurns)
                 {
-                    DataAccess.AddScores(team1.TeamName, team2.TeamName, Team1Score, Team2Score);
+                    DataAccess.AddScores(Team1.TeamName, Team2.TeamName, Team1Score, Team2Score);
                     Debug.WriteLine("Done! final score: Team 1: {0} and Team 2: {1}", Team1Score, Team2Score);
                 }
             }
@@ -184,7 +184,7 @@ namespace HandsOff.Models
                 int i;
                 for (i = AmountOfPlayersAttacking; i > 0; i--)
                 {
-                    SelectedPlayerTeam1 = team1.Players[randomPlayerSelector.Next(9, 11)]; // randomly choose between attackers
+                    SelectedPlayerTeam1 = Team1.Players[randomPlayerSelector.Next(9, 11)]; // randomly choose between attackers
 
                     combinedAttackTeam1 += SelectedPlayerTeam1.Shooting;
                     combinedSpeedTeam1 += SelectedPlayerTeam1.Pace;
@@ -197,16 +197,16 @@ namespace HandsOff.Models
                     switch (AmountOfPlayersDefending)
                     {
                         case 1:
-                            SelectedPlayerTeam2 = team2.Players[1]; // only one defender keeper is chosen
-                            combinedDefenseTeam2 = combinedDefenseTeam2 + 150;
+                            SelectedPlayerTeam2 = Team2.Players[1]; // only one defender keeper is chosen
+                            combinedDefenseTeam2 += 150;
                             break;
                         case 2:
                         case 3:
-                            SelectedPlayerTeam2 = team2.Players[randomPlayerSelector.Next(6, 9)]; // randomly choose between midfielders
+                            SelectedPlayerTeam2 = Team2.Players[randomPlayerSelector.Next(6, 9)]; // randomly choose between midfielders
                             break;
                         case 4:
                         default:
-                            SelectedPlayerTeam2 = team2.Players[randomPlayerSelector.Next(2, 6)]; // randomly choose between defenders
+                            SelectedPlayerTeam2 = Team2.Players[randomPlayerSelector.Next(2, 6)]; // randomly choose between defenders
                             break;
                     }
 
@@ -240,7 +240,7 @@ namespace HandsOff.Models
                 int i;
                 for (i = AmountOfPlayersAttacking; i > 0; i--)
                 {
-                    SelectedPlayerTeam2 = team2.Players[randomPlayerSelector.Next(9, 11)]; // randomly choose between attackers
+                    SelectedPlayerTeam2 = Team2.Players[randomPlayerSelector.Next(9, 11)]; // randomly choose between attackers
 
                     combinedAttackTeam2 += SelectedPlayerTeam2.Shooting;
                     combinedSpeedTeam2 += SelectedPlayerTeam2.Pace;
@@ -253,16 +253,16 @@ namespace HandsOff.Models
                     switch (AmountOfPlayersDefending)
                     {
                         case 1:
-                            SelectedPlayerTeam1 = team1.Players[1]; // only one defender. keeper is chosen
-                            combinedDefenseTeam2 = combinedDefenseTeam2 + 150;
+                            SelectedPlayerTeam1 = Team1.Players[1]; // only one defender. keeper is chosen
+                            combinedDefenseTeam2 += 150;
                             break;
                         case 2:
                         case 3:
-                            SelectedPlayerTeam1 = team1.Players[randomPlayerSelector.Next(6, 9)]; // randomly choose between midfielders
+                            SelectedPlayerTeam1 = Team1.Players[randomPlayerSelector.Next(6, 9)]; // randomly choose between midfielders
                             break;
                         case 4:
                         default:
-                            SelectedPlayerTeam1 = team1.Players[randomPlayerSelector.Next(2, 6)]; // randomly choose between defenders
+                            SelectedPlayerTeam1 = Team1.Players[randomPlayerSelector.Next(2, 6)]; // randomly choose between defenders
                             break;
                     }
 
