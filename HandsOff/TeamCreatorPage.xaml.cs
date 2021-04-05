@@ -16,7 +16,7 @@ namespace HandsOff
     /// </summary>
     public sealed partial class TeamCreator : Page
     {
-        string[] TeamNames = { "Ajax", "Feyenoord", "PSV", "FC Emmen", "Manchester United", "Chelsea", "AZ", "Mongo Thierry", "Fc MusicMixer", "LTC Assen 6", "Mannen van het zesde", "FC Barcelona", "Tiri Boys", "VVJ Judas", "C# Masters", "UWP 4 Life", "Fc Frenkie", "VV Baptist", "James Blunt's Boys", "Ltjes Rozenwater", "Fc Gaan met Die Banaan", "Oranje", "Blauw", "Rood Wit", "Jong Ajax", "GroenGeel", "OranjeRood", "FC Schoonebeek", "De Sonurs", "De Multithreaders" };
+        readonly string[] TeamNames = { "Ajax", "Feyenoord", "PSV", "FC Emmen", "Manchester United", "Chelsea", "AZ", "Mongo Thierry", "Fc MusicMixer", "LTC Assen 6", "Mannen van het zesde", "FC Barcelona", "Tiri Boys", "VVJ Judas", "C# Masters", "UWP 4 Life", "Fc Frenkie", "VV Baptist", "James Blunt's Boys", "Ltjes Rozenwater", "Fc Gaan met Die Banaan", "Oranje", "Blauw", "Rood Wit", "Jong Ajax", "GroenGeel", "OranjeRood", "FC Schoonebeek", "De Sonurs", "De Multithreaders" };
         readonly System.Random randomNumber = new System.Random();
         String RandomTeamName;
 
@@ -44,59 +44,75 @@ namespace HandsOff
                 {
                     ScrollViewer scrollView = new ScrollViewer();
 
-                    StackPanel stackPanel = new StackPanel();
-                    stackPanel.Name = "stackpanel" + i;
+                    StackPanel stackPanel = new StackPanel
+                    {
+                        Name = "stackpanel" + i
+                    };
 
-                    TextBlock playerLabel = new TextBlock();
-                    playerLabel.Text = "Player " + i;
-                    playerLabel.HorizontalAlignment = HorizontalAlignment.Center;
-                    playerLabel.FontSize = 40;
-                    playerLabel.Foreground = new SolidColorBrush(Colors.White);
+                    TextBlock playerLabel = new TextBlock
+                    {
+                        Text = "Player " + i,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        FontSize = 40,
+                        Foreground = new SolidColorBrush(Colors.White)
+                    };
 
-                    TextBlock speedLabel = new TextBlock();
-                    speedLabel.Text = "Speed";
-                    speedLabel.HorizontalAlignment = HorizontalAlignment.Center;
-                    speedLabel.FontSize = 30;
-                    speedLabel.Foreground = new SolidColorBrush(Colors.White);
-                    speedLabel.Margin = new Thickness(15, 5, 0, 0);
+                    TextBlock speedLabel = new TextBlock
+                    {
+                        Text = "Speed",
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        FontSize = 30,
+                        Foreground = new SolidColorBrush(Colors.White),
+                        Margin = new Thickness(15, 5, 0, 0)
+                    };
 
-                    TextBlock attackLabel = new TextBlock();
-                    attackLabel.Text = "Attack";
-                    attackLabel.HorizontalAlignment = HorizontalAlignment.Center;
-                    attackLabel.FontSize = 30;
-                    attackLabel.Foreground = new SolidColorBrush(Colors.White);
-                    attackLabel.Margin = new Thickness(15, 2, 0, 0);
+                    TextBlock attackLabel = new TextBlock
+                    {
+                        Text = "Attack",
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        FontSize = 30,
+                        Foreground = new SolidColorBrush(Colors.White),
+                        Margin = new Thickness(15, 2, 0, 0)
+                    };
 
-                    TextBlock defenceLabel = new TextBlock();
-                    defenceLabel.Text = "Defence";
-                    defenceLabel.HorizontalAlignment = HorizontalAlignment.Center;
-                    defenceLabel.FontSize = 30;
-                    defenceLabel.Foreground = new SolidColorBrush(Colors.White);
-                    defenceLabel.Margin = new Thickness(15, 2, 0, 0);
-                    
-                    TextBox speedTextBox = new TextBox();
-                    speedTextBox.Text = "55";
-                    speedTextBox.Background = new SolidColorBrush(Colors.Wheat);
-                    speedTextBox.Foreground = new SolidColorBrush(Colors.Black);
-                    speedTextBox.FontSize = 20;
-                    speedTextBox.Height = 35;
-                    speedTextBox.Width = 75;
+                    TextBlock defenceLabel = new TextBlock
+                    {
+                        Text = "Defence",
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        FontSize = 30,
+                        Foreground = new SolidColorBrush(Colors.White),
+                        Margin = new Thickness(15, 2, 0, 0)
+                    };
 
-                    TextBox attackTextBox = new TextBox();
-                    attackTextBox.Text = "55";
-                    attackTextBox.Background = new SolidColorBrush(Colors.Wheat);
-                    attackTextBox.Foreground = new SolidColorBrush(Colors.Black);
-                    attackTextBox.FontSize = 20;
-                    attackTextBox.Height = 35;
-                    attackTextBox.Width = 75;
+                    TextBox speedTextBox = new TextBox
+                    {
+                        Text = "55",
+                        Background = new SolidColorBrush(Colors.Wheat),
+                        Foreground = new SolidColorBrush(Colors.Black),
+                        FontSize = 20,
+                        Height = 35,
+                        Width = 75
+                    };
 
-                    TextBox defenceTextBox = new TextBox();
-                    defenceTextBox.Text = "55";
-                    defenceTextBox.Background = new SolidColorBrush(Colors.Wheat);
-                    defenceTextBox.Foreground = new SolidColorBrush(Colors.Black);
-                    defenceTextBox.FontSize = 20;
-                    defenceTextBox.Height = 35;
-                    defenceTextBox.Width = 75;
+                    TextBox attackTextBox = new TextBox
+                    {
+                        Text = "55",
+                        Background = new SolidColorBrush(Colors.Wheat),
+                        Foreground = new SolidColorBrush(Colors.Black),
+                        FontSize = 20,
+                        Height = 35,
+                        Width = 75
+                    };
+
+                    TextBox defenceTextBox = new TextBox
+                    {
+                        Text = "55",
+                        Background = new SolidColorBrush(Colors.Wheat),
+                        Foreground = new SolidColorBrush(Colors.Black),
+                        FontSize = 20,
+                        Height = 35,
+                        Width = 75
+                    };
 
                     grid.Children.Add(scrollView);
                     scrollView.Content = stackPanel;
@@ -169,8 +185,10 @@ namespace HandsOff
 
         public Team CreateCustomTeam()
         {
-            Team team = new Team();
-            team.TeamName = TeamNameBox.Text;
+            Team team = new Team
+            {
+                TeamName = TeamNameBox.Text
+            };
 
             for (int i = 1; i < 12; i++)
             {
