@@ -23,13 +23,13 @@ namespace HandsOff
         public MatchMaker()
         {
             this.InitializeComponent();
-            enterTeamsIntoDropBox();
+            EnterTeamsIntoDropBox();
         }
 
         /// <summary>
         /// this method fills in all the existing teams in the list into the dropboxes
         /// </summary>
-        public void enterTeamsIntoDropBox()
+        public void EnterTeamsIntoDropBox()
         {
             ComboBox CB1 = this.TeamCB1;
             ComboBox CB2 = this.TeamCB2;
@@ -38,6 +38,12 @@ namespace HandsOff
             {
                 CB1.Items.Add(team.getName());
                 CB2.Items.Add(team.getName());
+
+                if (team != null)
+                {
+                    CB1.SelectedIndex = 0;
+                    CB2.SelectedIndex = 0;
+                }
             }
         }
 
