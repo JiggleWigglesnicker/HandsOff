@@ -7,11 +7,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:dataAccessLibrary="using:DataAccessLibrary"
     mc:Ignorable="d"
-    Background="SaddleBrown">
+    Background="white">
 
     <StackPanel
-        Background="LightSlateGray"
-        Margin="30"
+        Background="ForestGreen"
+        Margin="10"
         >
 
         <TextBlock
@@ -28,7 +28,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <ListBox x:Name="Scoresource" Height="500" Background="LightSteelBlue" Foreground="Black">
+            <ListBox x:Name="Scoresource" Height="500" Background="ForestGreen" Foreground="white">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">

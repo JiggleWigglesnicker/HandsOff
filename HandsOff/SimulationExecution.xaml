@@ -6,11 +6,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="SaddleBrown">
+    Background="white">
 
     <Grid
-        Background="LightSlateGray"
-        Margin="30"
+        Background="ForestGreen"
+        Margin="10"
         x:Name="MatchGrid">
 
         <Grid.RowDefinitions>
