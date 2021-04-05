@@ -31,14 +31,20 @@
             <ListBox x:Name="Scoresource" Height="500" Background="ForestGreen" Foreground="white">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Padding="5,0,5,0" Text="{Binding TeamName1}" />
-                            <TextBlock Text="{Binding TeamName2}" />
-                            <TextBlock Text=", Score 1:  " />
-                            <TextBlock Text="{Binding TeamScore1}" />
-                            <TextBlock Text=", Score 2:  " />
-                            <TextBlock Text="{Binding TeamScore2}" />
-                        </StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Padding="5,0,5,0" Text="{Binding TeamName1}" />
+                            <TextBlock Grid.Column="1" Text="{Binding TeamScore1}" />
+                            <TextBlock Grid.Column="2" Text=" - " />
+                            <TextBlock Grid.Column="3" Text="{Binding TeamScore2}" />
+                            <TextBlock Grid.Column="4" Text="{Binding TeamName2}" />
+                        </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
