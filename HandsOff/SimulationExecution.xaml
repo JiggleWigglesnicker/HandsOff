@@ -97,7 +97,7 @@
         <Button x:Name = "continueButton"
             Height="135"
             Width="160"
-            Visibility="Visible"
+            Visibility="Collapsed"
             Margin="1280,0,0,0"
             Click="Continue_Click"
             Grid.Row="1"

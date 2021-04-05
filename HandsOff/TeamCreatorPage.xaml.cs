@@ -199,9 +199,22 @@ namespace HandsOff
             }
         }
 
-        private void CreateTeam_Click(object sender, RoutedEventArgs e)
+        private async void CreateTeam_Click(object sender, RoutedEventArgs e)
         {
             App.teams.Add(CreateCustomTeam());
+
+            // Show message dialog when random team has been generated.
+            MessageDialog showDialog = new MessageDialog("Team has been created!");
+            showDialog.Commands.Add(new UICommand("Ok")
+            {
+                Id = 0
+            });
+            showDialog.DefaultCommandIndex = 0;
+            var result = await showDialog.ShowAsync();
+            if ((int)result.Id == 0)
+            {
+                return;
+            }
         }
 
         public Team CreateCustomTeam()
