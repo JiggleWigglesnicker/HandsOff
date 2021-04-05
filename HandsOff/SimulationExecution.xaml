@@ -68,17 +68,17 @@
         <Button
             Click="StartSim_Click"
             Height="135"
-            Width="150"
+            Width="160"
             Grid.Column="0"
             Grid.Row="1"
             FontSize="30"
             Content="Start!"
-            Margin="218,0,0,0"
+            Margin="222,0,0,0"
             />
 
         <Button
             Height="135"
-            Width="150"
+            Width="160"
             Margin="40,0,0,0"
             Click="Back_Click"
             IsEnabled="{x:Bind Frame.CanGoBack, Mode=OneWay}" Grid.Row="1"
@@ -96,11 +96,11 @@
 
         <Button x:Name = "continueButton"
             Height="135"
-            Width="150"
+            Width="160"
             Visibility="Visible"
-            Margin="0,0,40,0"
+            Margin="1280,0,0,0"
             Click="Continue_Click"
-            Grid.Row="1" HorizontalAlignment="Right"
+            Grid.Row="1"
             >
             <StackPanel>
                 <Image 

@@ -8,7 +8,7 @@ namespace HandsOff.Models
         public Team team1 { get; set; }
         public Team team2 { get; set; }
 
-        private static readonly int MaxTurns = 5000000;     // Maximum amount of turns
+        private static readonly int MaxTurns = 3000000;     // Maximum amount of turns
         public int TurnCounter { get; private set; } = 0;   // Keep track of the number of turns passed
 
         public int Team1Score { get; private set; }         // De score van team 1, deze wordt uiteindelijk opgeslagen
@@ -221,8 +221,6 @@ namespace HandsOff.Models
                 randomLuck = (randomChangeGenerator.Next(1, 91));
                 TotalTeam2 = (randomLuck + (combinedDefenseTeam2 / 30) + (combinedSpeedTeam2 / 30));
 
-                //Debug.WriteLine("Total attacking team 1: {0} Total defending team 2: {1}", TotalTeam1, TotalTeam2);
-
                 if ((TotalTeam1 / TotalTeam2) >= 3.9)
                 {
                     return 1;
@@ -278,8 +276,6 @@ namespace HandsOff.Models
 
                 randomLuck = (randomChangeGenerator.Next(1, 91));
                 TotalTeam1 = (randomLuck + (combinedDefenseTeam1 / 30) + (combinedSpeedTeam1 / 30));
-
-                //Debug.WriteLine("Total attacking team 2: {0} Total defending team 1: {1}", TotalTeam2, TotalTeam1);
 
                 if ((TotalTeam2 / TotalTeam1) >= 3.9)
                 {

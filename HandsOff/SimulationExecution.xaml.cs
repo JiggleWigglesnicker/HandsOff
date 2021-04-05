@@ -91,7 +91,7 @@ namespace HandsOff
                             Name = "ProgressBar" + i,
                             IsIndeterminate = false,
                             Minimum = 0,
-                            Maximum = 5000000,
+                            Maximum = 3000000,
                             Height = 25,
                             Width = 250,
                             Margin = new Thickness(0, 0, 0, 0)

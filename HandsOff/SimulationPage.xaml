@@ -31,19 +31,19 @@
             <ListBox x:Name="Scoresource" Height="500" Background="ForestGreen" Foreground="white">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
+                        <Grid HorizontalAlignment="Stretch" Width="Auto">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Padding="5,0,5,0" Text="{Binding TeamName1}" />
-                            <TextBlock Grid.Column="1" Text="{Binding TeamScore1}" />
-                            <TextBlock Grid.Column="2" Text=" - " />
-                            <TextBlock Grid.Column="3" Text="{Binding TeamScore2}" />
-                            <TextBlock Grid.Column="4" Text="{Binding TeamName2}" />
+                            <TextBlock Grid.Column="0" Padding="5,0,5,0" Text="{Binding TeamName1}" HorizontalAlignment="Center" />
+                            <TextBlock Grid.Column="1" Text="{Binding TeamScore1}" HorizontalAlignment="Center" />
+                            <TextBlock Grid.Column="2" Text=" - " HorizontalAlignment="Center" />
+                            <TextBlock Grid.Column="3" Text="{Binding TeamScore2}" HorizontalAlignment="Center" />
+                            <TextBlock Grid.Column="4" Text="{Binding TeamName2}" HorizontalAlignment="Center" />
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
