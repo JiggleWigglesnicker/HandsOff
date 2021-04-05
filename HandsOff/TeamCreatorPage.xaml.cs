@@ -206,10 +206,16 @@ namespace HandsOff
 
         public Team CreateCustomTeam()
         {
-            Team team = new Team
+            Team team = new Team();
+
+            if (TeamNameBox.Text == "")
             {
-                TeamName = TeamNameBox.Text
-            };
+                team.TeamName = "Unnamed Team";
+            }
+            else
+            {
+                team.TeamName = TeamNameBox.Text;
+            }
 
             for (int i = 1; i < 12; i++)
             {
