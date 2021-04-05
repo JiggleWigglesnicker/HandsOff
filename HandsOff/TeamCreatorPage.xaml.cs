@@ -17,7 +17,6 @@ namespace HandsOff
     /// </summary>
     public sealed partial class TeamCreator : Page
     {
-        readonly string[] TeamNames = { "Ajax", "Feyenoord", "PSV", "FC Emmen", "NAC Breda", "Herres", "GOAT", "Kamerbreed Tapijt", "SC Ria Valk", "VV De Derde Helft", "Geen centen maar spullen", "FC Stacksjouwers", "Up the irons!", "Fc Gullit", "Juventus", "Galatasaray", "Fc Vriescheloo", "Onstwedderboys","Manchester United", "Chelsea", "AZ", "Mongo Thierry", "Fc MusicMixer", "LTC Assen 6", "Mannen van het zesde", "FC Barcelona", "Tiri Boys", "VVJ Judas", "C# Masters", "UWP 4 Life", "Fc Frenkie", "VV Baptist", "James Blunt's Boys", "Ltjes Rozenwater", "Fc Gaan met Die Banaan", "Oranje", "Blauw", "Rood Wit", "Jong Ajax", "GroenGeel", "OranjeRood", "FC Schoonebeek", "De Sonurs", "De Multithreaders" };
         readonly System.Random randomNumber = new System.Random();
         String RandomTeamName;
 
@@ -262,6 +261,7 @@ namespace HandsOff
 
         public String Generate_TeamName()
         {
+            string[] TeamNames = { "Ajax", "Feyenoord", "PSV", "FC Emmen", "NAC Breda", "Herres", "GOAT", "Kamerbreed Tapijt", "SC Ria Valk", "VV De Derde Helft", "Geen centen maar spullen", "FC Stacksjouwers", "Up the irons!", "Fc Gullit", "Juventus", "Galatasaray", "Fc Vriescheloo", "Onstwedderboys", "Manchester United", "Chelsea", "AZ", "Mongo Thierry", "Fc MusicMixer", "LTC Assen 6", "Mannen van het zesde", "FC Barcelona", "Tiri Boys", "VVJ Judas", "C# Masters", "UWP 4 Life", "Fc Frenkie", "VV Baptist", "James Blunt's Boys", "Ltjes Rozenwater", "Fc Gaan met Die Banaan", "Oranje", "Blauw", "Rood Wit", "Jong Ajax", "GroenGeel", "OranjeRood", "FC Schoonebeek", "De Sonurs", "De Multithreaders" };
             RandomTeamName =  TeamNames[randomNumber.Next(0, TeamNames.Length - 1)];
 
             return RandomTeamName;
