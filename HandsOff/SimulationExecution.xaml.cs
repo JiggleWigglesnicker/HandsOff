@@ -172,6 +172,7 @@ namespace HandsOff
         public void StartSim_Click(object sender, RoutedEventArgs e)
         {
             StartExecution();
+            startSimButton.Visibility = Visibility.Collapsed;
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
