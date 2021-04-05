@@ -51,17 +51,40 @@ namespace HandsOff
 
                     TextBlock playerLabel = new TextBlock
                     {
-                        Text = "Player " + i,
                         HorizontalAlignment = HorizontalAlignment.Center,
-                        FontSize = 40,
+                        FontSize = 18,
                         Foreground = new SolidColorBrush(Colors.White)
                     };
-
+                    if (i == 1)
+                    {
+                        playerLabel.Text = "GK";
+                    }
+                    if (i == 2)
+                    {
+                        playerLabel.Text = "LB";
+                    }
+                    if (i == 3 || i == 4)
+                    {
+                        playerLabel.Text = "CB";
+                    }
+                    if (i == 5)
+                    {
+                        playerLabel.Text = "RB";
+                    }
+                    if (i >= 6 && i <= 9)
+                    {
+                        playerLabel.Text = "CM";
+                    }
+                    if (i == 10 || i == 11)
+                    {
+                        playerLabel.Text = "ST";
+                    }
+                    
                     TextBlock speedLabel = new TextBlock
                     {
                         Text = "Speed",
                         HorizontalAlignment = HorizontalAlignment.Center,
-                        FontSize = 30,
+                        FontSize = 14,
                         Foreground = new SolidColorBrush(Colors.White),
                         Margin = new Thickness(15, 5, 0, 0)
                     };
@@ -70,7 +93,7 @@ namespace HandsOff
                     {
                         Text = "Attack",
                         HorizontalAlignment = HorizontalAlignment.Center,
-                        FontSize = 30,
+                        FontSize = 14,
                         Foreground = new SolidColorBrush(Colors.White),
                         Margin = new Thickness(15, 2, 0, 0)
                     };
@@ -79,7 +102,7 @@ namespace HandsOff
                     {
                         Text = "Defence",
                         HorizontalAlignment = HorizontalAlignment.Center,
-                        FontSize = 30,
+                        FontSize = 14,
                         Foreground = new SolidColorBrush(Colors.White),
                         Margin = new Thickness(15, 2, 0, 0)
                     };
@@ -89,9 +112,9 @@ namespace HandsOff
                         Text = "55",
                         Background = new SolidColorBrush(Colors.Wheat),
                         Foreground = new SolidColorBrush(Colors.Black),
-                        FontSize = 20,
+                        FontSize = 12,
                         Height = 35,
-                        Width = 75
+                        Width = 50
                     };
 
                     TextBox attackTextBox = new TextBox
@@ -99,9 +122,9 @@ namespace HandsOff
                         Text = "55",
                         Background = new SolidColorBrush(Colors.Wheat),
                         Foreground = new SolidColorBrush(Colors.Black),
-                        FontSize = 20,
+                        FontSize = 12,
                         Height = 35,
-                        Width = 75
+                        Width = 50
                     };
 
                     TextBox defenceTextBox = new TextBox
@@ -109,13 +132,13 @@ namespace HandsOff
                         Text = "55",
                         Background = new SolidColorBrush(Colors.Wheat),
                         Foreground = new SolidColorBrush(Colors.Black),
-                        FontSize = 20,
+                        FontSize = 12,
                         Height = 35,
-                        Width = 75
+                        Width = 50
                     };
 
-                    grid.Children.Add(scrollView);
-                    scrollView.Content = stackPanel;
+                    grid.Children.Add(stackPanel);
+                    //scrollView.Content = stackPanel;
                     stackPanel.Children.Add(playerLabel);
                     stackPanel.Children.Add(speedLabel);
                     stackPanel.Children.Add(speedTextBox);
@@ -126,8 +149,8 @@ namespace HandsOff
 
                     if (i <= 1)
                     {
-                        Grid.SetColumn(scrollView, x + 2);
-                        Grid.SetRow(scrollView, 3);
+                        Grid.SetColumn(stackPanel, x + 2);
+                        Grid.SetRow(stackPanel, 3);
 
                         x++;
 
@@ -138,8 +161,8 @@ namespace HandsOff
                     }
                     else if (i > 1 && i <= 5)
                     {
-                        Grid.SetColumn(scrollView, x +1);
-                        Grid.SetRow(scrollView, 2);
+                        Grid.SetColumn(stackPanel, x +1);
+                        Grid.SetRow(stackPanel, 2);
 
                         x++;
 
@@ -150,8 +173,8 @@ namespace HandsOff
                     }
                     else if (i > 5 && i <= 9)
                     {
-                        Grid.SetColumn(scrollView, x +1);
-                        Grid.SetRow(scrollView, 1);
+                        Grid.SetColumn(stackPanel, x +1);
+                        Grid.SetRow(stackPanel, 1);
 
                         x++;
 
@@ -162,10 +185,8 @@ namespace HandsOff
                     }
                     else if (i > 9)
                     {
-                   
-
-                        Grid.SetColumn(scrollView, x +2);
-                        Grid.SetRow(scrollView, 0);
+                        Grid.SetColumn(stackPanel, x +2);
+                        Grid.SetRow(stackPanel, 0);
 
                         x++;
 
