@@ -17,7 +17,6 @@ namespace HandsOff
     /// </summary>
     public sealed partial class TeamCreator : Page
     {
-        readonly string[] TeamNames = { "Ajax", "Feyenoord", "PSV", "FC Emmen", "Manchester United", "Chelsea", "AZ", "Mongo Thierry", "FC MusicMixer", "LTC Assen 6", "Mannen van het zesde", "FC Barcelona", "Tiri Boys", "VVJ Judas", "C# Masters", "UWP 4 Life", "FC Frenkie", "VV Baptist", "James Blunt's Boys", "LT'jes Rozenwater", "FC Gaan met Die Banaan", "Oranje", "Blauw", "Rood Wit", "Jong Ajax", "GroenGeel", "OranjeRood", "RoodWit", "FC Schoonebeek", "De Sonurs", "De Multithreaders", "VV Schoonoord", "VV Veendal", "P.H. Omtzigt", "Functie Elders"};
         readonly System.Random randomNumber = new System.Random();
         String RandomTeamName;
 
@@ -203,6 +202,19 @@ namespace HandsOff
         private async void CreateTeam_Click(object sender, RoutedEventArgs e)
         {
             App.Teams.Add(CreateCustomTeam());
+
+            // Show message dialog when random team has been generated.
+            MessageDialog showDialog = new MessageDialog("Team has been created!");
+            showDialog.Commands.Add(new UICommand("Ok")
+            {
+                Id = 0
+            });
+            showDialog.DefaultCommandIndex = 0;
+            var result = await showDialog.ShowAsync();
+            if ((int)result.Id == 0)
+            {
+                return;
+            }
         }
 
         public Team CreateCustomTeam()
@@ -245,7 +257,21 @@ namespace HandsOff
 
             RandomTeam.TeamName = Generate_TeamName();
             App.Teams.Add(RandomTeam);
+
+            // Show message dialog when random team has been generated.
+            MessageDialog showDialog = new MessageDialog("Random team has been generated with the name : " + RandomTeam.TeamName);
+            showDialog.Commands.Add(new UICommand("Ok")
+            {
+                Id = 0
+            });
+            showDialog.DefaultCommandIndex = 0;
+            var result = await showDialog.ShowAsync();
+            if ((int)result.Id == 0)
+            {
+                return;
+            }
         }
+
 
         public string Generate_TeamName()
         {
