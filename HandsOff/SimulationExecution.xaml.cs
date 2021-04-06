@@ -23,12 +23,12 @@ namespace HandsOff
     public sealed partial class SimulationExecution : Page
     {
         public List<Match> Matches = new List<Match>();
-        public ProgressBar BigBar;
+        public ProgressBar ProgressBarTotalMatches;
 
         public SimulationExecution()
         {
             this.InitializeComponent();
-            BigBar = this.AllBar;
+            ProgressBarTotalMatches = this.AllBar;
         }
 
         public void CreateMatchListUI()
@@ -126,7 +126,7 @@ namespace HandsOff
                                 x++;
                                 break;
                         }
-                        BigBar.Maximum = Matches.Count();
+                        ProgressBarTotalMatches.Maximum = Matches.Count();
                     });
                 });
             });
@@ -146,7 +146,7 @@ namespace HandsOff
                         ProgressBar bar = (ProgressBar)this.FindName("ProgressBar" + i);
                         bar.Value = match.TurnCounter;
                         i++;
-                        BigBar.Value += 1;
+                        ProgressBarTotalMatches.Value += 1;
                     });
                 });
 

@@ -211,7 +211,7 @@ namespace HandsOff.Models
                     {
                         case 1:
                             SelectedPlayerTeam2 = Team2.Players[1]; // only one defender keeper is chosen
-                            CombinedDefenseTeam2 = CombinedDefenseTeam2 + 150;
+                            CombinedDefenseTeam2 += 150;
                             break;
                         case 2:
                         case 3:
@@ -264,7 +264,7 @@ namespace HandsOff.Models
                     {
                         case 1:
                             SelectedPlayerTeam1 = Team1.Players[1]; // only one defender. keeper is chosen
-                            CombinedDefenseTeam2 = CombinedDefenseTeam2 + 150;
+                            CombinedDefenseTeam2 += 150;
                             break;
                         case 2:
                         case 3:
