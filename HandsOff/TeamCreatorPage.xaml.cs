@@ -3,6 +3,7 @@ using System;
 using System.Threading.Tasks;
 using Windows.UI;
 using Windows.UI.Core;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -199,7 +200,7 @@ namespace HandsOff
             }
         }
 
-        private void CreateTeam_Click(object sender, RoutedEventArgs e)
+        private async void CreateTeam_Click(object sender, RoutedEventArgs e)
         {
             App.Teams.Add(CreateCustomTeam());
         }
@@ -238,7 +239,7 @@ namespace HandsOff
             App.TryGoBack();
         }
 
-        private void CreateRandomTeam_Click(object sender, RoutedEventArgs e)
+        private async void CreateRandomTeam_Click(object sender, RoutedEventArgs e)
         {
             Team RandomTeam = CreateTeam();
 
@@ -246,8 +247,9 @@ namespace HandsOff
             App.Teams.Add(RandomTeam);
         }
 
-        public String Generate_TeamName()
+        public string Generate_TeamName()
         {
+            string[] TeamNames = { "Ajax", "Feyenoord", "PSV", "FC Emmen", "NAC Breda", "Herres", "GOAT", "Kamerbreed Tapijt", "SC Ria Valk", "VV De Derde Helft", "Geen centen maar spullen", "FC Stacksjouwers", "Up the irons!", "Fc Gullit", "Juventus", "Galatasaray", "Fc Vriescheloo", "Onstwedderboys", "Manchester United", "Chelsea", "AZ", "Mongo Thierry", "Fc MusicMixer", "LTC Assen 6", "Mannen van het zesde", "FC Barcelona", "Tiri Boys", "VVJ Judas", "C# Masters", "UWP 4 Life", "Fc Frenkie", "VV Baptist", "James Blunt's Boys", "Ltjes Rozenwater", "Fc Gaan met Die Banaan", "Oranje", "Blauw", "Rood Wit", "Jong Ajax", "GroenGeel", "OranjeRood", "FC Schoonebeek", "De Sonurs", "De Multithreaders" };
             RandomTeamName =  TeamNames[randomNumber.Next(0, TeamNames.Length - 1)];
 
             return RandomTeamName;
