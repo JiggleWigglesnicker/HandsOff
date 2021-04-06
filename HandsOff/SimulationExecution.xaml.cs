@@ -22,7 +22,7 @@ namespace HandsOff
     /// </summary>
     public sealed partial class SimulationExecution : Page
     {
-        public List<Match> matches = new List<Match>();
+        public List<Match> Matches = new List<Match>();
         public ProgressBar BigBar;
 
         public SimulationExecution()
@@ -35,14 +35,14 @@ namespace HandsOff
         {
             Task.Run(() =>
             {
-                StackPanel stackpanel1 = this.MatchList1;
-                StackPanel stackpanel2 = this.MatchList2;
-                StackPanel stackpanel3 = this.MatchList3;
+                StackPanel Stackpanel1 = this.MatchList1;
+                StackPanel Stackpanel2 = this.MatchList2;
+                StackPanel Stackpanel3 = this.MatchList3;
 
                 int i = 1;
                 int x = 0;
 
-                Parallel.ForEach(matches, async match =>
+                Parallel.ForEach(Matches, async match =>
                 {
                     await Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
                     {
@@ -69,7 +69,7 @@ namespace HandsOff
                             Foreground = new SolidColorBrush(Colors.White),
                             FontSize = 15,
                             HorizontalAlignment = HorizontalAlignment.Center,
-                            Text = match.team1.TeamName + " VS " + match.team2.TeamName,
+                            Text = match.Team1.TeamName + " VS " + match.Team2.TeamName,
                             Height = 50,
                             Width = 250,
                             Margin = new Thickness(0, 5, 0, -35)
@@ -91,7 +91,7 @@ namespace HandsOff
                             Name = "ProgressBar" + i,
                             IsIndeterminate = false,
                             Minimum = 0,
-                            Maximum = 3000000,
+                            Maximum = 3500000,
                             Height = 25,
                             Width = 250,
                             Margin = new Thickness(0, 0, 0, 0)
@@ -101,7 +101,7 @@ namespace HandsOff
                         switch (x)
                         {
                             case 1:
-                                stackpanel2.Children.Add(listView);
+                                Stackpanel2.Children.Add(listView);
                                 listView.Items.Add(textBlock1);
                                 listView.Items.Add(textBlock2);
                                 listView.Items.Add(textBlock3);
@@ -109,7 +109,7 @@ namespace HandsOff
                                 x++;
                                 break;
                             case 2:
-                                stackpanel3.Children.Add(listView);
+                                Stackpanel3.Children.Add(listView);
                                 listView.Items.Add(textBlock1);
                                 listView.Items.Add(textBlock2);
                                 listView.Items.Add(textBlock3);
@@ -118,7 +118,7 @@ namespace HandsOff
                                 break;
                             default:
                                 x = 0;
-                                stackpanel1.Children.Add(listView);
+                                Stackpanel1.Children.Add(listView);
                                 listView.Items.Add(textBlock1);
                                 listView.Items.Add(textBlock2);
                                 listView.Items.Add(textBlock3);
@@ -126,7 +126,7 @@ namespace HandsOff
                                 x++;
                                 break;
                         }
-                        BigBar.Maximum = matches.Count();
+                        BigBar.Maximum = Matches.Count();
                     });
                 });
             });
@@ -137,7 +137,7 @@ namespace HandsOff
             int i = 1;
             await Task.Run(() =>
             {
-                Parallel.ForEach(matches, async match =>
+                Parallel.ForEach(Matches, async match =>
                 {
                     match.StartSimulation();
 
@@ -164,7 +164,7 @@ namespace HandsOff
 
             if (e.Parameter != null)
             {
-                this.matches = (List<Match>)e.Parameter;
+                this.Matches = (List<Match>)e.Parameter;
                 CreateMatchListUI();
             }
         }

@@ -15,10 +15,11 @@ namespace HandsOff
     /// </summary>
     public sealed partial class MatchMaker : Page
     {
-        readonly List<Match> matches = new List<Match>();
+        readonly List<Match> Matches = new List<Match>();
 
-        Team SelectedTeam1;
-        Team SelectedTeam2;
+        private Team SelectedTeam1;
+        private Team SelectedTeam2;
+        private String TeamName;
 
         public MatchMaker()
         {
@@ -34,12 +35,12 @@ namespace HandsOff
             ComboBox CB1 = this.TeamCB1;
             ComboBox CB2 = this.TeamCB2;
 
-            foreach (Team team in App.teams)
+            foreach (Team Team in App.Teams)
             {
-                CB1.Items.Add(team.getName());
-                CB2.Items.Add(team.getName());
+                CB1.Items.Add(Team.getName());
+                CB2.Items.Add(Team.getName());
 
-                if (team != null)
+                if (Team != null)
                 {
                     CB1.SelectedIndex = 0;
                     CB2.SelectedIndex = 0;
@@ -54,11 +55,11 @@ namespace HandsOff
 
         private void TeamCB1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            String teamName = e.AddedItems[0].ToString();
+            TeamName = e.AddedItems[0].ToString();
 
-            foreach (Team team in App.teams)
+            foreach (Team team in App.Teams)
             {
-                if (teamName == team.getName())
+                if (TeamName == team.getName())
                 {
                     SelectedTeam1 = team;
                     //Debug.WriteLine("Selected as team 1: {0} with Team name: {1}", SelectedTeam1, teamName);
@@ -68,13 +69,13 @@ namespace HandsOff
 
         private void TeamCB2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            String teamName = e.AddedItems[0].ToString();
+            TeamName = e.AddedItems[0].ToString();
 
-            foreach (Team team in App.teams)
+            foreach (Team Team in App.Teams)
             {
-                if (teamName == team.getName())
+                if (TeamName == Team.getName())
                 {
-                    SelectedTeam2 = team;
+                    SelectedTeam2 = Team;
                     //Debug.WriteLine("Selected as team 1: {0} with Team name: {1}", SelectedTeam1, teamName);
                 }
             }
@@ -87,7 +88,7 @@ namespace HandsOff
             while (AmountOfMatches > 0)
             {
                 Match match = new Match(SelectedTeam1, SelectedTeam2);
-                matches.Add(match);
+                Matches.Add(match);
 
                 //Debug.WriteLine("Added match to list! numbers left: {0}", AmountOfMatches);
                 AmountOfMatches--;
@@ -117,7 +118,7 @@ namespace HandsOff
                 }
             }
             MakeMatch();
-            this.Frame.Navigate(typeof(SimulationExecution), matches);
+            this.Frame.Navigate(typeof(SimulationExecution), Matches);
         }
     }
 }

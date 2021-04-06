@@ -12,8 +12,7 @@ namespace HandsOff
     /// </summary>
     public sealed partial class Dashboard : Page
     {
-
-        private Team team { get; set; }
+        private Team Team { get; set; }
 
         public Dashboard()
         {
@@ -40,7 +39,7 @@ namespace HandsOff
             base.OnNavigatedTo(e);
 
             if (e.Parameter != null)
-                this.team = (Team)e.Parameter;
+                this.Team = (Team)e.Parameter;
         }
     }
 }

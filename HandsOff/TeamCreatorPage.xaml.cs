@@ -16,7 +16,7 @@ namespace HandsOff
     /// </summary>
     public sealed partial class TeamCreator : Page
     {
-        readonly string[] TeamNames = { "Ajax", "Feyenoord", "PSV", "FC Emmen", "Manchester United", "Chelsea", "AZ", "Mongo Thierry", "Fc MusicMixer", "LTC Assen 6", "Mannen van het zesde", "FC Barcelona", "Tiri Boys", "VVJ Judas", "C# Masters", "UWP 4 Life", "Fc Frenkie", "VV Baptist", "James Blunt's Boys", "Ltjes Rozenwater", "Fc Gaan met Die Banaan", "Oranje", "Blauw", "Rood Wit", "Jong Ajax", "GroenGeel", "OranjeRood", "FC Schoonebeek", "De Sonurs", "De Multithreaders" };
+        readonly string[] TeamNames = { "Ajax", "Feyenoord", "PSV", "FC Emmen", "Manchester United", "Chelsea", "AZ", "Mongo Thierry", "FC MusicMixer", "LTC Assen 6", "Mannen van het zesde", "FC Barcelona", "Tiri Boys", "VVJ Judas", "C# Masters", "UWP 4 Life", "FC Frenkie", "VV Baptist", "James Blunt's Boys", "LT'jes Rozenwater", "FC Gaan met Die Banaan", "Oranje", "Blauw", "Rood Wit", "Jong Ajax", "GroenGeel", "OranjeRood", "RoodWit", "FC Schoonebeek", "De Sonurs", "De Multithreaders", "VV Schoonoord", "VV Veendal", "P.H. Omtzigt", "Functie Elders"};
         readonly System.Random randomNumber = new System.Random();
         String RandomTeamName;
 
@@ -201,7 +201,7 @@ namespace HandsOff
 
         private void CreateTeam_Click(object sender, RoutedEventArgs e)
         {
-            App.teams.Add(CreateCustomTeam());
+            App.Teams.Add(CreateCustomTeam());
         }
 
         public Team CreateCustomTeam()
@@ -243,7 +243,7 @@ namespace HandsOff
             Team RandomTeam = CreateTeam();
 
             RandomTeam.TeamName = Generate_TeamName();
-            App.teams.Add(RandomTeam);
+            App.Teams.Add(RandomTeam);
         }
 
         public String Generate_TeamName()

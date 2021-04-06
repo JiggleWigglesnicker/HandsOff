@@ -16,16 +16,16 @@ namespace HandsOff
         public SimulationPage()
         {
             this.InitializeComponent();
-            Scores scores = new Scores();
-            Scoresource.ItemsSource = scores;
+            Scores Scores = new Scores();
+            Scoresource.ItemsSource = Scores;
 
-            foreach (var scoreobj in DataAccess.GetData())
+            foreach (var Scoreobj in DataAccess.GetData())
             {
-                if (scores.Any(p => p == scoreobj))
+                if (Scores.Any(p => p == Scoreobj))
                 {
                     return;
                 }
-                scores.Add(scoreobj);
+                Scores.Add(Scoreobj);
                 // Dit moet nog gecheckt worden
             }
         }

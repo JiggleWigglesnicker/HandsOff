@@ -5,32 +5,34 @@ namespace HandsOff.Models
 {
     public class Match
     {
-        public Team team1 { get; set; }
-        public Team team2 { get; set; }
+        public Team Team1 { get; set; }
+        public Team Team2 { get; set; }
 
-        private static readonly int MaxTurns = 3000000;     // Maximum amount of turns
-        public int TurnCounter { get; private set; } = 0;   // Keep track of the number of turns passed
+        private static readonly uint MaxTurns = 3500000;        // Maximum amount of turns
+        public uint TurnCounter { get; private set; }           // Keep track of the number of turns passed
 
-        public int Team1Score { get; private set; }         // De score van team 1, deze wordt uiteindelijk opgeslagen
-        public int Team2Score { get; private set; } = 0;    // De score van team 2, deze wordt uiteindelijk opgeslagen
+        public ushort Team1Score { get; private set; }          // Total score of team 1, this gets stored when the match is finished
+        public ushort Team2Score { get; private set; }          // Total score of team 2, this gets stored when the match is finished
 
-        private int BallPosition;                           // Position of the football. values 1-8
-        private int BallOwner;                              // welk Team balbezit heeft (1 of 2)
-        private int randomLuck;                             // Generates a random number from 1-90, representing the luck 
+        private short BallPosition;                               // Position of the football. values 1-8
+        private byte BallOwner;                                 // Keeps track of which team owns the ball, values 1-2
+        private int RandomLuck;                                 // Generates a random number rangin from 1-90, representing the random chance
 
         private Player SelectedPlayerTeam1;
         private Player SelectedPlayerTeam2;
 
         // placeholders for calculating the football game
-        private double combinedAttackTeam1, combinedDefenseTeam1, combinedSpeedTeam1, combinedAttackTeam2, combinedDefenseTeam2, combinedSpeedTeam2, TotalTeam1, TotalTeam2;
-        // Random number generators to simulate the game
-        readonly System.Random randomPlayerSelector = new System.Random();
-        readonly System.Random randomChangeGenerator = new System.Random();
+        private double CombinedAttackTeam1, CombinedDefenseTeam1, CombinedSpeedTeam1, CombinedAttackTeam2, CombinedDefenseTeam2, CombinedSpeedTeam2, TotalTeam1, TotalTeam2;
+        private byte AttackerAmountCounter, DefenderAmountCounter;
 
-        public Match(Team team1, Team team2)
+        // Random number generators to simulate the game
+        readonly System.Random RandomPlayerSelector = new System.Random();
+        readonly System.Random RandomChanceGenerator = new System.Random();
+
+        public Match(Team Team1, Team Team2)
         {
-            this.team1 = team1;
-            this.team2 = team2;
+            this.Team1 = Team1;
+            this.Team2 = Team2;
         }
 
         public void StartSimulation()
@@ -48,7 +50,18 @@ namespace HandsOff.Models
 
                 if ((TurnCounter + 1) > MaxTurns)
                 {
-                    DataAccess.AddScores(team1.TeamName, team2.TeamName, Team1Score, Team2Score);
+                    if(Team1Score == 0 && Team2Score == 0)
+                    {
+                        if(BallPosition > 4)
+                        {
+                            Team1Score++;
+                        }
+                        else
+                        {
+                            Team2Score++;
+                        }
+                    }
+                    DataAccess.AddScores(Team1.TeamName, Team2.TeamName, Team1Score, Team2Score);
                     Debug.WriteLine("Done! final score: Team 1: {0} and Team 2: {1}", Team1Score, Team2Score);
                 }
             }
@@ -71,7 +84,7 @@ namespace HandsOff.Models
                     }
                     else if (AttemptAdvance(1, 1) == 0)
                     {
-                        // stalemate. nothing changes, team 1 gets to try another time to break the defense.
+                        BallPosition--; // stalemate. Ball position goes back one but team 2 gets to try another time to break the defense.
                     }
                     else // failed! Team 2 gets the ball now
                     {
@@ -87,7 +100,7 @@ namespace HandsOff.Models
                     }
                     else if (AttemptAdvance(3, 4) == 0)
                     {
-                        // stalemate. nothing changes, team 1 gets to try another time to break the defense.
+                        BallPosition--; // stalemate. Ball position goes back one but team 2 gets to try another time to break the defense.
                     }
                     else // failed! Team 2 gets the ball now
                     {
@@ -102,7 +115,7 @@ namespace HandsOff.Models
                     }
                     else if (AttemptAdvance(3, 3) == 0)
                     {
-                        // stalemate. nothing changes, team 1 gets to try another time to break the defense.
+                        BallPosition--; // stalemate. Ball position goes back one but team 2 gets to try another time to break the defense.
                     }
                     else // failed! Team 2 gets the ball now
                     {
@@ -125,7 +138,7 @@ namespace HandsOff.Models
                     }
                     else if (AttemptAdvance(1, 1) == 0)
                     {
-                        // stalemate. nothing changes, team 2 gets to try another time to break the defense.
+                        BallPosition++; // stalemate. Ball position goes back one but team 2 gets to try another time to break the defense.
                     }
                     else // failed! Team 1 gets the ball now
                     {
@@ -141,7 +154,7 @@ namespace HandsOff.Models
                     }
                     else if (AttemptAdvance(3, 4) == 0)
                     {
-                        // stalemate. nothing changes, team 2 gets to try another time to break the defense.
+                        BallPosition++; // stalemate. Ball position goes back one but team 2 gets to try another time to break the defense.
                     }
                     else // failed! Team 1 gets the ball now
                     {
@@ -156,7 +169,7 @@ namespace HandsOff.Models
                     }
                     else if (AttemptAdvance(3, 3) == 0)
                     {
-                        // stalemate. nothing changes, team 2 gets to try another time to break the defense.
+                        BallPosition++; // stalemate. Ball position goes back one but team 2 gets to try another time to break the defense.
                     }
                     else // failed! Team 1 gets the ball now
                     {
@@ -166,116 +179,113 @@ namespace HandsOff.Models
             }
         }
 
-        private int AttemptAdvance(int AmountOfPlayersAttacking, int AmountOfPlayersDefending)
+        private int AttemptAdvance(byte AmountOfPlayersAttacking, byte AmountOfPlayersDefending)
         {
             // reset all values
-            combinedAttackTeam1 = 0;
-            combinedDefenseTeam1 = 0;
-            combinedSpeedTeam1 = 0;
-            combinedAttackTeam2 = 0;
-            combinedDefenseTeam2 = 0;
-            combinedSpeedTeam2 = 0;
+            CombinedAttackTeam1 = 0;
+            CombinedDefenseTeam1 = 0;
+            CombinedSpeedTeam1 = 0;
+            CombinedAttackTeam2 = 0;
+            CombinedDefenseTeam2 = 0;
+            CombinedSpeedTeam2 = 0;
             TotalTeam1 = 0;
             TotalTeam2 = 0;
 
             if (BallOwner == 1)
             {
                 // get numbers for the attacking team (team 1)
-                int i;
-                for (i = AmountOfPlayersAttacking; i > 0; i--)
+                AttackerAmountCounter = 0; // reset this value every time a calculation is made
+                for (AttackerAmountCounter = AmountOfPlayersAttacking; AttackerAmountCounter > 0; AttackerAmountCounter--)
                 {
-                    SelectedPlayerTeam1 = team1.Players[randomPlayerSelector.Next(9, 11)]; // randomly choose between attackers
+                    SelectedPlayerTeam1 = Team1.Players[RandomPlayerSelector.Next(9, 11)]; // randomly choose between attackers
 
-                    combinedAttackTeam1 += SelectedPlayerTeam1.Shooting;
-                    combinedSpeedTeam1 += SelectedPlayerTeam1.Pace;
+                    CombinedAttackTeam1 += SelectedPlayerTeam1.Shooting;
+                    CombinedSpeedTeam1 += SelectedPlayerTeam1.Pace;
                 }
 
                 // get numbers for the defending team (team 2)
-                int u;
-                for (u = AmountOfPlayersDefending; u > 0; u--)
+                DefenderAmountCounter = 0; // reset this value every time a calculation is made
+                for (DefenderAmountCounter = AmountOfPlayersDefending; DefenderAmountCounter > 0; DefenderAmountCounter--)
                 {
                     switch (AmountOfPlayersDefending)
                     {
                         case 1:
-                            SelectedPlayerTeam2 = team2.Players[1]; // only one defender keeper is chosen
-                            combinedDefenseTeam2 = combinedDefenseTeam2 + 150;
+                            SelectedPlayerTeam2 = Team2.Players[1]; // only one defender keeper is chosen
+                            CombinedDefenseTeam2 = CombinedDefenseTeam2 + 150;
                             break;
                         case 2:
                         case 3:
-                            SelectedPlayerTeam2 = team2.Players[randomPlayerSelector.Next(6, 9)]; // randomly choose between midfielders
+                            SelectedPlayerTeam2 = Team2.Players[RandomPlayerSelector.Next(6, 9)]; // randomly choose between midfielders
                             break;
                         case 4:
                         default:
-                            SelectedPlayerTeam2 = team2.Players[randomPlayerSelector.Next(2, 6)]; // randomly choose between defenders
+                            SelectedPlayerTeam2 = Team2.Players[RandomPlayerSelector.Next(2, 6)]; // randomly choose between defenders
                             break;
                     }
 
-                    combinedDefenseTeam2 += SelectedPlayerTeam2.Defence;
-                    combinedSpeedTeam2 += SelectedPlayerTeam2.Pace;
+                    CombinedDefenseTeam2 += SelectedPlayerTeam2.Defence;
+                    CombinedSpeedTeam2 += SelectedPlayerTeam2.Pace;
                 }
 
                 /** calculate if attacking team will be succesfull **/
-                randomLuck = (randomChangeGenerator.Next(1,91));
-                TotalTeam1 = (randomLuck + (combinedAttackTeam1 / 30) + (combinedSpeedTeam1 / 30));
+                RandomLuck = (RandomChanceGenerator.Next(1, 91));
+                TotalTeam1 = (RandomLuck + (CombinedAttackTeam1 / 30) + (CombinedSpeedTeam1 / 30));
 
-                randomLuck = (randomChangeGenerator.Next(1, 91));
-                TotalTeam2 = (randomLuck + (combinedDefenseTeam2 / 30) + (combinedSpeedTeam2 / 30));
+                RandomLuck = (RandomChanceGenerator.Next(1, 91));
+                TotalTeam2 = (RandomLuck + (CombinedDefenseTeam2 / 30) + (CombinedSpeedTeam2 / 30));
 
-                if ((TotalTeam1 / TotalTeam2) >= 3.9)
+                if ((TotalTeam1 / TotalTeam2) >= 3.4)
                 {
                     return 1;
                 }
-                else if ((TotalTeam1 / TotalTeam2) >= 1.5 && (TotalTeam1 / TotalTeam2) < 3.9)
+                else if ((TotalTeam1 / TotalTeam2) >= 1.5 && (TotalTeam1 / TotalTeam2) < 3.4)
                 {
                     return 0;
                 }
-                else
-                {
-                    return -1;
-                }
+                return -1;
             }
             else
             {
                 // get numbers for the attacking team (team 2)
-                int i;
-                for (i = AmountOfPlayersAttacking; i > 0; i--)
+                AttackerAmountCounter = 0; // reset this value every time a calculation is made
+                for (AttackerAmountCounter = AmountOfPlayersAttacking; AttackerAmountCounter > 0; AttackerAmountCounter--)
                 {
-                    SelectedPlayerTeam2 = team2.Players[randomPlayerSelector.Next(9, 11)]; // randomly choose between attackers
+                    SelectedPlayerTeam2 = Team2.Players[RandomPlayerSelector.Next(9, 11)]; // randomly choose between attackers
 
-                    combinedAttackTeam2 += SelectedPlayerTeam2.Shooting;
-                    combinedSpeedTeam2 += SelectedPlayerTeam2.Pace;
+                    CombinedAttackTeam2 += SelectedPlayerTeam2.Shooting;
+                    CombinedSpeedTeam2 += SelectedPlayerTeam2.Pace;
                 }
 
                 // get numbers for the defending team (team 1)
-                int u;
-                for (u = AmountOfPlayersDefending; u > 0; u--)
+                DefenderAmountCounter = 0; // reset this value every time a calculation is made
+                for (DefenderAmountCounter = AmountOfPlayersDefending; DefenderAmountCounter > 0; DefenderAmountCounter--)
                 {
                     switch (AmountOfPlayersDefending)
                     {
                         case 1:
-                            SelectedPlayerTeam1 = team1.Players[1]; // only one defender. keeper is chosen
-                            combinedDefenseTeam2 = combinedDefenseTeam2 + 150;
+                            SelectedPlayerTeam1 = Team1.Players[1]; // only one defender. keeper is chosen
+                            CombinedDefenseTeam2 = CombinedDefenseTeam2 + 150;
                             break;
                         case 2:
                         case 3:
-                            SelectedPlayerTeam1 = team1.Players[randomPlayerSelector.Next(6, 9)]; // randomly choose between midfielders
+                            SelectedPlayerTeam1 = Team1.Players[RandomPlayerSelector.Next(6, 9)]; // randomly choose between midfielders
                             break;
                         case 4:
                         default:
-                            SelectedPlayerTeam1 = team1.Players[randomPlayerSelector.Next(2, 6)]; // randomly choose between defenders
+                            SelectedPlayerTeam1 = Team1.Players[RandomPlayerSelector.Next(2, 6)]; // randomly choose between defenders
                             break;
                     }
 
-                    combinedDefenseTeam1 += SelectedPlayerTeam1.Defence;
-                    combinedSpeedTeam1 += SelectedPlayerTeam1.Pace;
+                    CombinedDefenseTeam1 += SelectedPlayerTeam1.Defence;
+                    CombinedSpeedTeam1 += SelectedPlayerTeam1.Pace;
                 }
 
                 /** calculate if attacking team will be succesfull */
-                randomLuck = (randomChangeGenerator.Next(1, 91));
-                TotalTeam2 = (randomLuck + (combinedAttackTeam2 / 30) + (combinedSpeedTeam2 / 30));
+                RandomLuck = (RandomChanceGenerator.Next(1, 91));
+                TotalTeam2 = (RandomLuck + (CombinedAttackTeam2 / 30) + (CombinedSpeedTeam2 / 30));
 
-                randomLuck = (randomChangeGenerator.Next(1, 91));
-                TotalTeam1 = (randomLuck + (combinedDefenseTeam1 / 30) + (combinedSpeedTeam1 / 30));
+                RandomLuck = (RandomChanceGenerator.Next(1, 91));
+                TotalTeam1 = (RandomLuck + (CombinedDefenseTeam1 / 30) + (CombinedSpeedTeam1 / 30));
 
                 if ((TotalTeam2 / TotalTeam1) >= 3.9)
                 {
@@ -285,10 +295,7 @@ namespace HandsOff.Models
                 {
                     return 0;
                 }
-                else
-                {
-                    return -1;
-                }
+                return -1;
             }
         }
     }
