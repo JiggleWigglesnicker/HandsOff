@@ -37,8 +37,8 @@ namespace HandsOff
 
             foreach (Team Team in App.Teams)
             {
-                CB1.Items.Add(Team.getName());
-                CB2.Items.Add(Team.getName());
+                CB1.Items.Add(Team.GetName());
+                CB2.Items.Add(Team.GetName());
 
                 if (Team != null)
                 {
@@ -59,7 +59,7 @@ namespace HandsOff
 
             foreach (Team team in App.Teams)
             {
-                if (TeamName == team.getName())
+                if (TeamName == team.GetName())
                 {
                     SelectedTeam1 = team;
                     //Debug.WriteLine("Selected as team 1: {0} with Team name: {1}", SelectedTeam1, teamName);
@@ -73,7 +73,7 @@ namespace HandsOff
 
             foreach (Team Team in App.Teams)
             {
-                if (TeamName == Team.getName())
+                if (TeamName == Team.GetName())
                 {
                     SelectedTeam2 = Team;
                     //Debug.WriteLine("Selected as team 1: {0} with Team name: {1}", SelectedTeam1, teamName);

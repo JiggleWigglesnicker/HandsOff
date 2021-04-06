@@ -51,11 +51,13 @@ namespace DataAccessLibrary
             {
                 db.Open();
 
-                SqliteCommand insertCommand = new SqliteCommand();
-                insertCommand.Connection = db;
+                SqliteCommand insertCommand = new SqliteCommand
+                {
+                    Connection = db,
 
-                // Use parameterized query to prevent SQL injection attacks
-                insertCommand.CommandText = "INSERT INTO Scores VALUES (NULL, @team1, @team2, @score1, @score2);";
+                    // Use parameterized query to prevent SQL injection attacks
+                    CommandText = "INSERT INTO Scores VALUES (NULL, @team1, @team2, @score1, @score2);"
+                };
                 insertCommand.Parameters.AddWithValue("@team1", team1);
                 insertCommand.Parameters.AddWithValue("@team2", team2);
                 insertCommand.Parameters.AddWithValue("@score1", score1);
