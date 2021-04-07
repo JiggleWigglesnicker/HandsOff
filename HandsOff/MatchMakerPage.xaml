@@ -9,7 +9,7 @@
     Background="white">
 
     <Grid
-        Background="ForestGreen"
+        Background="white"
         Margin="10"
         x:Name="MatchGrid">
 
@@ -23,6 +23,7 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="1"
+                    Background="red"
         >
 
             <TextBlock
