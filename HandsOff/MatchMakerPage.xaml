@@ -113,7 +113,7 @@
             Height="135"
             Width="150"
             Click="Back_Click"
-            IsEnabled="{x:Bind Frame.CanGoBack, Mode=OneWay}" VerticalAlignment="Bottom"
+            IsEnabled="{x:Bind Frame.CanGoBack, Mode=OneWay}" VerticalAlignment="Bottom" Padding="0,0,0,0" Margin="0,25,0,25"
             >
             <StackPanel>
                 <Image 
