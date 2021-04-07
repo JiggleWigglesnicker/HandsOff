@@ -78,9 +78,25 @@ namespace HandsOff
             }
         }
 
-        public void MakeMatch()
+        public async void MakeMatch()
         {
             int AmountOfMatches = (int)long.Parse(NumberOfMatches.Text);
+
+            if (AmountOfMatches > 100)
+            {
+                //Show dialog if only one or no teams are selected.
+                MessageDialog showDialog = new MessageDialog("Kies een getal onder de 100");
+                showDialog.Commands.Add(new UICommand("Ok")
+                {
+                    Id = 0
+                });
+                showDialog.DefaultCommandIndex = 0;
+                IUICommand result = await showDialog.ShowAsync();
+                if ((int)result.Id == 0)
+                {
+                    return;
+                }
+            }
 
             while (AmountOfMatches > 0)
             {
@@ -88,6 +104,7 @@ namespace HandsOff
                 Matches.Add(match);
                 AmountOfMatches--;
             }
+            Frame.Navigate(typeof(SimulationExecution), Matches);
         }
 
         /// <summary>
@@ -115,7 +132,6 @@ namespace HandsOff
             }
 
             MakeMatch();
-            Frame.Navigate(typeof(SimulationExecution), Matches);
         }
     }
 }
