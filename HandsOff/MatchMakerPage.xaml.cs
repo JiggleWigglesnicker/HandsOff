@@ -61,7 +61,6 @@ namespace HandsOff
                 if (TeamName == team.GetName())
                 {
                     SelectedTeam1 = team;
-                    //Debug.WriteLine("Selected as team 1: {0} with Team name: {1}", SelectedTeam1, teamName);
                 }
             }
         }
@@ -75,7 +74,6 @@ namespace HandsOff
                 if (TeamName == Team.GetName())
                 {
                     SelectedTeam2 = Team;
-                    //Debug.WriteLine("Selected as team 1: {0} with Team name: {1}", SelectedTeam1, teamName);
                 }
             }
         }
@@ -104,8 +102,6 @@ namespace HandsOff
             {
                 Match match = new Match(SelectedTeam1, SelectedTeam2);
                 Matches.Add(match);
-
-                //Debug.WriteLine("Added match to list! numbers left: {0}", AmountOfMatches);
                 AmountOfMatches--;
             }
             Frame.Navigate(typeof(SimulationExecution), Matches);
@@ -126,6 +122,7 @@ namespace HandsOff
                 {
                     Id = 0
                 });
+
                 showDialog.DefaultCommandIndex = 0;
                 IUICommand result = await showDialog.ShowAsync();
                 if ((int)result.Id == 0)
@@ -133,6 +130,7 @@ namespace HandsOff
                     return;
                 }
             }
+
             MakeMatch();
         }
     }
