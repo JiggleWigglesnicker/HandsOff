@@ -150,7 +150,9 @@ namespace HandsOff
                     if (i <= 1)
                     {
                         Grid.SetColumn(stackPanel, x + 2);
+                        Grid.SetColumnSpan(stackPanel, 2);
                         Grid.SetRow(stackPanel, 3);
+                        //stackPanel.Margin = new Thickness(200, 0, 0, 0);
 
                         x++;
 
