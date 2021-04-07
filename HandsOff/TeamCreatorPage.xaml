@@ -70,7 +70,7 @@
             Width="160"
             Margin="10,0,0,10"
             Click="Back_Click"
-            IsEnabled="{x:Bind Frame.CanGoBack, Mode=OneWay}"
+            IsEnabled="{x:Bind Frame.CanGoBack, Mode=OneWay}" HorizontalAlignment="Stretch"
             >
             <StackPanel>
                 <Image 
@@ -92,7 +92,7 @@
             Content="Random Team"
             Height="50"
             Width="168"
-            Margin="0,10,0,0" HorizontalAlignment="Center"
+            Margin="0,10,0,0" HorizontalAlignment="Stretch"
             />
     </Grid>
 </Page>
