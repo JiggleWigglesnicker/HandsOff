@@ -42,27 +42,53 @@ namespace HandsOff.Models
             // Start the match with Team 1 
             BallPosition = 4;
             BallOwner = 1;
+            TurnCounter = 1;
 
             while (TurnCounter < MaxTurns)
             {
+                if (TurnCounter == 1750000)
+                {
+                    BallOwner = 2;
+                }
+
                 TakeTurn();
                 TurnCounter++;
 
                 if ((TurnCounter + 1) > MaxTurns)
                 {
-                    if (Team1Score == 0 && Team2Score == 0)
+                    if (Team1Score == Team2Score)
                     {
-                        if (BallPosition > 4)
-                        {
-                            Team1Score++;
-                        }
-                        else
-                        {
-                            Team2Score++;
-                        }
+                        penalty();
                     }
                     DataAccess.AddScores(Team1.TeamName, Team2.TeamName, Team1Score, Team2Score);
                     Debug.WriteLine("Done! final score: Team 1: {0} and Team 2: {1}", Team1Score, Team2Score);
+                }
+            }
+        }
+
+        private void penalty()
+        {
+            while (Team1Score == Team2Score)
+            {
+                if (AttemptAdvance(1, 1) == 1)
+                {
+                    if (BallOwner == 1)
+                    {
+                        Team1Score++;
+                    }
+                    else
+                    {
+                        Team2Score++;
+                    }
+                }
+
+                if (BallOwner == 1)
+                {
+                    BallOwner = 2;
+                }
+                else if (BallOwner == 2)
+                {
+                    BallOwner = 1;
                 }
             }
         }
@@ -210,7 +236,7 @@ namespace HandsOff.Models
                     switch (AmountOfPlayersDefending)
                     {
                         case 1:
-                            SelectedPlayerTeam2 = Team2.Players[1]; // only one defender keeper is chosen
+                            SelectedPlayerTeam2 = Team2.Players[1]; // only one defender, therefore the keeper is chosen
                             CombinedDefenseTeam2 += 150;
                             break;
                         case 2:
@@ -263,7 +289,7 @@ namespace HandsOff.Models
                     switch (AmountOfPlayersDefending)
                     {
                         case 1:
-                            SelectedPlayerTeam1 = Team1.Players[1]; // only one defender. keeper is chosen
+                            SelectedPlayerTeam1 = Team1.Players[1]; // only one defender, therefore the keeper is chosen
                             CombinedDefenseTeam2 += 150;
                             break;
                         case 2:
@@ -287,11 +313,11 @@ namespace HandsOff.Models
                 RandomLuck = (RandomChanceGenerator.Next(1, 91));
                 TotalTeam1 = (RandomLuck + (CombinedDefenseTeam1 / 30) + (CombinedSpeedTeam1 / 30));
 
-                if ((TotalTeam2 / TotalTeam1) >= 3.9)
+                if ((TotalTeam2 / TotalTeam1) >= 3.8)
                 {
                     return 1;
                 }
-                else if ((TotalTeam2 / TotalTeam1) >= 1.5 && (TotalTeam2 / TotalTeam1) < 3.9)
+                else if ((TotalTeam2 / TotalTeam1) >= 1.0 && (TotalTeam2 / TotalTeam1) < 3.8)
                 {
                     return 0;
                 }
