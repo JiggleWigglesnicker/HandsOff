@@ -16,22 +16,22 @@ namespace HandsOff
 
         public Dashboard()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private void TeamCreator_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(TeamCreator));
+            Frame.Navigate(typeof(TeamCreator));
         }
 
         private void MatchMaker_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(MatchMaker));
+            Frame.Navigate(typeof(MatchMaker));
         }
 
         private void Simulation_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(SimulationPage));
+            Frame.Navigate(typeof(SimulationPage));
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -39,7 +39,9 @@ namespace HandsOff
             base.OnNavigatedTo(e);
 
             if (e.Parameter != null)
-                this.Team = (Team)e.Parameter;
+            {
+                Team = (Team)e.Parameter;
+            }
         }
     }
 }

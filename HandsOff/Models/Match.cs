@@ -1,5 +1,5 @@
-﻿using System.Diagnostics;
-using DataAccessLibrary;
+﻿using DataAccessLibrary;
+using System.Diagnostics;
 
 namespace HandsOff.Models
 {
@@ -26,8 +26,8 @@ namespace HandsOff.Models
         private byte AttackerAmountCounter, DefenderAmountCounter;
 
         // Random number generators to simulate the game
-        readonly System.Random RandomPlayerSelector = new System.Random();
-        readonly System.Random RandomChanceGenerator = new System.Random();
+        private readonly System.Random RandomPlayerSelector = new System.Random();
+        private readonly System.Random RandomChanceGenerator = new System.Random();
 
         public Match(Team Team1, Team Team2)
         {
@@ -50,9 +50,9 @@ namespace HandsOff.Models
 
                 if ((TurnCounter + 1) > MaxTurns)
                 {
-                    if(Team1Score == 0 && Team2Score == 0)
+                    if (Team1Score == 0 && Team2Score == 0)
                     {
-                        if(BallPosition > 4)
+                        if (BallPosition > 4)
                         {
                             Team1Score++;
                         }

@@ -17,12 +17,12 @@ namespace HandsOff
     /// </summary>
     public sealed partial class TeamCreator : Page
     {
-        readonly System.Random randomNumber = new System.Random();
-        String RandomTeamName;
+        private readonly System.Random randomNumber = new System.Random();
+        private string RandomTeamName;
 
         public TeamCreator()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             TeamPageUIAsync();
         }
 
@@ -37,7 +37,7 @@ namespace HandsOff
         public async void CreateTeamCreatorUI()
         {
             int x = 0;
-            Grid grid = this.TeamGrid;
+            Grid grid = TeamGrid;
             for (int i = 1; i < 12; i++)
             {
                 await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -79,7 +79,7 @@ namespace HandsOff
                     {
                         playerLabel.Text = "ST";
                     }
-                    
+
                     TextBlock speedLabel = new TextBlock
                     {
                         Text = "Speed",
@@ -161,7 +161,7 @@ namespace HandsOff
                     }
                     else if (i > 1 && i <= 5)
                     {
-                        Grid.SetColumn(stackPanel, x +1);
+                        Grid.SetColumn(stackPanel, x + 1);
                         Grid.SetRow(stackPanel, 2);
 
                         x++;
@@ -173,7 +173,7 @@ namespace HandsOff
                     }
                     else if (i > 5 && i <= 9)
                     {
-                        Grid.SetColumn(stackPanel, x +1);
+                        Grid.SetColumn(stackPanel, x + 1);
                         Grid.SetRow(stackPanel, 1);
 
                         x++;
@@ -185,7 +185,7 @@ namespace HandsOff
                     }
                     else if (i > 9)
                     {
-                        Grid.SetColumn(stackPanel, x +2);
+                        Grid.SetColumn(stackPanel, x + 2);
                         Grid.SetRow(stackPanel, 0);
 
                         x++;
@@ -210,7 +210,7 @@ namespace HandsOff
                 Id = 0
             });
             showDialog.DefaultCommandIndex = 0;
-            var result = await showDialog.ShowAsync();
+            IUICommand result = await showDialog.ShowAsync();
             if ((int)result.Id == 0)
             {
                 return;
@@ -232,13 +232,13 @@ namespace HandsOff
 
             for (int i = 1; i < 12; i++)
             {
-                StackPanel stackpanel = (StackPanel)this.FindName("stackpanel" + i);
+                StackPanel stackpanel = (StackPanel)FindName("stackpanel" + i);
                 TextBox textBox1 = (TextBox)stackpanel.Children[2];
                 TextBox textBox2 = (TextBox)stackpanel.Children[4];
                 TextBox textBox5 = (TextBox)stackpanel.Children[6];
-                int pace = (int)Int64.Parse(textBox1.Text);
-                int shooting = (int)Int64.Parse(textBox2.Text);
-                int defence = (int)Int64.Parse(textBox5.Text);
+                int pace = (int)long.Parse(textBox1.Text);
+                int shooting = (int)long.Parse(textBox2.Text);
+                int defence = (int)long.Parse(textBox5.Text);
 
                 Player player = new Player(i, pace, shooting, defence);
                 team.AddPlayerToTeam(player);
@@ -265,7 +265,7 @@ namespace HandsOff
                 Id = 0
             });
             showDialog.DefaultCommandIndex = 0;
-            var result = await showDialog.ShowAsync();
+            IUICommand result = await showDialog.ShowAsync();
             if ((int)result.Id == 0)
             {
                 return;
@@ -276,7 +276,7 @@ namespace HandsOff
         public string Generate_TeamName()
         {
             string[] TeamNames = { "Ajax", "Feyenoord", "PSV", "FC Emmen", "NAC Breda", "Herres", "GOAT", "Kamerbreed Tapijt", "SC Ria Valk", "VV De Derde Helft", "Geen centen maar spullen", "FC Stacksjouwers", "Up the irons!", "Fc Gullit", "Juventus", "Galatasaray", "Fc Vriescheloo", "Onstwedderboys", "Manchester United", "Chelsea", "AZ", "Mongo Thierry", "Fc MusicMixer", "LTC Assen 6", "Mannen van het zesde", "FC Barcelona", "Tiri Boys", "VVJ Judas", "C# Masters", "UWP 4 Life", "Fc Frenkie", "VV Baptist", "James Blunt's Boys", "Ltjes Rozenwater", "Fc Gaan met Die Banaan", "Oranje", "Blauw", "Rood Wit", "Jong Ajax", "GroenGeel", "OranjeRood", "FC Schoonebeek", "De Sonurs", "De Multithreaders" };
-            RandomTeamName =  TeamNames[randomNumber.Next(0, TeamNames.Length - 1)];
+            RandomTeamName = TeamNames[randomNumber.Next(0, TeamNames.Length - 1)];
 
             return RandomTeamName;
         }

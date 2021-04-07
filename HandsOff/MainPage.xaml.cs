@@ -1,6 +1,5 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using DataAccessLibrary;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -13,12 +12,12 @@ namespace HandsOff
     {
         public MainPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private void Open_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(Dashboard));
+            Frame.Navigate(typeof(Dashboard));
         }
     }
 }

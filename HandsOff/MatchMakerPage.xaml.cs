@@ -1,7 +1,6 @@
 ﻿using HandsOff.Models;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -15,15 +14,15 @@ namespace HandsOff
     /// </summary>
     public sealed partial class MatchMaker : Page
     {
-        readonly List<Match> Matches = new List<Match>();
+        private readonly List<Match> Matches = new List<Match>();
 
         private Team SelectedTeam1;
         private Team SelectedTeam2;
-        private String TeamName;
+        private string TeamName;
 
         public MatchMaker()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             EnterTeamsIntoDropBox();
         }
 
@@ -32,8 +31,8 @@ namespace HandsOff
         /// </summary>
         public void EnterTeamsIntoDropBox()
         {
-            ComboBox CB1 = this.TeamCB1;
-            ComboBox CB2 = this.TeamCB2;
+            ComboBox CB1 = TeamCB1;
+            ComboBox CB2 = TeamCB2;
 
             foreach (Team Team in App.Teams)
             {
@@ -83,7 +82,7 @@ namespace HandsOff
 
         public void MakeMatch()
         {
-            int AmountOfMatches = (int)Int64.Parse(NumberOfMatches.Text);
+            int AmountOfMatches = (int)long.Parse(NumberOfMatches.Text);
 
             while (AmountOfMatches > 0)
             {
@@ -111,14 +110,14 @@ namespace HandsOff
                     Id = 0
                 });
                 showDialog.DefaultCommandIndex = 0;
-                var result = await showDialog.ShowAsync();
+                IUICommand result = await showDialog.ShowAsync();
                 if ((int)result.Id == 0)
                 {
                     return;
                 }
             }
             MakeMatch();
-            this.Frame.Navigate(typeof(SimulationExecution), Matches);
+            Frame.Navigate(typeof(SimulationExecution), Matches);
         }
     }
 }

@@ -1,8 +1,7 @@
-﻿using System.Diagnostics;
+﻿using DataAccessLibrary;
 using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using DataAccessLibrary;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -15,11 +14,11 @@ namespace HandsOff
     {
         public SimulationPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             Scores Scores = new Scores();
             Scoresource.ItemsSource = Scores;
 
-            foreach (var Scoreobj in DataAccess.GetData())
+            foreach (Score Scoreobj in DataAccess.GetData())
             {
                 if (Scores.Any(p => p == Scoreobj))
                 {
@@ -32,7 +31,7 @@ namespace HandsOff
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(Dashboard));
+            Frame.Navigate(typeof(Dashboard));
         }
     }
 }

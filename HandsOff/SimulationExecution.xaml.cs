@@ -1,11 +1,8 @@
 ﻿using HandsOff.Models;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Windows.Storage;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -27,17 +24,17 @@ namespace HandsOff
 
         public SimulationExecution()
         {
-            this.InitializeComponent();
-            ProgressBarTotalMatches = this.AllBar;
+            InitializeComponent();
+            ProgressBarTotalMatches = AllBar;
         }
 
         public void CreateMatchListUI()
         {
             Task.Run(() =>
             {
-                StackPanel Stackpanel1 = this.MatchList1;
-                StackPanel Stackpanel2 = this.MatchList2;
-                StackPanel Stackpanel3 = this.MatchList3;
+                StackPanel Stackpanel1 = MatchList1;
+                StackPanel Stackpanel2 = MatchList2;
+                StackPanel Stackpanel3 = MatchList3;
 
                 int i = 1;
                 int x = 0;
@@ -143,7 +140,7 @@ namespace HandsOff
 
                     await Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
                     {
-                        ProgressBar bar = (ProgressBar)this.FindName("ProgressBar" + i);
+                        ProgressBar bar = (ProgressBar)FindName("ProgressBar" + i);
                         bar.Value = match.TurnCounter;
                         i++;
                         ProgressBarTotalMatches.Value += 1;
@@ -153,7 +150,7 @@ namespace HandsOff
 
             });
 
-            Button nextbutton = (Button)this.continueButton;
+            Button nextbutton = continueButton;
 
             nextbutton.Visibility = Visibility.Visible;
         }
@@ -164,7 +161,7 @@ namespace HandsOff
 
             if (e.Parameter != null)
             {
-                this.Matches = (List<Match>)e.Parameter;
+                Matches = (List<Match>)e.Parameter;
                 CreateMatchListUI();
             }
         }
@@ -182,7 +179,7 @@ namespace HandsOff
 
         private void Continue_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(SimulationPage));
+            Frame.Navigate(typeof(SimulationPage));
         }
     }
 }

@@ -11,7 +11,7 @@ namespace DataAccessLibrary
         /// <summary>
         /// Initializes the database and creates one if not existing
         /// </summary>
-        public async static void InitializeDatabase()
+        public static async void InitializeDatabase()
         {
             await ApplicationData.Current.LocalFolder.CreateFileAsync("database.db", CreationCollisionOption.OpenIfExists);
             string dbpath = Path.Combine(ApplicationData.Current.LocalFolder.Path, "database.db");
@@ -20,7 +20,7 @@ namespace DataAccessLibrary
             {
                 db.Open();
 
-                String tableCommand =
+                string tableCommand =
                     "CREATE TABLE IF NOT EXISTS Scores " +
                     "(ID INTEGER NOT NULL UNIQUE, " +
                     "Teamname1 TEXT NOT NULL, " +
@@ -98,7 +98,7 @@ namespace DataAccessLibrary
                     selectCommand = new SqliteCommand
                         ("SELECT Teamname1, Teamname2, Teamscore1, Teamscore2 from Scores ORDER BY ID DESC LIMIT " + rows, db);
                 }
-                
+
 
                 SqliteDataReader query = selectCommand.ExecuteReader();
 

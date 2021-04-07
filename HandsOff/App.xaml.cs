@@ -1,21 +1,19 @@
-﻿using HandsOff.Models;
+﻿using DataAccessLibrary;
+using HandsOff.Models;
 using System;
-using System.Diagnostics;
+using System.Collections.Generic;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using DataAccessLibrary;
-using System.Collections.Generic;
 
 namespace HandsOff
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
-    sealed partial class App : Application
+    public sealed partial class App : Application
     {
         public static List<Team> Teams = new List<Team>();
 
@@ -25,8 +23,8 @@ namespace HandsOff
         /// </summary>
         public App()
         {
-            this.InitializeComponent();
-            this.Suspending += OnSuspending;
+            InitializeComponent();
+            Suspending += OnSuspending;
 
             //Initialize the database at startup
             DataAccess.InitializeDatabase();
@@ -82,7 +80,7 @@ namespace HandsOff
         /// </summary>
         /// <param name="sender">The Frame which failed navigation</param>
         /// <param name="e">Details about the navigation failure</param>
-        void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
+        private void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
         {
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
         }
@@ -96,7 +94,7 @@ namespace HandsOff
         /// <param name="e">Details about the suspend request.</param>
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
-            var deferral = e.SuspendingOperation.GetDeferral();
+            SuspendingDeferral deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
             deferral.Complete();
         }

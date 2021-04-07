@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace HandsOff.Models
+﻿namespace HandsOff.Models
 {
     public class Player
     {
