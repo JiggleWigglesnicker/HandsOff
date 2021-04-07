@@ -201,34 +201,44 @@ namespace HandsOff
 
         private async void CreateTeam_Click(object sender, RoutedEventArgs e)
         {
-            App.Teams.Add(CreateCustomTeam());
+            if (TeamNameBox.Text == "")
+            {
+                // Show message dialog when no team name has been entered
+                MessageDialog showDialog = new MessageDialog("Please enter a team name.");
+                showDialog.Commands.Add(new UICommand("Ok")
+                {
+                    Id = 0
+                });
+                showDialog.DefaultCommandIndex = 0;
+                IUICommand result = await showDialog.ShowAsync();
+                if ((int)result.Id == 0)
+                {
+                    return;
+                }
+            }
+            else
+            {
+                App.Teams.Add(CreateCustomTeam());
 
-            // Show message dialog when random team has been generated.
-            MessageDialog showDialog = new MessageDialog("Team has been created!");
-            showDialog.Commands.Add(new UICommand("Ok")
-            {
-                Id = 0
-            });
-            showDialog.DefaultCommandIndex = 0;
-            IUICommand result = await showDialog.ShowAsync();
-            if ((int)result.Id == 0)
-            {
-                return;
+                // Show message dialog when a custom team has been created
+                MessageDialog showDialog = new MessageDialog("Team " + TeamNameBox.Text + " has been created!");
+                showDialog.Commands.Add(new UICommand("Ok")
+                {
+                    Id = 0
+                });
+                showDialog.DefaultCommandIndex = 0;
+                IUICommand result = await showDialog.ShowAsync();
+                if ((int)result.Id == 0)
+                {
+                    return;
+                }
             }
         }
 
         public Team CreateCustomTeam()
         {
             Team team = new Team();
-
-            if (TeamNameBox.Text == "")
-            {
-                team.TeamName = "Unnamed Team";
-            }
-            else
-            {
-                team.TeamName = TeamNameBox.Text;
-            }
+            team.TeamName = TeamNameBox.Text;
 
             for (int i = 1; i < 12; i++)
             {
@@ -244,11 +254,6 @@ namespace HandsOff
                 team.AddPlayerToTeam(player);
             }
             return team;
-        }
-
-        private void Back_Click(object sender, RoutedEventArgs e)
-        {
-            App.TryGoBack();
         }
 
         private async void CreateRandomTeam_Click(object sender, RoutedEventArgs e)
@@ -272,10 +277,9 @@ namespace HandsOff
             }
         }
 
-
         public string Generate_TeamName()
         {
-            string[] TeamNames = { "Ajax", "Feyenoord", "PSV", "FC Emmen", "NAC Breda", "Herres", "GOAT", "Kamerbreed Tapijt", "SC Ria Valk", "VV De Derde Helft", "Geen centen maar spullen", "FC Stacksjouwers", "Up the irons!", "Fc Gullit", "Juventus", "Galatasaray", "Fc Vriescheloo", "Onstwedderboys", "Manchester United", "Chelsea", "AZ", "Mongo Thierry", "Fc MusicMixer", "LTC Assen 6", "Mannen van het zesde", "FC Barcelona", "Tiri Boys", "VVJ Judas", "C# Masters", "UWP 4 Life", "Fc Frenkie", "VV Baptist", "James Blunt's Boys", "Ltjes Rozenwater", "Fc Gaan met Die Banaan", "Oranje", "Blauw", "Rood Wit", "Jong Ajax", "GroenGeel", "OranjeRood", "FC Schoonebeek", "De Sonurs", "De Multithreaders" };
+            string[] TeamNames = { "Ajax", "Feyenoord", "PSV", "FC Emmen", "NAC Breda", "Herres", "GOAT", "Kamerbreed Tapijt", "SC Ria Valk", "VV De Derde Helft", "Geen centen maar spullen", "FC Stacksjouwers", "Up the irons!", "FC Gullit", "Juventus", "Galatasaray", "FC Vriescheloo", "Onstwedderboys", "Manchester United", "Chelsea", "AZ", "Mongo Thierry", "FC MusicMixer", "LTC Assen 6", "Mannen van het zesde", "FC Barcelona", "Tiri Boys", "VVJ Judas", "C# Masters", "UWP 4 Life", "FC Frenkie", "VV Baptist", "James Blunt's Boys", "Ltjes Rozenwater", "FC Gaan met Die Banaan", "Oranje", "Blauw", "Rood Wit", "Jong Ajax", "GroenGeel", "OranjeRood", "FC Schoonebeek", "De Sonurs", "De Multithreaders" };
             RandomTeamName = TeamNames[randomNumber.Next(0, TeamNames.Length - 1)];
 
             return RandomTeamName;
@@ -329,6 +333,11 @@ namespace HandsOff
                 team.AddPlayerToTeam(player);
             }
             return team;
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            App.TryGoBack();
         }
     }
 }
