@@ -21,11 +21,11 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
         <StackPanel
         Background="ForestGreen"
         Margin="10" Grid.Column="1"
         >
-
             <TextBlock
             Foreground="White"
             FontSize="100"
@@ -45,8 +45,6 @@
             Margin="0,0,0,40"
             Click="Open_Click"
             />
-
-
         </StackPanel>
     </Grid>
 </Page>
