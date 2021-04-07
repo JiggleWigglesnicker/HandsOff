@@ -1,5 +1,6 @@
 ﻿using DataAccessLibrary;
 using System.Linq;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -18,15 +19,23 @@ namespace HandsOff
             Scores Scores = new Scores();
             Scoresource.ItemsSource = Scores;
 
-            foreach (Score Scoreobj in DataAccess.GetData())
-            {
-                if (Scores.Any(p => p == Scoreobj))
+            _ = Dispatcher.RunAsync(
+                CoreDispatcherPriority.High,
+                () =>
                 {
-                    return;
-                }
-                Scores.Add(Scoreobj);
-                // Dit moet nog gecheckt worden
-            }
+                    foreach (Score Scoreobj in DataAccess.GetData())
+                    {
+                        if (Scores.Any(p => p == Scoreobj))
+                        {
+                            return;
+                        }
+                        Scores.Add(Scoreobj);
+                        // Dit moet nog gecheckt worden
+                    }
+
+                });
+
+            
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
