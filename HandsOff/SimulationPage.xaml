@@ -38,8 +38,8 @@
                             <TextBlock Grid.Column="0" Padding="5,0,5,0" Text="{Binding TeamName1}" />
                             <TextBlock Grid.Column="1" Text="{Binding TeamScore1}" />
                             <TextBlock Grid.Column="2" Text=" - " />
-                            <TextBlock Grid.Column="3" Text="{Binding TeamScore2}" />
-                            <TextBlock Grid.Column="4" Text="{Binding TeamName2}" />
+                            <TextBlock Grid.Column="3" Padding="5,0,5,0" Text="{Binding TeamScore2}" />
+                            <TextBlock Grid.Column="4" Padding="5,0,5,0" Text="{Binding TeamName2}" />
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
