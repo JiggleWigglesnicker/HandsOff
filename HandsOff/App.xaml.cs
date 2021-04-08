@@ -48,11 +48,6 @@ namespace HandsOff
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
-                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
-                {
-                    
-                }
-
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
             }
@@ -72,7 +67,7 @@ namespace HandsOff
         }
 
         /// <summary>
-        /// Invoked when Navigation to a certain page fails
+        /// Invoked when Navigation to a certain page fails.
         /// </summary>
         /// <param name="sender">The Frame which failed navigation</param>
         /// <param name="e">Details about the navigation failure</param>
@@ -94,7 +89,6 @@ namespace HandsOff
             
             deferral.Complete();
         }
-
 
         /// <summary>
         /// Navigates back to the last frame which was accessed by the client.  

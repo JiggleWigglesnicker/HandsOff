@@ -48,16 +48,6 @@ namespace HandsOff
         }
 
         /// <summary>
-        /// Navigates back to the previous Frame (Page)
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Back_Click(object sender, RoutedEventArgs e)
-        {
-            App.TryGoBack();
-        }
-
-        /// <summary>
         /// Invoked when a team is selected in dropdownbox 1. 
         /// </summary>
         /// <param name="sender"></param>
@@ -153,6 +143,11 @@ namespace HandsOff
             MakeMatch();
         }
 
+        /// <summary>
+        /// Navigates back to the previous Frame (Page)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             App.TryGoBack();

@@ -68,10 +68,10 @@ namespace HandsOff.Models
                 }
             }
         }
-        
+
         /// <summary>
-        /// Calculates every turn. Decides what happens to BallPosition and Ballowner 
-        /// based on the output of the method AttemptAdvance().
+        /// Decides what happens to BallPosition and Ballowner based on the output of the
+        /// method AttemptAdvance(). Together, TakeTurn() and AttemptAdvance() calculate each turn.
         /// </summary>
         private void TakeTurn()
         {
@@ -186,10 +186,10 @@ namespace HandsOff.Models
         }
 
         /// <summary>
-        /// Calculates each turn. The only parameters are the amount of players attacking 
-        /// and defending. From these amounts, and the ballowner, can be deduced in what state 
-        /// For example, with ballowner being 1 and with 1 player attacking and definding, then 
-        /// Team 1 has to be making an attempt to score.
+        /// Calculates each advance attempt. The only parameters of this method are the amount of 
+        /// players attacking and defending. The state of the simulation can be deduced from from these 
+        /// amounts and from the current ballowner. For example, with ballowner being 1 and with 1 
+        /// player attacking and definding, then Team 1 has to be making an attempt to score.
         /// </summary>
         /// <param name="AmountOfPlayersAttacking"></param>
         /// <param name="AmountOfPlayersDefending"></param>
@@ -316,7 +316,7 @@ namespace HandsOff.Models
 
         /// <summary>
         /// This method is only called when the endscore is equal. 
-        /// This prevents a stalemate and from the score being 0 - 0.
+        /// This prevents a stalemate and the score from being 0 - 0.
         /// </summary>
         private void penalty()
         {
@@ -344,5 +344,4 @@ namespace HandsOff.Models
                 }
             }
         }
-    }
 }
