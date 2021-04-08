@@ -19,21 +19,41 @@ namespace HandsOff
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Navigates to the TeamCreatorPage
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TeamCreator_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(TeamCreator));
         }
 
+        /// <summary>
+        /// Navigates to the MatchMakerPage
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MatchMaker_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(MatchMaker));
         }
 
+        /// <summary>
+        /// Navigates to the SimulationPage
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Simulation_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(SimulationPage));
         }
 
+        /// <summary>
+        /// Invokes when navigated to the dashboard page.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);

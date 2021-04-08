@@ -28,6 +28,9 @@ namespace HandsOff
             ProgressBarTotalMatches = AllBar;
         }
 
+        /// <summary>
+        /// Creates GUI elements foreach match that is to be simulated, async.
+        /// </summary>
         public void CreateMatchListUI()
         {
             Task.Run(() =>
@@ -41,6 +44,7 @@ namespace HandsOff
 
                 Parallel.ForEach(Matches, async match =>
                 {
+                    // Returns back to the UI thread to updated GUI.
                     await Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
                     {
                         ListView listView = new ListView
@@ -129,6 +133,9 @@ namespace HandsOff
             });
         }
 
+        /// <summary>
+        /// When invoked starts simulating matchs async.
+        /// </summary>
         public async void StartExecution()
         {
             int i = 1;
@@ -138,6 +145,7 @@ namespace HandsOff
                 {
                     match.StartSimulation();
 
+                    // Returns back to the UI thread to update the GUI progressbars.
                     await Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
                     {
                         ProgressBar bar = (ProgressBar)FindName("ProgressBar" + i);
@@ -153,6 +161,10 @@ namespace HandsOff
             nextbutton.Visibility = Visibility.Visible;
         }
 
+        /// <summary>
+        /// Invoked when Navigated to this page.
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
@@ -163,18 +175,33 @@ namespace HandsOff
                 CreateMatchListUI();
             }
         }
-
+        
+        /// <summary>
+        /// Simulates the matches when button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void StartSim_Click(object sender, RoutedEventArgs e)
         {
             StartExecution();
             startSimButton.Visibility = Visibility.Collapsed;
         }
 
+        /// <summary>
+        /// Navigates to the simulation overview when all matches complete.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Continue_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(SimulationPage));
         }
 
+        /// <summary>
+        /// Navigates back to the previous page (Frame).
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             App.TryGoBack();

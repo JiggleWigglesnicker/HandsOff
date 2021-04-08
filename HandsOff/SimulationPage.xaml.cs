@@ -13,6 +13,7 @@ namespace HandsOff
     /// </summary>
     public sealed partial class SimulationPage : Page
     {
+       // Creates list items from past match results, and displays them.
         public SimulationPage()
         {
             InitializeComponent();
@@ -35,6 +36,12 @@ namespace HandsOff
                 });
         }
 
+
+        /// <summary>
+        /// Navigates back to the previous Frame (Page).
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(Dashboard));
