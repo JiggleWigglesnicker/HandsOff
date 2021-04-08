@@ -47,6 +47,21 @@ namespace HandsOff
             }
         }
 
+        /// <summary>
+        /// Navigates back to the previous Frame (Page)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            App.TryGoBack();
+        }
+
+        /// <summary>
+        /// Invoked when a team is selected in dropdownbox 1. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TeamCB1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             TeamName = e.AddedItems[0].ToString();
@@ -60,6 +75,11 @@ namespace HandsOff
             }
         }
 
+        /// <summary>
+        /// Invoked when a team is selected in dropdownbox 2. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TeamCB2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             TeamName = e.AddedItems[0].ToString();
@@ -73,6 +93,9 @@ namespace HandsOff
             }
         }
 
+        /// <summary>
+        /// Creates new Match using the two selected teams.
+        /// </summary>
         public async void MakeMatch()
         {
             int AmountOfMatches = (int)long.Parse(NumberOfMatches.Text);
@@ -93,6 +116,7 @@ namespace HandsOff
                 }
             }
 
+            // instantiats the amount of matches selected during matchmaking.
             while (AmountOfMatches > 0)
             {
                 Match match = new Match(SelectedTeam1, SelectedTeam2);

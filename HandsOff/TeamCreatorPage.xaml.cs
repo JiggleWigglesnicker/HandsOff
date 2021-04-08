@@ -26,6 +26,9 @@ namespace HandsOff
             TeamPageUIAsync();
         }
 
+        /// <summary>
+        /// Multithreads the CreateTeamCreatorUI() method.
+        /// </summary>
         public async void TeamPageUIAsync()
         {
             await Task.Run(() =>
@@ -34,6 +37,9 @@ namespace HandsOff
             });
         }
 
+        /// <summary>
+        /// Creates GUI elements to display players of team, with attributes fields.
+        /// </summary>
         public async void CreateTeamCreatorUI()
         {
             int x = 0;
@@ -146,6 +152,7 @@ namespace HandsOff
                     stackPanel.Children.Add(defenceLabel);
                     stackPanel.Children.Add(defenceTextBox);
 
+                    // Positions the players in the correct grid row.
                     if (i <= 1)
                     {
                         Grid.SetColumn(stackPanel, x + 2);
@@ -199,6 +206,11 @@ namespace HandsOff
             }
         }
 
+        /// <summary>
+        /// When invoked creates a new custom-made team on button click.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void CreateTeam_Click(object sender, RoutedEventArgs e)
         {
             if (TeamNameBox.Text == "")
@@ -235,6 +247,11 @@ namespace HandsOff
             }
         }
 
+
+        /// <summary>
+        /// Adds players to a  team based on fields in the GUI.
+        /// </summary>
+        /// <returns></returns>
         public Team CreateCustomTeam()
         {
             Team team = new Team();
@@ -256,6 +273,11 @@ namespace HandsOff
             return team;
         }
 
+        /// <summary>
+        /// Generates a new random team with random properties on button click.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void CreateRandomTeam_Click(object sender, RoutedEventArgs e)
         {
             Team RandomTeam = CreateTeam();
@@ -277,6 +299,10 @@ namespace HandsOff
             }
         }
 
+        /// <summary>
+        /// Selects a random teamname from a list, to be used for naming a random team.
+        /// </summary>
+        /// <returns></returns>
         public string Generate_TeamName()
         {
             string[] TeamNames = { "Ajax", "Feyenoord", "PSV", "FC Emmen", "NAC Breda", "Herres", "GOAT", "Kamerbreed Tapijt", "SC Ria Valk", "VV De Derde Helft", "Geen centen maar spullen", "FC Stacksjouwers", "Up the irons!", "FC Gullit", "Juventus", "Galatasaray", "FC Vriescheloo", "Onstwedderboys", "Manchester United", "Chelsea", "AZ", "Mongo Thierry", "FC MusicMixer", "LTC Assen 6", "Mannen van het zesde", "FC Barcelona", "Tiri Boys", "VVJ Judas", "C# Masters", "UWP 4 Life", "FC Frenkie", "VV Baptist", "James Blunt's Boys", "Ltjes Rozenwater", "FC Gaan met Die Banaan", "Oranje", "Blauw", "Rood Wit", "Jong Ajax", "GroenGeel", "OranjeRood", "FC Schoonebeek", "De Sonurs", "De Multithreaders" };
@@ -285,6 +311,10 @@ namespace HandsOff
             return RandomTeamName;
         }
 
+        /// <summary>
+        /// Creates new random team with random properties.
+        /// </summary>
+        /// <returns></returns>
         public Team CreateTeam()
         {
             System.Random randomSkill = new System.Random();
@@ -335,6 +365,11 @@ namespace HandsOff
             return team;
         }
 
+        /// <summary>
+        /// Navigates back to previous page (Frame).
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             App.TryGoBack();

@@ -28,10 +28,6 @@ namespace HandsOff
 
             //Initialize the database at startup
             DataAccess.InitializeDatabase();
-
-            // DataAccess.AddScores("test22", "test2", 1, 2);
-
-            // Debug.Write(DataAccess.GetData()[0][1]);
         }
 
         /// <summary>
@@ -54,7 +50,7 @@ namespace HandsOff
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
-                    //TODO: Load state from previously suspended application
+                    
                 }
 
                 // Place the frame in the current Window
@@ -95,10 +91,15 @@ namespace HandsOff
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             SuspendingDeferral deferral = e.SuspendingOperation.GetDeferral();
-            //TODO: Save application state and stop any background activity
+            
             deferral.Complete();
         }
 
+
+        /// <summary>
+        /// Navigates back to the last frame which was accessed by the client.  
+        /// </summary>
+        /// <returns></returns>
         public static bool TryGoBack()
         {
             Frame rootFrame = Window.Current.Content as Frame;
