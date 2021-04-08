@@ -36,8 +36,8 @@ namespace HandsOff
 
             foreach (Team Team in App.Teams)
             {
-                CB1.Items.Add(Team.GetName());
-                CB2.Items.Add(Team.GetName());
+                CB1.Items.Add(Team.TeamName);
+                CB2.Items.Add(Team.TeamName);
 
                 if (Team != null)
                 {
@@ -47,18 +47,13 @@ namespace HandsOff
             }
         }
 
-        private void Back_Click(object sender, RoutedEventArgs e)
-        {
-            App.TryGoBack();
-        }
-
         private void TeamCB1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             TeamName = e.AddedItems[0].ToString();
 
             foreach (Team team in App.Teams)
             {
-                if (TeamName == team.GetName())
+                if (TeamName == team.TeamName)
                 {
                     SelectedTeam1 = team;
                 }
@@ -71,7 +66,7 @@ namespace HandsOff
 
             foreach (Team Team in App.Teams)
             {
-                if (TeamName == Team.GetName())
+                if (TeamName == Team.TeamName)
                 {
                     SelectedTeam2 = Team;
                 }
@@ -132,6 +127,11 @@ namespace HandsOff
             }
 
             MakeMatch();
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            App.TryGoBack();
         }
     }
 }

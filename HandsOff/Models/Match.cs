@@ -35,6 +35,9 @@ namespace HandsOff.Models
             this.Team2 = Team2;
         }
 
+        /// <summary>
+        /// This method starts the simulation and contains the loop where it is executed from.
+        /// </summary>
         public void StartSimulation()
         {
             Debug.WriteLine("Starting match!!!");
@@ -65,34 +68,11 @@ namespace HandsOff.Models
                 }
             }
         }
-
-        private void penalty()
-        {
-            while (Team1Score == Team2Score)
-            {
-                if (AttemptAdvance(1, 1) == 1)
-                {
-                    if (BallOwner == 1)
-                    {
-                        Team1Score++;
-                    }
-                    else
-                    {
-                        Team2Score++;
-                    }
-                }
-
-                if (BallOwner == 1)
-                {
-                    BallOwner = 2;
-                }
-                else if (BallOwner == 2)
-                {
-                    BallOwner = 1;
-                }
-            }
-        }
-
+        
+        /// <summary>
+        /// Calculates every turn. Decides what happens to BallPosition and Ballowner 
+        /// based on the output of the method AttemptAdvance().
+        /// </summary>
         private void TakeTurn()
         {
             if (BallOwner == 1) // team 1 owns the ball
@@ -205,6 +185,15 @@ namespace HandsOff.Models
             }
         }
 
+        /// <summary>
+        /// Calculates each turn. The only parameters are the amount of players attacking 
+        /// and defending. From these amounts, and the ballowner, can be deduced in what state 
+        /// For example, with ballowner being 1 and with 1 player attacking and definding, then 
+        /// Team 1 has to be making an attempt to score.
+        /// </summary>
+        /// <param name="AmountOfPlayersAttacking"></param>
+        /// <param name="AmountOfPlayersDefending"></param>
+        /// <returns></returns>
         private int AttemptAdvance(byte AmountOfPlayersAttacking, byte AmountOfPlayersDefending)
         {
             // reset all values
@@ -322,6 +311,37 @@ namespace HandsOff.Models
                     return 0;
                 }
                 return -1;
+            }
+        }
+
+        /// <summary>
+        /// This method is only called when the endscore is equal. 
+        /// This prevents a stalemate and from the score being 0 - 0.
+        /// </summary>
+        private void penalty()
+        {
+            while (Team1Score == Team2Score)
+            {
+                if (AttemptAdvance(1, 1) == 1)
+                {
+                    if (BallOwner == 1)
+                    {
+                        Team1Score++;
+                    }
+                    else
+                    {
+                        Team2Score++;
+                    }
+                }
+
+                if (BallOwner == 1)
+                {
+                    BallOwner = 2;
+                }
+                else if (BallOwner == 2)
+                {
+                    BallOwner = 1;
+                }
             }
         }
     }

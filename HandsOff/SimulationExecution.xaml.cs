@@ -146,8 +146,6 @@ namespace HandsOff
                         ProgressBarTotalMatches.Value += 1;
                     });
                 });
-
-
             });
 
             Button nextbutton = continueButton;
@@ -172,14 +170,14 @@ namespace HandsOff
             startSimButton.Visibility = Visibility.Collapsed;
         }
 
-        private void Back_Click(object sender, RoutedEventArgs e)
-        {
-            App.TryGoBack();
-        }
-
         private void Continue_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(SimulationPage));
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            App.TryGoBack();
         }
     }
 }

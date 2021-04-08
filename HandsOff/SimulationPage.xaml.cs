@@ -32,10 +32,7 @@ namespace HandsOff
                         Scores.Add(Scoreobj);
                         // Dit moet nog gecheckt worden
                     }
-
                 });
-
-            
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
