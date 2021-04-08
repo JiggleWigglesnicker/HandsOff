@@ -134,7 +134,7 @@ namespace HandsOff
         }
 
         /// <summary>
-        /// When invoked starts simulating matchs async.
+        /// When invoked starts simulating matches async.
         /// </summary>
         public async void StartExecution()
         {

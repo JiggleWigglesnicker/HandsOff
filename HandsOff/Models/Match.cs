@@ -214,8 +214,8 @@ namespace HandsOff.Models
                 {
                     SelectedPlayerTeam1 = Team1.Players[RandomPlayerSelector.Next(9, 11)]; // randomly choose between attackers
 
-                    CombinedAttackTeam1 += SelectedPlayerTeam1.Shooting;
-                    CombinedSpeedTeam1 += SelectedPlayerTeam1.Pace;
+                    CombinedAttackTeam1 += SelectedPlayerTeam1.Attack;
+                    CombinedSpeedTeam1 += SelectedPlayerTeam1.Speed;
                 }
 
                 // get numbers for the defending team (team 2)
@@ -239,7 +239,7 @@ namespace HandsOff.Models
                     }
 
                     CombinedDefenseTeam2 += SelectedPlayerTeam2.Defence;
-                    CombinedSpeedTeam2 += SelectedPlayerTeam2.Pace;
+                    CombinedSpeedTeam2 += SelectedPlayerTeam2.Speed;
                 }
 
                 /** calculate if attacking team will be succesfull **/
@@ -267,8 +267,8 @@ namespace HandsOff.Models
                 {
                     SelectedPlayerTeam2 = Team2.Players[RandomPlayerSelector.Next(9, 11)]; // randomly choose between attackers
 
-                    CombinedAttackTeam2 += SelectedPlayerTeam2.Shooting;
-                    CombinedSpeedTeam2 += SelectedPlayerTeam2.Pace;
+                    CombinedAttackTeam2 += SelectedPlayerTeam2.Attack;
+                    CombinedSpeedTeam2 += SelectedPlayerTeam2.Speed;
                 }
 
                 // get numbers for the defending team (team 1)
@@ -292,7 +292,7 @@ namespace HandsOff.Models
                     }
 
                     CombinedDefenseTeam1 += SelectedPlayerTeam1.Defence;
-                    CombinedSpeedTeam1 += SelectedPlayerTeam1.Pace;
+                    CombinedSpeedTeam1 += SelectedPlayerTeam1.Speed;
                 }
 
                 /** calculate if attacking team will be succesfull */
@@ -344,4 +344,5 @@ namespace HandsOff.Models
                 }
             }
         }
+    }
 }

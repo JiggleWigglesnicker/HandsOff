@@ -249,7 +249,7 @@ namespace HandsOff
 
 
         /// <summary>
-        /// Adds players to a  team based on fields in the GUI.
+        /// Adds players to a team based on fields in the GUI.
         /// </summary>
         /// <returns></returns>
         public Team CreateCustomTeam()
@@ -263,11 +263,11 @@ namespace HandsOff
                 TextBox textBox1 = (TextBox)stackpanel.Children[2];
                 TextBox textBox2 = (TextBox)stackpanel.Children[4];
                 TextBox textBox5 = (TextBox)stackpanel.Children[6];
-                int pace = (int)long.Parse(textBox1.Text);
-                int shooting = (int)long.Parse(textBox2.Text);
-                int defence = (int)long.Parse(textBox5.Text);
+                int Speed = (int)long.Parse(textBox1.Text);
+                int Attack = (int)long.Parse(textBox2.Text);
+                int Defense = (int)long.Parse(textBox5.Text);
 
-                Player player = new Player(i, pace, shooting, defence);
+                Player player = new Player(i, Attack, Speed, Defense);
                 team.AddPlayerToTeam(player);
             }
             return team;
@@ -320,46 +320,45 @@ namespace HandsOff
             System.Random randomSkill = new System.Random();
 
             Team team = new Team();
-            int shooting;
-            int pace;
-            int defence;
+            int Attack;
+            int Speed;
+            int Defence;
 
             for (int i = 1; i < 12; i++)
             {
                 switch (i)
                 {
                     case 1:
-                        shooting = randomSkill.Next(1, 101);
-                        pace = randomSkill.Next(90, 101);
-                        defence = randomSkill.Next(90, 101);
+                        Attack = randomSkill.Next(1, 101);
+                        Speed = randomSkill.Next(1, 101);
+                        Defence = randomSkill.Next(1, 101);
                         break;
                     case 2:
                     case 3:
                     case 4:
                     case 5:
-                        shooting = randomSkill.Next(1, 101);
-                        pace = randomSkill.Next(90, 101);
-                        defence = randomSkill.Next(90, 101);
+                        Attack = randomSkill.Next(1, 101);
+                        Speed = randomSkill.Next(1, 101);
+                        Defence = randomSkill.Next(1, 101);
                         break;
                     case 6:
                     case 7:
                     case 8:
-                        shooting = randomSkill.Next(1, 101);
-                        pace = randomSkill.Next(90, 101);
-                        defence = randomSkill.Next(90, 101);
+                        Attack = randomSkill.Next(1, 101);
+                        Speed = randomSkill.Next(1, 101);
+                        Defence = randomSkill.Next(1, 101);
                         break;
                     case 9:
                     case 10:
                     case 11:
                     default:
-                        shooting = randomSkill.Next(90, 101);
-                        pace = randomSkill.Next(90, 101);
-                        defence = randomSkill.Next(1, 101);
+                        Attack = randomSkill.Next(1, 101);
+                        Speed = randomSkill.Next(1, 101);
+                        Defence = randomSkill.Next(1, 101);
                         break;
                 }
 
-                //int Luck = randomSkill.Next(1, 101);
-                Player player = new Player(i, pace, shooting, defence);
+                Player player = new Player(i, Attack, Speed, Defence);
                 team.AddPlayerToTeam(player);
             }
             return team;
