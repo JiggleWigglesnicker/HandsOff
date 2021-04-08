@@ -15,6 +15,11 @@ namespace HandsOff
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Navigates to the DashboardPage.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Open_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(Dashboard));
