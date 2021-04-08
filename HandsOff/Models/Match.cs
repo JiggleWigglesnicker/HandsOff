@@ -15,7 +15,7 @@ namespace HandsOff.Models
 
         private short BallPosition;                             // Position of the football. values 1-8
         private byte BallOwner;                                 // Keeps track of which team owns the ball, values 1-2
-        private int RandomLuck;                                 // Generates a random number rangin from 1-90, representing the random chance
+        private int RandomLuck;                                 // Generates a random number ranging from 1-90, representing the random chance
 
         private Player SelectedPlayerTeam1, SelectedPlayerTeam2;
 
@@ -65,7 +65,7 @@ namespace HandsOff.Models
         }
 
         /// <summary>
-        /// Decides what happens to BallPosition and Ballowner based on the output of the
+        /// Decides what happens to BallPosition and ball owner based on the output of the
         /// method AttemptAdvance(). Together, TakeTurn() and AttemptAdvance() calculate each turn.
         /// </summary>
         private void TakeTurn()
@@ -95,7 +95,7 @@ namespace HandsOff.Models
                 }
                 else if (BallPosition == 7) // Attempt to get through the defense players
                 {
-                    if (AttemptAdvance(3, 4) == 1) // in all other cases, the attackers are trying to advance through the midfielders
+                    if (AttemptAdvance(3, 4) == 1) // in all other cases, the attackers are trying to advance through the mid-fielders
                     {
                         BallPosition++;
                     }
@@ -110,7 +110,7 @@ namespace HandsOff.Models
                 }
                 else
                 {
-                    if (AttemptAdvance(3, 3) == 1) // in all other cases, the attackers are trying to advance through the midfielders
+                    if (AttemptAdvance(3, 3) == 1) // in all other cases, the attackers are trying to advance through the mid-fielders
                     {
                         BallPosition++;
                     }
@@ -149,7 +149,7 @@ namespace HandsOff.Models
                 }
                 else if (BallPosition == 1) // Attempt to get through the defense players
                 {
-                    if (AttemptAdvance(3, 4) == 1) // in all other cases, the attackers are trying to advance through the midfielders
+                    if (AttemptAdvance(3, 4) == 1) // in all other cases, the attackers are trying to advance through the mid-fielders
                     {
                         BallPosition--;
                     }
@@ -164,7 +164,7 @@ namespace HandsOff.Models
                 }
                 else
                 {
-                    if (AttemptAdvance(3, 3) == 1) // in all other cases, the attackers are trying to advance through the midfielders
+                    if (AttemptAdvance(3, 3) == 1) // in all other cases, the attackers are trying to advance through the mid-fielders
                     {
                         BallPosition--;
                     }
@@ -182,9 +182,9 @@ namespace HandsOff.Models
 
         /// <summary>
         /// Calculates each advance attempt. The only parameters of this method are the amount of 
-        /// players attacking and defending. The state of the simulation can be deduced from from these 
-        /// amounts and from the current ballowner. For example, with ballowner being 1 and with 1 
-        /// player attacking and definding, then Team 1 has to be making an attempt to score.
+        /// players attacking and defending. The state of the simulation can be deduced from these 
+        /// amounts and from the current ball owner. For example, with ball owner being 1 and with 1 
+        /// player attacking and defending, then Team 1 has to be making an attempt to score.
         /// </summary>
         /// <param name="AmountOfPlayersAttacking"></param>
         /// <param name="AmountOfPlayersDefending"></param>
@@ -225,7 +225,7 @@ namespace HandsOff.Models
                             break;
                         case 2:
                         case 3:
-                            SelectedPlayerTeam2 = Team2.Players[RandomPlayerSelector.Next(6, 9)]; // randomly choose between midfielders
+                            SelectedPlayerTeam2 = Team2.Players[RandomPlayerSelector.Next(6, 9)]; // randomly choose between mid-fielders
                             break;
                         case 4:
                         default:
@@ -237,7 +237,7 @@ namespace HandsOff.Models
                     CombinedSpeedTeam2 += SelectedPlayerTeam2.Speed;
                 }
 
-                /** calculate if attacking team will be succesfull **/
+                /** calculate if attacking team will be successful **/
                 RandomLuck = (RandomChanceGenerator.Next(1, 91));
                 TotalTeam1 = (RandomLuck + (CombinedAttackTeam1 / 30) + (CombinedSpeedTeam1 / 30));
 
@@ -278,7 +278,7 @@ namespace HandsOff.Models
                             break;
                         case 2:
                         case 3:
-                            SelectedPlayerTeam1 = Team1.Players[RandomPlayerSelector.Next(6, 9)]; // randomly choose between midfielders
+                            SelectedPlayerTeam1 = Team1.Players[RandomPlayerSelector.Next(6, 9)]; // randomly choose between mid-fielders
                             break;
                         case 4:
                         default:
@@ -290,7 +290,7 @@ namespace HandsOff.Models
                     CombinedSpeedTeam1 += SelectedPlayerTeam1.Speed;
                 }
 
-                /** calculate if attacking team will be succesfull */
+                /** calculate if attacking team will be successful */
                 RandomLuck = (RandomChanceGenerator.Next(1, 91));
                 TotalTeam2 = (RandomLuck + (CombinedAttackTeam2 / 30) + (CombinedSpeedTeam2 / 30));
 
@@ -310,7 +310,7 @@ namespace HandsOff.Models
         }
 
         /// <summary>
-        /// This method is only called when the endscore is equal. 
+        /// This method is only called when the end score is equal. 
         /// This prevents a stalemate and the score from being 0 - 0.
         /// </summary>
         private void penalty()

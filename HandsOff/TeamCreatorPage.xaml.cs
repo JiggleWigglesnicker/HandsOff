@@ -300,7 +300,7 @@ namespace HandsOff
         }
 
         /// <summary>
-        /// Selects a random teamname from a list, to be used for naming a random team.
+        /// Selects a random team name from a list, to be used for naming a random team.
         /// </summary>
         /// <returns></returns>
         public string Generate_TeamName()

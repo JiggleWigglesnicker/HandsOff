@@ -145,7 +145,7 @@ namespace HandsOff
                 {
                     match.StartSimulation();
 
-                    // Returns back to the UI thread to update the GUI progressbars.
+                    // Returns back to the UI thread to update the GUI progress bars.
                     await Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
                     {
                         ProgressBar bar = (ProgressBar)FindName("ProgressBar" + i);
