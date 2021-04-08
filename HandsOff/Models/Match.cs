@@ -1,5 +1,4 @@
 ﻿using DataAccessLibrary;
-using System.Diagnostics;
 
 namespace HandsOff.Models
 {
@@ -14,12 +13,11 @@ namespace HandsOff.Models
         public ushort Team1Score { get; private set; }          // Total score of team 1, this gets stored when the match is finished
         public ushort Team2Score { get; private set; }          // Total score of team 2, this gets stored when the match is finished
 
-        private short BallPosition;                               // Position of the football. values 1-8
+        private short BallPosition;                             // Position of the football. values 1-8
         private byte BallOwner;                                 // Keeps track of which team owns the ball, values 1-2
         private int RandomLuck;                                 // Generates a random number rangin from 1-90, representing the random chance
 
-        private Player SelectedPlayerTeam1;
-        private Player SelectedPlayerTeam2;
+        private Player SelectedPlayerTeam1, SelectedPlayerTeam2;
 
         // placeholders for calculating the football game
         private double CombinedAttackTeam1, CombinedDefenseTeam1, CombinedSpeedTeam1, CombinedAttackTeam2, CombinedDefenseTeam2, CombinedSpeedTeam2, TotalTeam1, TotalTeam2;
@@ -40,8 +38,6 @@ namespace HandsOff.Models
         /// </summary>
         public void StartSimulation()
         {
-            Debug.WriteLine("Starting match!!!");
-
             // Start the match with Team 1 
             BallPosition = 4;
             BallOwner = 1;
@@ -64,7 +60,6 @@ namespace HandsOff.Models
                         penalty();
                     }
                     DataAccess.AddScores(Team1.TeamName, Team2.TeamName, Team1Score, Team2Score);
-                    Debug.WriteLine("Done! final score: Team 1: {0} and Team 2: {1}", Team1Score, Team2Score);
                 }
             }
         }
