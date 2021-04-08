@@ -59,7 +59,7 @@ namespace HandsOff
                             Foreground = new SolidColorBrush(Colors.White),
                             FontSize = 18,
                             HorizontalAlignment = HorizontalAlignment.Center,
-                            Text = "Match" + i,
+                            Text = "Match " + i,
                             Height = 50,
                             Width = 200,
                             Margin = new Thickness(0, 40, 0, 0)
