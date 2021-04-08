@@ -13,7 +13,7 @@ namespace HandsOff
     /// </summary>
     public sealed partial class SimulationPage : Page
     {
-       // Creates list items from past match results, and displays them.
+        // Creates list items from past match results, and displays them.
         public SimulationPage()
         {
             InitializeComponent();

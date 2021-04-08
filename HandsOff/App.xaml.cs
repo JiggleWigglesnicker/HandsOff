@@ -84,7 +84,7 @@ namespace HandsOff
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             SuspendingDeferral deferral = e.SuspendingOperation.GetDeferral();
-            
+
             deferral.Complete();
         }
 

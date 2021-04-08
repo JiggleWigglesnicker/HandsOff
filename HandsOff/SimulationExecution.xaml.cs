@@ -175,7 +175,7 @@ namespace HandsOff
                 CreateMatchListUI();
             }
         }
-        
+
         /// <summary>
         /// Simulates the matches when button is clicked
         /// </summary>

@@ -17,7 +17,7 @@ namespace HandsOff
     /// </summary>
     public sealed partial class TeamCreator : Page
     {
-        private readonly System.Random randomNumber = new System.Random();
+        private readonly Random randomNumber = new Random();
         private string RandomTeamName;
 
         public TeamCreator()
@@ -48,7 +48,6 @@ namespace HandsOff
             {
                 await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    ScrollViewer scrollView = new ScrollViewer();
 
                     StackPanel stackPanel = new StackPanel
                     {
