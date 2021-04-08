@@ -31,11 +31,9 @@ namespace HandsOff
                             return;
                         }
                         Scores.Add(Scoreobj);
-                        // Dit moet nog gecheckt worden
                     }
                 });
         }
-
 
         /// <summary>
         /// Navigates back to the previous Frame (Page).

@@ -106,7 +106,7 @@ namespace HandsOff
                 }
             }
 
-            // instantiats the amount of matches selected during matchmaking.
+            // instantiates the amount of matches selected during matchmaking.
             while (AmountOfMatches > 0)
             {
                 Match match = new Match(SelectedTeam1, SelectedTeam2);
